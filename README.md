@@ -4,7 +4,7 @@
 
 LAMMPS (**L**arge-scale **A**tomic/**M**olecular **M**assively **P**arallel **S**imulator) is a classical molecular dynamics simulation (MD) program that models ensembles of particles in a liquid, solid, or gaseous state. It can model atomic, polymeric, biological, solid-state, granular, coarse-grained, or macroscopic systems using a variety of interatomic potentials (force fields) and boundary conditions. These can be 2-D or 3-D systems, with sizes ranging from only a few particles up to billions.
 
-In the most general sense, LAMMPS integrates Newton’s equations of motion for a collection of interacting particles. A single particle can be treated as atomistic (i.e. an atom, molecule or electron) or course-grained (a cluster of atoms, or a mesoscopic or macroscopic clump of material). The interaction models that LAMMPS includes are mostly short-ranged in nature; some long-range models are included as well.
+In the most general sense, LAMMPS integrates Newton’s equations of motion for a collection of interacting particles. A single particle can be treated as atomistic (i.e. an atom, molecule or electron) or course-grained (a cluster of atoms, or a mesoscopic or macroscopic clump of material). The interaction models that LAMMPS includes are mostly short-ranged in nature, however some long-range models are included as well.
 
 Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps) to be installed and built on your local machine. Detailed [documentation](https://docs.lammps.org/) is available, however a simplified step by step guide is given below. This guide is for a build on Linux, specifically Ubuntu 23.10.
 
