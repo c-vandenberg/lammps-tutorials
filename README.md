@@ -24,7 +24,7 @@ Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps)
    ```
 
 ### LAMMPS Build
-1. All commands must be run in LAMMPS `src` directory (`cd lammps/src`)
+1. All build commands must be run in LAMMPS `src` directory (`cd lammps/src`)
 2. Build serial LAMMPS executable using GNU g++ (`make serial`)
    * Command `make serial` creates `lmp_serial` binary. It does not require MPI (Message Passing Interface) and is intended for running simulations on a single processor without parallelization
 4. Build parallel LAMMPS executable with MPI (`make mpi`)
