@@ -12,7 +12,7 @@ Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps)
 1. Clone LAMMPS Github repo either using [SSH protocol](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) (`git clone git@github.com:lammps/lammps.git`), or using HTTPS (`git clone https://github.com/lammps/lammps.git`)
 2. Set up virtual environment e.g. using Conda (`conda activate <virtual_environment>`)
 3. Install required packages (further packages will be added as more exercises are added to the tutorial):
-   * `sudo apt install gcc g++ gfortran wget make lammps libopenmpi-dev mpi-default-bin mpi-default-dev libfftw3-dev libjpeg-dev libreadline-dev`
+   * `sudo apt install gcc g++ gfortran wget make lammps libopenmpi-dev mpi-default-bin mpi-default-dev libfftw3-dev libjpeg-dev libpng-dev libreadline-dev`
 5. Certain auxiliary tools require the `ifort` command which requires installation of Intel Fortran Compiler. This can be achieved either as part of the [HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-download.html?operatingsystem=linux&distributions=aptpackagemanager), or as a [standalone release](https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html#fortran)
    * Once installed, prior to running the compiler you need to set certain environment variables via command `source /opt/intel/oneapi/setvars.sh intel64`. This will create a symlink so that the `ifort` command can be used in `lammps\tools\Makefile`
    * May be specific to my system, but I also found that I needed to change the `chain` and `micelle2d` rules in `lammps\tools\Makefile` to correctly compile `chain.f90` and `micelle2d.f90` into `chain.o` and `micelle2d.o` respectively
