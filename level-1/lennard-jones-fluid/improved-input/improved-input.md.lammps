@@ -1,0 +1,11 @@
+# PART A - ENERGY MINIMIZATION
+
+# 1) Initialization
+units lj
+dimension 3
+atom_style atomic
+pair_style lj/cut 2.5
+boundary p p p
+
+# 2) System definition
+read_data minimized_coordinate.data
