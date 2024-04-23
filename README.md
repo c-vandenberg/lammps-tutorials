@@ -32,4 +32,9 @@ Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps)
 5. Build LAMMPS executable and library (`make ubuntu`)
    * This generates the LAMMPS executable in the 'static' mode. If you want to generate it in the 'shared' mode, you need to run `make mode=shared ubuntu`
 6. Navigate to `tools` directory (`cd lammps/tools`) and build LAMMPS tools (`make all`)
+
+### Running LAMMPS
+1. Once you have created your `<input_file>.lammps` input script, you can run LAMMPS using:
+   * The `lmp_serial -in <input_file>.lammps` command to run LAMMPS via the `lmp_serial` binary
+   * The `mpirun -np 4 lmp_mpi -in <input_file>.lammps` command to run LAMMPS via the `lmp_mpi` binary
   

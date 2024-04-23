@@ -1,4 +1,4 @@
-LAMMPS (7 Feb 2024 - Update 1)
+LAMMPS (7 Feb 2024 - Development - patch_7Feb2024_update1-413-gde8b1b49a6)
 # PART A - ENERGY MINIMIZATION
 
 # 1) Initialization
@@ -57,7 +57,7 @@ Per MPI rank memory allocation (min/avg/max) = 4.344 | 4.344 | 4.344 Mbytes
         20   0              1.0371738      0              1.0371738      0.099248566  
         30   0             -0.1393521      0             -0.1393521     -0.0020606973 
         35   0             -0.13951504     0             -0.13951504    -0.0020598977 
-Loop time of 0.00543181 on 1 procs for 35 steps with 1150 atoms
+Loop time of 0.0090935 on 1 procs for 35 steps with 1150 atoms
 
 100.0% CPU use with 1 MPI tasks x no OpenMP threads
 
@@ -73,12 +73,12 @@ Minimization stats:
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 0.001184   | 0.001184   | 0.001184   |   0.0 | 21.80
-Neigh   | 0.0013138  | 0.0013138  | 0.0013138  |   0.0 | 24.19
-Comm    | 0.00029137 | 0.00029137 | 0.00029137 |   0.0 |  5.36
-Output  | 0.0012561  | 0.0012561  | 0.0012561  |   0.0 | 23.13
+Pair    | 0.0018285  | 0.0018285  | 0.0018285  |   0.0 | 20.11
+Neigh   | 0.0025275  | 0.0025275  | 0.0025275  |   0.0 | 27.79
+Comm    | 0.00041013 | 0.00041013 | 0.00041013 |   0.0 |  4.51
+Output  | 0.0020498  | 0.0020498  | 0.0020498  |   0.0 | 22.54
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 0.001386   |            |       | 25.53
+Other   |            | 0.002278   |            |       | 25.05
 
 Nlocal:           1150 ave        1150 max        1150 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
