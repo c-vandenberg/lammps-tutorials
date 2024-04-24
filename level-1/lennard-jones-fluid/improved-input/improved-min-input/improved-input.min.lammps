@@ -12,8 +12,8 @@ region simulation_box block -20 20 -20 20 -20 20
 create_box 2 simulation_box
 region region_inside_cylinder cylinder z 0 0 10 INF INF side in
 region region_outside_cylinder cylinder z 0 0 10 INF INF side out
-create_atoms 1 random 1000 341341 region_inside_cylinder
-create_atoms 2 random 150 127569 region_outside_cylinder
+create_atoms 1 random 1000 341341 region_outside_cylinder
+create_atoms 2 random 150 127569 region_inside_cylinder
 
 # 3) Simulation settings
 mass 1 1
