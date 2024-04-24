@@ -13,13 +13,13 @@ region region_inside_cylinder cylinder z 0 0 10 INF INF side in
 region region_outside_cylinder cylinder z 0 0 10 INF INF side out
 group group_atom_type_1 type 1
 group group_atom_type_2 type 2
-group group_region_in region region_cylinder_in
-group group_region_out region region_cylinder_out
-group group_atom_type_1_in_cylinder intersect group_atom_type_1 group_region_in
-group group_atom_type_2_out_cylinder intersect group_atom_type_2 group_region_out
-delete_atoms group group_atom_type_1_in
-delete_atoms group group_type_2_out
+group group_region_in region region_inside_cylinder
+group group_region_out region region_outside_cylinder
+group group_atom_type_1_out_cylinder intersect group_atom_type_1 group_region_out
+group group_atom_type_2_in_cylinder intersect group_atom_type_2 group_region_in
+delete_atoms group group_atom_type_1_out_cylinder
+delete_atoms group group_atom_type_2_in_cylinder
 
 # 3) Visualization
 thermo 1000
-dump my_all_atoms_per_100_timestep_dump all atom 1000 all_atoms_per_100_timestep_dump.md.lammpstrj
+dump dump_all_atoms_per_100_timestep all atom 1000 dump_all_atoms_per_100_timestep.md.lammpstrj
