@@ -1,6 +1,14 @@
-# Level 1 - Lennard-Jones Fluid first-input.lammps Script Explained
+# Level 1 - Lennard-Jones Fluid first-input.lammps Script
 
-## PART A - ENERGY MINIMIZATION
+This `first-input.lammps` input script creates a simple cubic 3-dimensional simulation box, with periodic boundary conditions (i.e. the simulation box is conceptually replicated infinitely in 3-dimensions), that uses Lennard-Jones units.
+
+It also populates this simulation box with two types of atomic style atoms with the same mass but different energy and distance parameters. It also specifies a cut-off distance for any Lennard-Jones potential interactions.
+
+Finally, it performs an energy minimization of the system, outputting basic thermodynamic properties, before performing an MD simulation.
+
+## Input Script Syntax
+
+### PART A - ENERGY MINIMIZATION
 This section of the script is concerned with minimizing the energy of the system to find a stable or lower energy configuration before beginning dynamics simulations
 
 ### 1) Initialization
@@ -38,7 +46,7 @@ This section of the script is concerned with minimizing the energy of the system
   * **Maximum Number of Iterations** - The maximum iterations in the energy minimization algorithm. Here it equals 1000
   * **Maximum Number of Force Evaluations** - The maximum number of times the force and energy are evaluated. Here it equals 10,000
 
-## PART B - MOLECULAR DYNAMICS
+### PART B - MOLECULAR DYNAMICS
 This section of the script is concerned with performing the actual molecular dynamics simulation that will start from the final state of the energy minimization.
 
 Molecular dynamics (MD) is based on the numerical solution of the Newtonian equations of motion for every atom `i`:
@@ -79,3 +87,5 @@ At every timestep of an MD simulation, the following operations occur:
   * `1530917`: Integer 1530917 is a random seed for the stochastic (random probability distribution), ensuring reproducibility of the simulation's randomness
 * `timestep 0.005`: Sets the simulation timestep size, 0.005 (unitless)
 * `run 10000`: Run MD simulation for specified number of timesteps, 10,000 timesteps in this case
+
+## Input Script Syntax
