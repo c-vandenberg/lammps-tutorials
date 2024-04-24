@@ -1,4 +1,4 @@
-# Level 1 - Lennard-Jones Fluid first-input.lammps Script
+# Level 1 - Lennard-Jones Fluid `first-input.lammps` Script
 
 This `first-input.lammps` input script creates a simple cubic 3-dimensional simulation box, with periodic boundary conditions (i.e. the simulation box is conceptually replicated infinitely in 3-dimensions), that uses Lennard-Jones units.
 
