@@ -6,7 +6,7 @@ It also populates this simulation box with two types of atomic style atoms with 
 
 Finally, it performs an energy minimization of the system, outputting basic thermodynamic properties, before performing an MD simulation.
 
-## Input Script Syntax
+## Input Script Command Syntax
 
 ### PART A - ENERGY MINIMIZATION
 This section of the script is concerned with minimizing the energy of the system to find a stable or lower energy configuration before beginning dynamics simulations
