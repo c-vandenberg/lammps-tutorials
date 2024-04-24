@@ -58,20 +58,20 @@ At every timestep of an MD simulation, the following operations occur:
 
 ### 1) Visualization
 * `thermo 50`: Specifies that LAMMPS print thermodynamic output (e.g. temperature, energy) in the terminal every 10 steps
-* `dump my_all_atoms_per_100_timestep_dump all atom 100 all_atoms_per_100_timestep_dump.lammpstrj`: A `dump` command configures the output of atomic positions and other specified data to a file for visualization for further analysis. Breaking this full command down:
-  * `my_all_atoms_per_100_timestep_dump`: Custom identifier for this particular `dump` command
+* `dump dump_all_atoms_per_100_timestep all atom 100 dump_all_atoms_per_100_timestep.lammpstrj`: A `dump` command configures the output of atomic positions and other specified data to a file for visualization for further analysis. Breaking this full command down:
+  * `dump_all_atoms_per_100_timestep`: Custom identifier for this particular `dump` command
   * `all`: Specifies which atoms are to be included in the dump file. In this case all atoms in the simulation are to be included
   * `atom`: Defines the style of the dump, in this case "atom". This style outputs properties of individual atoms, typically their positions, velocities & other attributes depending on the atom style used in the simulation
   * `100`: The frequency (in timesteps) at which the data is written to the file. In this case, every 100 timesteps
-  * `all_atoms_per_100_timestep_dump.lammpstrj`: The name of the output file where the data will be written. The `.lammpstrj` extension is a file that can be read by MD simulation visualization tools such as VMD or OVITO
+  * `dump_all_atoms_per_100_timestep.lammpstrj`: The name of the output file where the data will be written. The `.lammpstrj` extension is a file that can be read by MD simulation visualization tools such as VMD or OVITO
 
 ### 2) Run
-* `fix my_nve_ensemble_fix all nve`: A `fix` command is any operation that is applied to the system during timestepping or minimization. Fixes perform their operations at different stages of the timestep, in the order they are specified in the input script. Examples include updating atom positions & velocities via time integration, controlling temperature, applying constraints forces to atoms etc. Breaking this full command down:
-  * `my_nve_ensemble_fix`: Custom identifier for this particular `fix` command
+* `fix fix_nve_ensemble all nve`: A `fix` command is any operation that is applied to the system during timestepping or minimization. Fixes perform their operations at different stages of the timestep, in the order they are specified in the input script. Examples include updating atom positions & velocities via time integration, controlling temperature, applying constraints forces to atoms etc. Breaking this full command down:
+  * `fix_nve_ensemble`: Custom identifier for this particular `fix` command
   * `all`: Specifies that the fix is applied to all atoms in the simulation
   * `nve`: Applies the NVE ensemble to the simulation, which stands for "constant Number of particles (**N**), Volume (**V**), and Energy(**E**)". It simulates the natural evolution of an isolated system consistent with the microcanonical ensemble where no energy or particles are exchanged with the environment. Therefore, all microstates whose energy falls within a given range have equal probability, and those outside that range are given a probability of zero
-* `fix my_langevin_thermostat_fix all langevin 1.0 1.0 0.1 1530917`: Breaking this full command down:
-  * `my_langevin_thermostat_fix`: Custom identifier for this particular `fix` command
+* `fix fix_langevin_thermostat all langevin 1.0 1.0 0.1 1530917`: Breaking this full command down:
+  * `fix_langevin_thermostat`: Custom identifier for this particular `fix` command
   * `all`: Specifies that the fix is applied to all atoms in the simulation
   * `langevin`: Applies a Langevin thermostat to the simulation. A Langevin thermostat maintains the temperature of the simulation through a modification of Newton's equations of motion
   * `1.0 1.0`: The target temperatures (unitless) at the start and end of the simulation respectively

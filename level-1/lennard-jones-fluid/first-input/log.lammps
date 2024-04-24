@@ -1,4 +1,4 @@
-LAMMPS (7 Feb 2024 - Development - patch_7Feb2024_update1-413-gde8b1b49a6)
+LAMMPS (7 Feb 2024 - Update 1)
 # PART A - ENERGY MINIMIZATION
 # 1) Initialization
 units lj
@@ -6,6 +6,7 @@ dimension 3
 atom_style atomic
 pair_style lj/cut 2.5
 boundary p p p
+
 # 2) System definition
 region simulation_box block -20 20 -20 20 -20 20
 create_box 2 simulation_box
@@ -14,19 +15,22 @@ Created orthogonal box = (-20 -20 -20) to (20 20 20)
 create_atoms 1 random 1500 341341 simulation_box
 Created 1500 atoms
   using lattice units in orthogonal box = (-20 -20 -20) to (20 20 20)
-  create_atoms CPU = 0.001 seconds
+  create_atoms CPU = 0.000 seconds
 create_atoms 2 random 100 127569 simulation_box
 Created 100 atoms
   using lattice units in orthogonal box = (-20 -20 -20) to (20 20 20)
   create_atoms CPU = 0.000 seconds
+
 # 3) Simulation settings
 mass 1 1
 mass 2 1
 pair_coeff 1 1 1.0 1.0
 pair_coeff 2 2 0.5 3.0
+
 # 4) Visualization
 thermo 10
 thermo_style custom step temp pe ke etotal press
+
 # 5) Run
 minimize 1.0e-4 1.0e-6 1000 10000
 Generated 1 of 1 mixed pair_coeff terms from geometric mixing rule
@@ -84,7 +88,7 @@ Per MPI rank memory allocation (min/avg/max) = 4.349 | 4.349 | 4.349 Mbytes
        370   0             -0.9410052      0             -0.9410052     -0.00028189705
        380   0             -0.95064209     0             -0.95064209    -0.00027252979
        388   0             -0.95476642     0             -0.95476642    -0.00030483441
-Loop time of 0.0988136 on 1 procs for 388 steps with 1600 atoms
+Loop time of 0.0563006 on 1 procs for 388 steps with 1600 atoms
 
 100.0% CPU use with 1 MPI tasks x no OpenMP threads
 
@@ -100,12 +104,12 @@ Minimization stats:
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 0.023565   | 0.023565   | 0.023565   |   0.0 | 23.85
-Neigh   | 0.050716   | 0.050716   | 0.050716   |   0.0 | 51.32
-Comm    | 0.0049315  | 0.0049315  | 0.0049315  |   0.0 |  4.99
-Output  | 0.00060229 | 0.00060229 | 0.00060229 |   0.0 |  0.61
+Pair    | 0.014904   | 0.014904   | 0.014904   |   0.0 | 26.47
+Neigh   | 0.027529   | 0.027529   | 0.027529   |   0.0 | 48.90
+Comm    | 0.0032477  | 0.0032477  | 0.0032477  |   0.0 |  5.77
+Output  | 0.00031012 | 0.00031012 | 0.00031012 |   0.0 |  0.55
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 0.019      |            |       | 19.23
+Other   |            | 0.01031    |            |       | 18.31
 
 Nlocal:           1600 ave        1600 max        1600 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -120,13 +124,13 @@ Neighbor list builds = 141
 Dangerous builds = 1
 
 # PART B - MOLECULAR DYNAMICS
-# 4) Visualization
+# 1) Visualization
 thermo 50
-dump my_all_atoms_per_100_timestep_dump all atom 100 all_atoms_per_100_timestep_dump.lammpstrj
+dump dump_all_atoms_per_100_timestep all atom 100 dump_all_atoms_per_100_timestep.lammpstrj
 
-# 5) Run
-fix my_nve_ensemble_fix all nve
-fix my_langevin_thermostat_fix all langevin 1.0 1.0 0.1 1530917
+# 2) Run
+fix fix_nve_ensemble all nve
+fix fix_langevin_thermostat all langevin 1.0 1.0 0.1 1530917
 timestep 0.005
 run 10000
 Generated 1 of 1 mixed pair_coeff terms from geometric mixing rule
@@ -334,20 +338,20 @@ Per MPI rank memory allocation (min/avg/max) = 3.224 | 3.224 | 3.224 Mbytes
      10300   0.96929963    -0.24482582     1.4530407      1.2082149      0.021044499  
      10350   1.0147793     -0.23990469     1.5212176      1.2813129      0.024236744  
      10388   0.9908954     -0.24316096     1.4854141      1.2422532      0.0232023    
-Loop time of 1.46388 on 1 procs for 10000 steps with 1600 atoms
+Loop time of 1.12894 on 1 procs for 10000 steps with 1600 atoms
 
-Performance: 2951053.303 tau/day, 6831.142 timesteps/s, 10.930 Matom-step/s
-99.2% CPU use with 1 MPI tasks x no OpenMP threads
+Performance: 3826607.273 tau/day, 8857.887 timesteps/s, 14.173 Matom-step/s
+99.6% CPU use with 1 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 0.25475    | 0.25475    | 0.25475    |   0.0 | 17.40
-Neigh   | 0.4454     | 0.4454     | 0.4454     |   0.0 | 30.43
-Comm    | 0.048035   | 0.048035   | 0.048035   |   0.0 |  3.28
-Output  | 0.075923   | 0.075923   | 0.075923   |   0.0 |  5.19
-Modify  | 0.60742    | 0.60742    | 0.60742    |   0.0 | 41.49
-Other   |            | 0.03236    |            |       |  2.21
+Pair    | 0.14292    | 0.14292    | 0.14292    |   0.0 | 12.66
+Neigh   | 0.26322    | 0.26322    | 0.26322    |   0.0 | 23.32
+Comm    | 0.037765   | 0.037765   | 0.037765   |   0.0 |  3.35
+Output  | 0.055198   | 0.055198   | 0.055198   |   0.0 |  4.89
+Modify  | 0.60475    | 0.60475    | 0.60475    |   0.0 | 53.57
+Other   |            | 0.02508    |            |       |  2.22
 
 Nlocal:           1600 ave        1600 max        1600 min
 Histogram: 1 0 0 0 0 0 0 0 0 0

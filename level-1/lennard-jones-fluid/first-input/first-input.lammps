@@ -28,10 +28,10 @@ minimize 1.0e-4 1.0e-6 1000 10000
 # PART B - MOLECULAR DYNAMICS
 # 1) Visualization
 thermo 50
-dump my_all_atoms_per_100_timestep_dump all atom 100 all_atoms_per_100_timestep_dump.lammpstrj
+dump dump_all_atoms_per_100_timestep all atom 100 dump_all_atoms_per_100_timestep.lammpstrj
 
 # 2) Run
-fix my_nve_ensemble_fix all nve
-fix my_langevin_thermostat_fix all langevin 1.0 1.0 0.1 1530917
+fix fix_nve_ensemble all nve
+fix fix_langevin_thermostat all langevin 1.0 1.0 0.1 1530917
 timestep 0.005
 run 10000
