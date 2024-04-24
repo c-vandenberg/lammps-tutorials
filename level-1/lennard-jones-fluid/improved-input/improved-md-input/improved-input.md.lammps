@@ -16,14 +16,14 @@ region region_outside_cylinder cylinder z 0 0 10 INF INF side out
 group group_atom_type_1 type 1
 group group_atom_type_2 type 2
 
-group group_region_in region region_inside_cylinder
-group group_region_out region region_outside_cylinder
+group group_region_inside_cylinder region region_inside_cylinder
+group group_region_outside_cylinder region region_outside_cylinder
 
-group group_atom_type_1_out_cylinder intersect group_atom_type_1 group_region_out
-group group_atom_type_2_in_cylinder intersect group_atom_type_2 group_region_in
+group group_atom_type_1_inside_cylinder intersect group_atom_type_1 group_region_inside_cylinder
+group group_atom_type_2_outside_cylinder intersect group_atom_type_2 group_region_outside_cylinder
 
-delete_atoms group group_atom_type_1_out_cylinder
-delete_atoms group group_atom_type_2_in_cylinder
+delete_atoms group group_atom_type_1_inside_cylinder
+delete_atoms group group_atom_type_2_outside_cylinder
 
 # 3) Visualization
 thermo 1000
@@ -49,4 +49,4 @@ fix fix_nve_ensemble all nve
 fix fix_langevin_thermostat  all langevin 1.0 1.0 0.1 1530917 zero yes
 timestep 0.005
 run 300000
-write_data atom-mixing/atom_type_atom_type_2_mixing.data
+write_data atom-mixing/atom_type_1_atom_type_2_mixing.data
