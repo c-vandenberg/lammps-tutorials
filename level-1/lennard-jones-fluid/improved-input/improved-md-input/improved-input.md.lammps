@@ -8,7 +8,7 @@ pair_style lj/cut 2.5
 boundary p p p
 
 # 2) System definition
-read_data minimized_coordinate.data
+read_data ../improved-md-input/minimized_coordinate.data
 
 region region_inside_cylinder cylinder z 0 0 10 INF INF side in
 region region_outside_cylinder cylinder z 0 0 10 INF INF side out
@@ -33,15 +33,15 @@ variable number_atom_type_1_inside_cylinder equal count(group_atom_type_1, regio
 variable number_atom_type_2_inside_cylinder equal count(group_atom_type_2, region_inside_cylinder)
 
 fix fix_count_atom_type_1_inside_cylinder all ave/time 10 200 2000 v_number_atom_type_1_inside_cylinder &
-    file output_atom_type_1_population_inside_cylinder_vs_time.dat
+    file atom-population/output_atom_type_1_population_inside_cylinder_vs_time.dat
 fix fix_count_atom_type_2_inside_cylinder all ave/time 10 200 2000 v_number_atom_type_2_inside_cylinder &
-    file output_atom_type_2_population_inside_cylinder_vs_time.dat
+    file atom-population/output_atom_type_2_population_inside_cylinder_vs_time.dat
 
 compute compute_atom_type_1_coordination_number group_atom_type_1 coord/atom cutoff 2.0 group group_atom_type_2
 compute compute_average_atom_type_1_coordination_number all reduce ave c_compute_atom_type_1_coordination_number
 
 fix fix_average_atom_type_1_coordination_number all ave/time 10 200 2000 &
-    compute_average_atom_type_1_coordination_number file output_average_atom_type_1_coordination_number.dat
+    compute_average_atom_type_1_coordination_number file atom-coordination-number/output_average_atom_type_1_coordination_number.dat
 
 # 5) Run
 velocity all create 1.0 4928459 mom yes rot yes dist gaussian
