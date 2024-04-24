@@ -33,7 +33,7 @@ pair_coeff 2 2 0.5 3.0
 # 4) Visualization
 thermo 10
 thermo_style custom step temp pe ke etotal press
-dump my_all_atoms_per_100_timestep_dump all atom 10 all_atoms_per_100_timestep_dump.min.lammpstrj
+dump dump_all_atoms_per_100_timestep all atom 10 dump_all_atoms_per_100_timestep.min.lammpstrj
 
 # 5) Run
 minimize 1.0e-4 1.0e-6 1000 10000
@@ -65,9 +65,9 @@ Per MPI rank memory allocation (min/avg/max) = 4.341 | 4.341 | 4.341 Mbytes
        100   0             -1.5606694      0             -1.5606694     -0.0021557662 
        110   0             -1.6392331      0             -1.6392331     -0.0019055392 
        119   0             -1.6941099      0             -1.6941099     -0.0022162271 
-Loop time of 0.028857 on 1 procs for 119 steps with 1150 atoms
+Loop time of 0.0286029 on 1 procs for 119 steps with 1150 atoms
 
-98.9% CPU use with 1 MPI tasks x no OpenMP threads
+100.0% CPU use with 1 MPI tasks x no OpenMP threads
 
 Minimization stats:
   Stopping criterion = linesearch alpha is zero
@@ -81,12 +81,12 @@ Minimization stats:
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 0.010204   | 0.010204   | 0.010204   |   0.0 | 35.36
-Neigh   | 0.010865   | 0.010865   | 0.010865   |   0.0 | 37.65
-Comm    | 0.00050944 | 0.00050944 | 0.00050944 |   0.0 |  1.77
-Output  | 0.0043161  | 0.0043161  | 0.0043161  |   0.0 | 14.96
+Pair    | 0.010028   | 0.010028   | 0.010028   |   0.0 | 35.06
+Neigh   | 0.010753   | 0.010753   | 0.010753   |   0.0 | 37.59
+Comm    | 0.00049036 | 0.00049036 | 0.00049036 |   0.0 |  1.71
+Output  | 0.0043892  | 0.0043892  | 0.0043892  |   0.0 | 15.35
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 0.002963   |            |       | 10.27
+Other   |            | 0.002942   |            |       | 10.28
 
 Nlocal:           1150 ave        1150 max        1150 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
