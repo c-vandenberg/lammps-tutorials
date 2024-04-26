@@ -10,7 +10,9 @@ The conditions of the MD simulation (e.g. the NVE ensemble and Langevin thermost
 
 ## Input Script Command Syntax
 
-The commands in the `5) Run` section are all the same as those in the `first-input.lammps` script and have already been explained. There are new commands in the `4) Visualization` section however:
+## 4) Visualization
+
+There are some commands in the `4) Visualization` section:
 * `variable number_atom_type_1_inside_cylinder equal count(group_atom_type_1,region_inside_cylinder)`: Sets variable `number_atom_type_1_inside_cylinder` equal to the number of type 1 atoms inside the cylinder region as a function of time. The next command does the same for the type 2 atoms. Both of these counts are useful for tracking how the population of different atom types changes within specific spatial boundaries during the simulation
 * `fix fix_count_atom_type_1_inside_cylinder all ave/time 10 200 2000 v_number_atom_type_1_inside_cylinder &
     file atom-population/output_atom_type_1_population_inside_cylinder_vs_time.dat`: 
@@ -29,3 +31,12 @@ The commands in the `5) Run` section are all the same as those in the `first-inp
   * `fix fix_average_atom_type_1_coordination_number`: Defines a `fix` command with ID `fix_average_atom_type_1_coordination_number`
   * `all ave/time 10 200 2000 & c_compute_average_atom_type_1_coordination_number`: Sets the logic of the previous `fix` command. It calculates a time-averaged value for the previously calculated average coordination numbers in `average_atom_type_1_coordination_number`. The `c_` prefix before `average_atom_type_1_coordination_number` refers to data that comes from that `compute` command. Every 10 timesteps the average coordination number is recorded, the data is averaged 200 times, and these averages are then written to the output file every 2000 timesteps
   * `file atom-coordination-number/output_average_atom_type_1_coordination_number.dat`:This `file` command specifies where these time averaged values are outputted to
+
+## 5) Run
+The commands in the `5) Run` section are mostly the same as those in the `first-input.lammps` script that have already been explained. However, there are some new ones:
+* `velocity all create 1.0 4928459 mom yes rot yes dist gaussian`: The `velocity all create` command attributes an initial velocity to all atoms. The initial velocity is chosen using a random seed (`4928459`) and is chosen so that the average initial temperature is equal to 1 (unitless). The definitions for additional argument/keywords are:
+  * `mom yes`: Adjusts the initial velocities to ensure that the total linear momentum of the system is zero. This is important for preventing any translational motion of the entire system that might bias the simulation results
+  * `rot yes`: Adjusts the initial velocities to ensure that the total angular momentum is zero. This is particularly important in systems where rotational dynamics might affect the physical behaviour being simulated
+  * `dist gaussian`: Specifies the distribution type of the velocities to be a Gaussian distribution. This is appropriate for systems in thermal equilibrium at the specified temperature
+* `fix fix_langevin_thermostat all langevin 1.0 1.0 0.1 1530917 zero yes`: As seen before, this command applies a Langevin thermostat to all atoms in the simulation, with a target temperature of 1 (unitless) at the start and end of the simulation. The definition for the additional argument/keyword is:
+  * `zero yes`: Adjusts the total random and dampening forces to ensure that the total momentum of the particles is conserved (i.e., no net acceleration or deceleration of the entire system). This is particularly important in simulations where you want to avoid inducing any bulk motion or drift in the system that isn't due to the internal dynamics 

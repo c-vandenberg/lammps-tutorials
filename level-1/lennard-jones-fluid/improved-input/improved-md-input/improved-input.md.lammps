@@ -46,7 +46,7 @@ fix fix_average_atom_type_1_coordination_number all ave/time 10 200 2000 &
 # 5) Run
 velocity all create 1.0 4928459 mom yes rot yes dist gaussian
 fix fix_nve_ensemble all nve
-fix fix_langevin_thermostat  all langevin 1.0 1.0 0.1 1530917 zero yes
+fix fix_langevin_thermostat all langevin 1.0 1.0 0.1 1530917 zero yes
 timestep 0.005
 run 300000
 write_data atom-mixing/atom_type_1_atom_type_2_mixing.data
