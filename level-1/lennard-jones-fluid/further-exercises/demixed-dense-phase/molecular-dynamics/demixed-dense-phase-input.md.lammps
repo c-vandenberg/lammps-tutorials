@@ -1,0 +1,13 @@
+# 1) Initialization
+units lj
+dimension 3
+atom_style atomic
+pair_style lj/cut 2.5
+boundary p p p
+
+# 2) System definition
+read_data ../energy-minimization/minimized_coordinate.data
+
+# 3) Visualization
+thermo 1000
+dump dump_all_atoms_per_100_timestep all atom 1000 dump_all_atoms_per_100_timestep.md.lammpstrj
