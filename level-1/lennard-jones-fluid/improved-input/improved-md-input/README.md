@@ -21,7 +21,7 @@ There are some commands in the `3) Visualization` section:
   * `file atom-population/output_atom_type_1_population_inside_cylinder_vs_time.dat`: This `file` command specifies where these time averaged values are outputted to
   * The next command does the same for the type 2 atoms
 * `compute compute_atom_type_1_coordination_number group_atom_type_1 coord/atom cutoff 2.0 group group_atom_type_2`:
-  * `compute compute_atom_type_1_coordination_number`: Defines a `compute` command with ID ``compute compute_atom_type_1_coordination_number``
+  * `compute compute_atom_type_1_coordination_number`: Defines a `compute` command with ID `compute compute_atom_type_1_coordination_number`
   * `group_atom_type_1 coord/atom cutoff 2.0 group group_atom_type_2`: Calculates the coordination number of each type 1 atom with respect to type 2 atoms with a cutoff distance of 2 (unitless)
 * `compute compute_average_atom_type_1_coordination_number all reduce ave c_compute_atom_type_1_coordination_number`:
   * `compute compute_average_atom_type_1_coordination_number`: Defines a `compute` command with ID `compute_average_atom_type_1_coordination_number`

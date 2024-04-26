@@ -342,7 +342,7 @@ display dof_fnumber 64.000000
 display dof_focaldist 0.700000
 mol new dump_all_atoms_per_100_timestep.md.lammpstrj type lammpstrj first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
 mol delrep 0 top
-mol representation VDW 0.500000 57.000000
+mol representation VDW 0.500000 52.000000
 mol color Name
 mol selection {type 1}
 mol material Opaque
@@ -376,7 +376,7 @@ mol clipplane center 5 0 top {0.0 0.0 0.0}
 mol clipplane color  5 0 top {0.5 0.5 0.5 }
 mol clipplane normal 5 0 top {0.0 0.0 1.0}
 mol clipplane status 5 0 top {0}
-mol representation VDW 0.500000 57.000000
+mol representation VDW 0.500000 52.000000
 mol color Name
 mol selection {type 2}
 mol material Opaque
@@ -411,7 +411,7 @@ mol clipplane color  5 1 top {0.5 0.5 0.5 }
 mol clipplane normal 5 1 top {0.0 0.0 1.0}
 mol clipplane status 5 1 top {0}
 mol rename top dump_all_atoms_per_100_timestep.md.lammpstrj
-set viewpoints([molinfo top]) {{{1 0 0 0.0161732} {0 1 0 -0.0424285} {0 0 1 -0.0430499} {0 0 0 1}} {{0.704527 0.443182 0.554288 0} {0.00259201 0.779427 -0.626489 0} {-0.709675 0.442814 0.547976 0} {0 0 0 1}} {{0.0374658 0 0 0} {0 0.0374658 0 0} {0 0 0.0374658 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
+set viewpoints([molinfo top]) {{{1 0 0 0.0161732} {0 1 0 -0.0424285} {0 0 1 -0.0430499} {0 0 0 1}} {{0.555939 0.266491 0.787346 0} {0.662039 -0.714726 -0.225549 0} {0.50263 0.646646 -0.57377 0} {0 0 0 1}} {{0.0374658 0 0 0} {0 0.0374658 0 0} {0 0 0.0374658 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
 lappend viewplist [molinfo top]
 set topmol [molinfo top]
 # done with molecule 0
