@@ -15,13 +15,13 @@ mass 1 1
 pair_coeff 1 1 1.0 1.0
 
 # 4) Visualization
-dump mydmp all atom 100 dump.lammpstrj
+dump dump_all_atoms_per_100_timestep all atom 100 dump_all_atoms_per_100_timestep.lammpstrj
 thermo 100
 thermo_style custom step temp pe ke etotal press
 
 # 5) Run
-fix mynve all nve
-fix mylgv all langevin 1.0 1.0 0.1 1530917
+fix fix_nve_ensemble all nve
+fix fix_langevin_thermostat all langevin 1.0 1.0 0.1 1530917
 timestep 0.005
 
 run 10000

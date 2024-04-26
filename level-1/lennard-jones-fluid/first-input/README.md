@@ -83,7 +83,7 @@ At every timestep of an MD simulation, the following operations occur:
   * `all`: Specifies that the fix is applied to all atoms in the simulation
   * `langevin`: Applies a Langevin thermostat to the simulation. A Langevin thermostat maintains the temperature of the simulation through a modification of Newton's equations of motion
   * `1.0 1.0`: The target temperatures (unitless) at the start and end of the simulation respectively
-  * `0.1`: A dampening factor, which controls the rate of energy exchange between the system ad thermostat. The smaller the value the faster the energy exchange
+  * `0.1`: A dampening factor, which controls the rate of energy exchange between the system and the thermostat. The smaller the value the faster the energy exchange
   * `1530917`: Integer 1530917 is a random seed for the stochastic (random probability distribution), ensuring reproducibility of the simulation's randomness if the same random seed is used
 * `timestep 0.005`: Sets the simulation timestep size, 0.005 (unitless)
 * `run 10000`: Run MD simulation for specified number of timesteps, 10,000 timesteps in this case
