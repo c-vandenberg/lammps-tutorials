@@ -10,14 +10,15 @@ boundary p p p
 # 2) System definition
 region simulation_box block -20 20 -20 20 -20 20
 create_box 2 simulation_box
-create_atoms 1 random 5000 341341 simulation_box
-create_atoms 2 random 5000 127569 simulation_box
+create_atoms 1 random 8000 341341 simulation_box
+create_atoms 2 random 8000 127569 simulation_box
 
 # 3) Simulation settings
 mass 1 1
 mass 2 1
-pair_coeff 1 1 1.0 1.0
-pair_coeff 2 2 1.0 1.0
+pair_coeff 1 1 5.0 1.0
+pair_coeff 2 2 5.0 1.0
+pair_coeff 1 2 0.05 1.0
 
 # 4) Visualization
 thermo 10
@@ -26,4 +27,4 @@ dump dump_all_atoms_per_100_timestep all atom 10 dump_all_atoms_per_100_timestep
 
 # 5) Run
 minimize 1.0e-4 1.0e-6 1000 10000
-write_data minimized_coordinate.data
+write_data minimized_coordinate.data pair ij

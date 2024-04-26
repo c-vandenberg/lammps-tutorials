@@ -11,3 +11,9 @@ read_data ../energy-minimization/minimized_coordinate.data
 # 3) Visualization
 thermo 1000
 dump dump_all_atoms_per_100_timestep all atom 1000 dump_all_atoms_per_100_timestep.md.lammpstrj
+
+# 4) Run
+velocity all create 1.0 4928459 mom yes rot yes dist gaussian
+fix fix_nph_ensemble all nph iso 1.0 1.0 0.5
+timestep 0.005
+run 100000
