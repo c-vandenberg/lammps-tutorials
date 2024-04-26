@@ -16,7 +16,7 @@ create_atoms 1 random 1000 341341 region_outside_cylinder
 create_atoms 2 random 150 127569 region_inside_cylinder
 
 # 3) Simulation settings
-mass 1 1
+mass 1 1cd .
 mass 2 1
 pair_coeff 1 1 1.0 1.0
 pair_coeff 2 2 0.5 3.0
@@ -28,4 +28,4 @@ dump dump_all_atoms_per_100_timestep all atom 10 dump_all_atoms_per_100_timestep
 
 # 5) Run
 minimize 1.0e-4 1.0e-6 1000 10000
-write_data minimized_coordinate.data
+write_data minimized_coordinate.data pair ij
