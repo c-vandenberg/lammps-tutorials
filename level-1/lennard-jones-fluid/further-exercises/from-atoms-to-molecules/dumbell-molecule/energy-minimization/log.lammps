@@ -1,0 +1,158 @@
+LAMMPS (7 Feb 2024 - Update 1)
+# PART A - ENERGY MINIMIZATION
+
+# 1) Initialization
+units lj
+dimension 3
+atom_style molecular
+bond_style harmonic
+pair_style lj/cut 2.5
+boundary p p p
+
+# 2) System definition
+# Cubic Box
+region simulation_box block -20 20 -20 20 -20 20
+
+# Small Elongated Box
+# region simulation_box block -20 20 -6 6 -6 6
+
+create_box 2 simulation_box bond/types 1 extra/bond/per/atom 1
+Created orthogonal box = (-20 -20 -20) to (20 20 20)
+  1 by 1 by 1 MPI processor grid
+
+# Import and use molecule template to populate box with molecules
+molecule dumbell ../dumbell.mol
+Read molecule template dumbell:
+# Dumbell molecule
+  1 molecules
+  0 fragments
+  2 atoms with max type 2
+  1 bonds with max type 1
+  0 angles with max type 0
+  0 dihedrals with max type 0
+  0 impropers with max type 0
+create_atoms 1 random 1500 341341 simulation_box
+Created 1500 atoms
+  using lattice units in orthogonal box = (-20 -20 -20) to (20 20 20)
+  create_atoms CPU = 0.001 seconds
+create_atoms 0 random 20 678865 simulation_box mol dumbell 8751
+Created 40 atoms
+  using lattice units in orthogonal box = (-20 -20 -20) to (20 20 20)
+  create_atoms CPU = 0.000 seconds
+
+# 3) Simulation settings
+mass 1 1
+mass 2 1
+pair_coeff 1 1 1.0 1.0
+pair_coeff 2 2 0.5 3.0
+bond_coeff 1 5 2.0
+
+# 4) Visualization
+thermo 10
+thermo_style custom step temp pe ke etotal press
+dump dump_all_atoms_per_100_timestep all atom 10 dump_all_atoms_per_100_timestep.min.lammpstrj
+
+# 5) Run
+minimize 1.0e-4 1.0e-6 1000 10000
+Generated 1 of 1 mixed pair_coeff terms from geometric mixing rule
+WARNING: Communication cutoff 2.8 is shorter than a bond length based estimate of 3.3. This may lead to errors. (../comm.cpp:723)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 2.8
+  ghost atom cutoff = 2.8
+  binsize = 1.4, bins = 29 29 29
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+WARNING: Communication cutoff 2.8 is shorter than a bond length based estimate of 3.3. This may lead to errors. (../comm.cpp:723)
+Per MPI rank memory allocation (min/avg/max) = 7.302 | 7.302 | 7.302 Mbytes
+   Step          Temp          PotEng         KinEng         TotEng         Press     
+         0   0              93994061       0              93994061       9046959.5    
+        10   0              158.20228      0              158.20228      15.39561     
+        20   0             -0.18428463     0             -0.18428463    -0.0032873351 
+        30   0             -0.28453312     0             -0.28453312    -0.0023559233 
+        40   0             -0.35513825     0             -0.35513825    -0.0015517333 
+        50   0             -0.40064893     0             -0.40064893    -0.0013632846 
+        60   0             -0.43602922     0             -0.43602922    -0.0011759139 
+        70   0             -0.46526598     0             -0.46526598    -0.0012558283 
+        80   0             -0.50290848     0             -0.50290848    -0.0010873826 
+        90   0             -0.53759104     0             -0.53759104    -0.0011311416 
+       100   0             -0.56420378     0             -0.56420378    -0.00092507704
+       110   0             -0.59189802     0             -0.59189802    -0.00086837206
+       120   0             -0.60906623     0             -0.60906623    -0.00078085493
+       130   0             -0.6278668      0             -0.6278668     -0.00064413378
+       140   0             -0.64775952     0             -0.64775952    -0.00063007307
+       150   0             -0.66149155     0             -0.66149155    -0.00066413957
+       160   0             -0.67385488     0             -0.67385488    -0.00057415096
+       170   0             -0.68437975     0             -0.68437975    -0.00046329876
+       180   0             -0.7001584      0             -0.7001584     -0.00056190387
+       190   0             -0.71415401     0             -0.71415401    -0.00060782829
+       200   0             -0.7326072      0             -0.7326072     -0.00055432795
+       210   0             -0.74626678     0             -0.74626678    -0.0006286124 
+       220   0             -0.75887441     0             -0.75887441    -0.00049760185
+       230   0             -0.77509499     0             -0.77509499    -0.00066164246
+       240   0             -0.7909958      0             -0.7909958     -0.00055105276
+       250   0             -0.80351126     0             -0.80351126    -0.00038357351
+       260   0             -0.81317372     0             -0.81317372    -0.0004511493 
+       270   0             -0.82658018     0             -0.82658018    -0.00041160543
+       280   0             -0.83676476     0             -0.83676476    -0.00033533216
+       290   0             -0.84787851     0             -0.84787851    -0.00051296809
+       300   0             -0.8566482      0             -0.8566482     -0.00031549043
+       310   0             -0.86960286     0             -0.86960286    -0.00038188858
+       320   0             -0.88316563     0             -0.88316563    -0.00036110489
+       330   0             -0.89700468     0             -0.89700468    -0.0004565584 
+       340   0             -0.90621579     0             -0.90621579    -0.00025747945
+       350   0             -0.91342609     0             -0.91342609    -0.00025093204
+       360   0             -0.91944962     0             -0.91944962    -0.00030258906
+       370   0             -0.92664784     0             -0.92664784    -0.0002963011 
+       380   0             -0.93341033     0             -0.93341033    -0.00023768923
+       390   0             -0.94132054     0             -0.94132054    -0.00018557491
+       400   0             -0.94683544     0             -0.94683544    -0.00022868243
+       410   0             -0.95189848     0             -0.95189848    -0.0001972945 
+       420   0             -0.95670313     0             -0.95670313    -0.0001692532 
+       424   0             -0.95728496     0             -0.95728496    -0.00012809273
+Loop time of 0.0787818 on 1 procs for 424 steps with 1540 atoms
+
+100.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+Minimization stats:
+  Stopping criterion = energy tolerance
+  Energy initial, next-to-last, final = 
+      93994060.5886092 -0.957226456428572 -0.957284961326512
+  Force two-norm initial, final = 1.6077185e+13 3.9699671
+  Force max component initial, final = 1.0518609e+13 1.2188472
+  Final line search alpha, max atom move = 0.072345739 0.088178401
+  Iterations, force evaluations = 424 842
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.015168   | 0.015168   | 0.015168   |   0.0 | 19.25
+Bond    | 0.00019146 | 0.00019146 | 0.00019146 |   0.0 |  0.24
+Neigh   | 0.025473   | 0.025473   | 0.025473   |   0.0 | 32.33
+Comm    | 0.0040476  | 0.0040476  | 0.0040476  |   0.0 |  5.14
+Output  | 0.02195    | 0.02195    | 0.02195    |   0.0 | 27.86
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.01195    |            |       | 15.17
+
+Nlocal:           1540 ave        1540 max        1540 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:            723 ave         723 max         723 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:           2052 ave        2052 max        2052 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 2052
+Ave neighs/atom = 1.3324675
+Ave special neighs/atom = 0.025974026
+Neighbor list builds = 136
+Dangerous builds = 0
+write_data minimized_coordinate.data pair ij
+System init for write_data ...
+Generated 1 of 1 mixed pair_coeff terms from geometric mixing rule
+WARNING: Communication cutoff 2.8 is shorter than a bond length based estimate of 3.3. This may lead to errors. (../comm.cpp:723)
+Total wall time: 0:00:00
