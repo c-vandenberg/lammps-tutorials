@@ -1,0 +1,22 @@
+# PART B - MOLECULAR DYNAMICS
+
+# 1) Initialization
+units lj
+dimension 3
+atom_style molecular
+bond_style harmonic
+pair_style lj/cut 2.5
+boundary p p p
+
+# 2) System definition
+read_data ../energy-minimization/minimized_coordinate.data
+
+# 3) Visualization
+thermo 1000
+dump dump_all_atoms_per_100_timestep all atom 1000 dump_all_atoms_per_100_timestep.md.lammpstrj
+
+# 4) Run
+fix fix_nve_ensemble all nve
+fix fix_langevin_thermostat all langevin 1 1 0.1 94728
+
+run 500000
