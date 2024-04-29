@@ -1,3 +1,5 @@
+# PART B - MOLECULAR DYNAMICS
+
 # 1) Initialization
 units lj
 dimension 3
