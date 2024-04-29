@@ -9,17 +9,25 @@ pair_style lj/cut 2.5
 boundary p p p
 
 # 2) System definition
+# Cubic Box
 region simulation_box block -20 20 -20 20 -20 20
-create_box 2 simulation_box
-create_atoms 1 random 8000 341341 simulation_box
-create_atoms 2 random 8000 127569 simulation_box
+
+# Small Elongated Box
+# region simulation_box block -20 20 -6 6 -6 6
+
+create_box 2 simulation_box bond/types 1 extra/bond/per/atom 1
+
+# Import and use molecule template to populate box with molecules
+molecule dumbell ../dumbell.mol
+create_atoms 1 random 1500 341341 simulation_box
+create_atoms 0 random 20 678865 simulation_box mol dumbell 8751
 
 # 3) Simulation settings
 mass 1 1
 mass 2 1
-pair_coeff 1 1 5.0 1.0
-pair_coeff 2 2 5.0 1.0
-pair_coeff 1 2 0.05 1.0
+pair_coeff 1 1 1.0 1.0
+pair_coeff 2 2 0.5 3.0
+bond_coeff 1 5 2.0
 
 # 4) Visualization
 thermo 10
