@@ -2,7 +2,7 @@
 
 <p align="middle">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/db4cc9a4-0c3a-4368-ae02-580f5bf4c890" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/29a00b48-39c6-4daa-8812-f9a255ec47ac" width="300" /> 
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f98f2826-41f1-4b97-b23e-ae92d54b9e05" width="300" />
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/64c8f927-f7c7-4336-919a-2098f40b0d8d" width="300" />
 </p>
 
