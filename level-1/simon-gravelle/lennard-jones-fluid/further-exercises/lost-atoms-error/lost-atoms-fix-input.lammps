@@ -1,0 +1,26 @@
+# 1) Initialization
+units lj
+dimension 3
+atom_style atomic
+pair_style lj/cut 2.5
+boundary p p p
+
+# 2) System definition
+region simulation_box block -20 20 -20 20 -20 20
+create_box 1 simulation_box
+create_atoms 1 random 1000 341841 simulation_box
+
+# 3) Simulation settings
+mass 1 1
+pair_coeff 1 1 1.0 1.0
+
+# 4) Visualization
+dump dump_all_atoms_per_100_timestep all atom 100 dump_all_atoms_per_100_timestep.lammpstrj
+thermo 100
+thermo_style custom step temp pe ke etotal press
+
+# 5) Run
+fix fix_nve_ensemble all nve
+fix fix_langevin_thermostat all langevin 0.001 0.001 0.001 1530917
+timestep 0.0001
+run 10000
