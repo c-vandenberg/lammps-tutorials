@@ -1,5 +1,11 @@
 # Level 1 - Lennard-Jones Fluid `improved_input.md.lammps` Script
 
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/db4cc9a4-0c3a-4368-ae02-580f5bf4c890" alt="improved-input-start md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f98f2826-41f1-4b97-b23e-ae92d54b9e05" alt="improved-input-mid md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/64c8f927-f7c7-4336-919a-2098f40b0d8d" alt="improved-input-end md" width="300" />
+</p>
+
 This `improved-input.md.lammps` input script starts an MD simulation directly from the previously saved energy minimized system configuration in `improved-input.min.lammps`.
 
 Once the energy minimized system state has been loaded, the script then removes any atoms that have migrated from one region to the other (i.e. from inside the cylinder to outside the cylinder, or vice versa) during minimization. 

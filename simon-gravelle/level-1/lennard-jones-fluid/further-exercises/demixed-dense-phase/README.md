@@ -1,5 +1,14 @@
 # Level 1 - Lennard-Jones Fluid Further Exercises: Create a De-mixed Dense Phase
 
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/d90c9149-3384-42bd-9137-50c8cdd17bcd" alt ="demixed-dense-phase-start md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/905d55ac-5496-45f3-9cc3-9360a0328ac5" alt ="demixed-dense-phase-mid-1 md" width="300" /> 
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/beb84f2b-e720-40a0-942b-676521f50697" alt ="demixed-dense-phase-mid-2 md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/d94f687c-17c7-4871-924b-db98a62dc53f" alt ="demixed-dense-phase-mid-3 md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/9561752b-121a-4ad1-b781-90dc00692bc2" alt ="demixed-dense-phase-mid-4 md" width="300" /> 
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f5644d2d-84b2-4d69-8374-e75d58eda2aa" alt ="demixed-dense-phase-end md" width="300" />
+</p>
+
 ## Problem
 Using one of the input scripts from either `first-input` or `improved-input`, fine-tune parameters such as atom numbers and atomic interaction to create a simulation with the following properties:
 * System with high atomic density

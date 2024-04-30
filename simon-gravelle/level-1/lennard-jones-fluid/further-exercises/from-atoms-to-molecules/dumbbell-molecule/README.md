@@ -1,5 +1,9 @@
 # Dumbbell Molecule - Molecule Template & Input Script Command Syntax
 
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/66a60bcc-6d64-4be1-9df2-9975ffd02821" width="500"/>
+</p>
+
 ## Molecule Template - `dumbbell.mol`
 A `.mol` file in LAMMPS defines the structure of a molecule, including its atoms, their positions/coordinates, types and the bonds between them. 
 
