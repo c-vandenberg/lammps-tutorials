@@ -1,6 +1,6 @@
 # Level 1 - Lennard-Jones Fluid `improved_input.md.lammps` Script
 
-<p align="middle">
+<p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/db4cc9a4-0c3a-4368-ae02-580f5bf4c890" width="300" />
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f98f2826-41f1-4b97-b23e-ae92d54b9e05" width="300" />
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/64c8f927-f7c7-4336-919a-2098f40b0d8d" width="300" />
