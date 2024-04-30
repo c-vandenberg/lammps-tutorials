@@ -39,7 +39,7 @@ Types
 Bonds
 1 1 1 2
 ```
-* `Types` - Demarcates the bonds section where the connections between the atoms are detailed
+* `Bonds` - Demarcates the bonds section where the connections between the atoms are detailed
 * `1 1 1 2` - The first `1` is the bond ID, the second `1` is the bond type and `1 2` are the IDs of the atoms connected by this bond. This specifies a single bond between atoms `1` and `2`
 
 ## Energy Minimization Input Script - `dumbbell-molecule.min.lammps`
@@ -78,6 +78,10 @@ create_atoms 0 random 20 678865 simulation_box mol dumbbell 8751
   * The `extra/bond/per/atom 1` parameter specifies that there should be memory allocation for one additional bond per atom. 
   * This is useful in systems where bonds will need to be dynamically created or destroyed during the simulation, or when the maximum number of bonds any given atom may have at the start of the simulation isn't known. 
   * It ensures LAMMPS allocates sufficient memory to handle these bonds without needing to reallocate memory during runtime
+* `create_atoms 0 random 20 678865 simulation_box mol dumbbell 8751`:
+  * Here the `0` is a special value indicating that the atom type is to be taken directly from the molecule template file (`dumbbell.mol`). This allows for the atom types defined within the molecule template to be used, which is essential when the template includes multiple atom types or specific configurations that need to be preserved
+  * `mol dumbbell` -  Specifies that the atoms are to be created according to the molecule template `dumbbell`, which has been defined earlier
+  * `8751` - A random seed for specifying how the molecules are oriented at the start of the simulation/minimization
 
 ```
 # 3) Simulation settings
