@@ -323,7 +323,7 @@ display eyesep       0.065000
 display focallength  2.000000
 display height       6.000000
 display distance     -2.000000
-display projection   Perspective
+display projection   Orthographic
 display nearclip set 0.500000
 display farclip  set 10.000000
 display depthcue   on
@@ -342,7 +342,7 @@ display dof_fnumber 64.000000
 display dof_focaldist 0.700000
 mol new dump_all_atoms_per_100_timestep.md.lammpstrj type lammpstrj first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
 mol delrep 0 top
-mol representation VDW 0.500000 52.000000
+mol representation VDW 0.700000 52.000000
 mol color Name
 mol selection {type 1}
 mol material Opaque
@@ -411,7 +411,7 @@ mol clipplane color  5 1 top {0.5 0.5 0.5 }
 mol clipplane normal 5 1 top {0.0 0.0 1.0}
 mol clipplane status 5 1 top {0}
 mol rename top dump_all_atoms_per_100_timestep.md.lammpstrj
-set viewpoints([molinfo top]) {{{1 0 0 0.439198} {0 1 0 -0.493043} {0 0 1 0.176837} {0 0 0 1}} {{0.342012 0.0762437 0.936598 0} {0.0442831 0.99429 -0.0971107 0} {-0.938651 0.0746886 0.336683 0} {0 0 0 1}} {{0.0375252 0 0 0} {0 0.0375252 0 0} {0 0 0.0375252 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
+set viewpoints([molinfo top]) {{{1 0 0 0.439198} {0 1 0 -0.493043} {0 0 1 0.176837} {0 0 0 1}} {{-0.000953445 0.0128288 0.999917 0} {0.0332209 0.999366 -0.01279 0} {-0.999447 0.033206 -0.00137874 0} {0 0 0 1}} {{0.0450303 0 0 0} {0 0.0450303 0 0} {0 0 0.0450303 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
 lappend viewplist [molinfo top]
 set topmol [molinfo top]
 # done with molecule 0
@@ -561,6 +561,7 @@ color scale colors WBlk {1.0 1.0 1.0} {0.5 0.5 0.5} {0.0 0.0 0.0}
     {color Segname {} blue}
     {color Conformation {all} blue}
     {color Molecule {0} blue}
+    {color Molecule {dump_all_atoms_per_100_timestep.md.lammpstrj} blue}
     {color Structure {3_10_Helix} blue}
     {color Surface {Grasp} gray}
     {color Labels {Springs} orange}
