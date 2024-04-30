@@ -1,5 +1,9 @@
 # Level 1 - Lennard-Jones Fluid `first-input.lammps` Script
 
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/c474ecee-4dc1-43a9-a87e-7b648a882479">
+</p>
+
 This `first-input.lammps` input script creates a simple cubic 3-dimensional simulation box, with periodic boundary conditions (i.e. the simulation box is conceptually replicated infinitely in 3-dimensions), that uses Lennard-Jones units.
 
 It also populates this simulation box with two types of atomic style atoms with the same mass but different energy and distance parameters. It also specifies a cut-off distance for any Lennard-Jones potential interactions.
@@ -87,5 +91,3 @@ At every timestep of an MD simulation, the following operations occur:
   * `1530917`: Integer 1530917 is a random seed for the stochastic (random probability distribution), ensuring reproducibility of the simulation's randomness if the same random seed is used
 * `timestep 0.005`: Sets the simulation timestep size, 0.005 (unitless)
 * `run 10000`: Run MD simulation for specified number of timesteps, 10,000 timesteps in this case
-
-## Input Script Syntax
