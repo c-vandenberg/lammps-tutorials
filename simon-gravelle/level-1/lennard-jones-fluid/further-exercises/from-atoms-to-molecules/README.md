@@ -1,5 +1,11 @@
 # Level 1 - Lennard-Jones Fluid Further Exercises: From Atoms to Molecules
 
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b616a218-bef6-4604-acd9-7babcbad2eb5" alt="polymer-start md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b795916e-5353-45cd-b830-8be2697f2522" alt="polymer-mid md" width="300" /> 
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/82054788-16f9-4188-ad53-1c019fb87a1b" alt="polymer-end md" width="300" />
+</p>
+
 ## Problem
 Add a bond between particles of type 2 in order to create dumbbell molecules instead of single particles. Additionally, create a small polymer/long chain of atoms linked by bonds and defined by angles
 
