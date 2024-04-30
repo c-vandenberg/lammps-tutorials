@@ -1,7 +1,7 @@
 # Level 1 - Lennard-Jones Fluid `improved_input.min.lammps` Script
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f974c372-df53-4df7-828c-4e9fb5927c18" width="500">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f974c372-df53-4df7-828c-4e9fb5927c18" alt="improved-input min" width="500">
 </p>
 
 This `improved-input.min.lammps` input script creates a cubic 3-dimensional simulation box, with periodic boundary conditions, and the same atomic configuration and unit type as `first-input.lammps`. Unlike `first-input.lammps` however, it also two additional regions for placing the atoms:
