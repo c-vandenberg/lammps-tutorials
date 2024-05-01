@@ -1,4 +1,4 @@
-# Molecular Dynamics - Unbreakable Carbon Nanotube Deformation
+# Molecular Dynamics - Deformation of Carbon Nanotube with Unbreakable Bonds
 
 # 1) Initialization
 ## Define simulation temperature, T=300K
@@ -17,7 +17,7 @@ improper_style harmonic
 special_bonds lj 0.0 0.0 0.5
 
 # 2) System definition
-## Import VMD Generated Initial Carbon Nanotube Topography
+## Import VMD generated initial carbon nanotube topography
 read_data cnt_molecular.data
 
 # 3) Simulation settings
@@ -25,7 +25,7 @@ read_data cnt_molecular.data
 include opls-aa.lammps
 
 ## Calculate the negative of the x, y & z centre of mass (cm) components of the carbon_atoms group
-## Recenter the Carbon Nanotube at the Origin (0, 0, 0) by displacing them by the calculated center of mass variables
+## Recenter the carbon nanotube at the origin (0, 0, 0) by displacing them by the calculated center of mass variables
 group carbon_atoms type 1
 variable carbon_xcm equal -1*xcm(carbon_atoms,x)
 variable carbon_ycm equal -1*xcm(carbon_atoms,y)
@@ -110,7 +110,7 @@ timestep 1.0
 run 5000
 
 ## Apply a constant velocity of 0.0005 Å/fs in the z-direction to the top carbon group, simulating a compressive force
-## Apply a constant velocity of -0.0005 Å/fs in the z-direction to the top carbon group, simulating a compressive force
+## Apply a constant velocity of -0.0005 Å/fs in the z-direction to the bottom carbon group, simulating a stretching force
 ## Run deformation simulation of 10,000 timesteps
 ## Because we have previously set all forces affecting the top and bottom carbon groups as constant, this imposes a constant velocity deformation of 2*0.0005 A/fs = 0.001 A/fs = 100 m/s
 velocity carbon_top set 0 0 0.0005
