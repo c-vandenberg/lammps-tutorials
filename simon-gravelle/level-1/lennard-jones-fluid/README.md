@@ -1,5 +1,8 @@
 ## Level 1 - Lennard-Jones Fluid: The Very Basics of LAMMPS
 
+https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b153e807-369c-486d-8340-fedc5b0d1042
+
+
 The objective of this tutorial is to perform the simulation of a binary fluid using LAMMPS.
 
 The binary system is a Lennard-Jones Fluid composed of neutral particles with two different atomic radii in a cubic box with periodic boundary conditions. The temperature of the system is maintained using Langevin thermostat, and basic thermodynamic properties of the system are outputted, such as pressure, and potential, kinetic & total energies.
