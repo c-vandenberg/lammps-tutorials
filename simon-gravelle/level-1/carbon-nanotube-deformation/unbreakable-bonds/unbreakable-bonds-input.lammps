@@ -1,6 +1,7 @@
 # Molecular Dynamics - Unbreakable Carbon Nanotube
 
 # 1) Initialization
+## Define simulation temperature, T=300K
 variable T equal 300
 
 units real
@@ -21,72 +22,94 @@ read_data cnt_molecular.data
 
 # 3) Simulation settings
 ## Import OPLS-AA Force Field Bonded & Non-Bonded Potentials
-include parm.lammps
+include opls-aa.lammps
 
-##
--40.000000 40.000000  xlo xhi
--40.000000 40.000000  ylo yhi
--12.130411 67.869589  zlo zhi
-
-## Recenter the Carbon Nanotube at the Origin (0, 0, 0)
+## Calculate the negative of the x, y & z centre of mass (cm) components of the carbon_atoms group
+## Recenter the Carbon Nanotube at the Origin (0, 0, 0) by displacing them by the calculated center of mass variables
 group carbon_atoms type 1
 variable carbon_xcm equal -1*xcm(carbon_atoms,x)
 variable carbon_ycm equal -1*xcm(carbon_atoms,y)
 variable carbon_zcm equal -1*xcm(carbon_atoms,z)
 displace_atoms carbon_atoms & move ${carbon_xcm} ${carbon_ycm} ${carbon_zcm}
 
-## Ensure Box Boundaries are Symmetric W.R.T the Origin (0, 0, 0)
+## Center the simulation box about the origin (0, 0, 0) by altering dimensions to be from -40 to 40 in x, y & z directions
 change_box all x final -40 40 y final -40 40 z final -40 40
 
-# Define Top Edge Region, Bottom Edge Region, & Middle Region of Carbon Nanotube
+## Define top edge region, bottom edge region, & middle region of carbon nanotube
 variable zmax equal bound(carbon_atoms,zmax)-0.5 # (- 0.5 Å)
 variable zmin equal bound(carbon_atoms,zmin)+0.5 # (+ 0.5 Å)
-region rtop block INF INF INF INF ${zmax} INF
-region rbot block INF INF INF INF INF ${zmin}
-region rmid block INF INF INF INF ${zmin} ${zmax}
+region region_top block INF INF INF INF ${zmax} INF
+region region_bottom block INF INF INF INF INF ${zmin}
+region region_middle block INF INF INF INF ${zmin} ${zmax}
 
-# Group Atoms According to this Region
-group carbon_top region rtop
-group carbon_bot region rbot
-group carbon_mid region rmid
+## Group atoms according to these regions
+group carbon_top region region_top
+group carbon_bottom region region_bottom
+group carbon_middle region region_middle
 
 # 4) Visualization
-## Randomly Delete Non-Edge Carbon Atoms
-variable zmax_del equal ${zmax}-2
-variable zmin_del equal ${zmin}+2
-region rdel block INF INF INF INF ${zmin_del} ${zmax_del}
-group rdel region rdel
-delete_atoms random fraction 0.02 no rdel NULL 482793 bond yes
+## Randomly delete non-edge carbon atoms
+variable zmax_delete equal ${zmax}-2
+variable zmin_delete equal ${zmin}+2
+region region_delete block INF INF INF INF ${zmin_del} ${zmax_del}
+group carbon_delete region region_delete
+delete_atoms random fraction 0.02 no carbon_delete NULL 482793 bond yes
 
 # 5) Run
+## Re-order atoms by their IDs since atoms have deleted
 reset_atoms id sort yes
-velocity carbon_mid create ${T} 48455 mom yes rot yes
-fix mynve all nve
-compute Tmid carbon_mid temp
-fix myber carbon_mid temp/berendsen ${T} ${T} 100
-fix_modify myber temp Tmid
 
-fix mysf1 carbon_top setforce 0 0 0
-fix mysf2 carbon_bot setforce 0 0 0
+## Initialize velocities of atoms in the carbon_middle group at T (300 K) with no overall translational momentum (`mom yes``) or rotational momentum (`rot yes`)
+## As a result of `mom yes` and `rot yes`, the systems net movement and rotation is null
+velocity carbon_middle create ${T} 48455 mom yes rot yes
+
+## Apply the NVE ensemble to the system
+fix nve_ensemble all nve
+
+## Calculate the temperature of the carbon_middle group
+compute carbon_middle_temp carbon_middle temp
+
+## Apply a Berendsen thermostat to the carbon_middle group to regulate its temperature to ${T} with a relaxation time of 100 time units
+fix berendsen_thermostat carbon_middle temp/berendsen ${T} ${T} 100
+
+## Modify Berendsen thermostat fix to use the temperature calculated by carbon_middle_temp compute command
+fix_modify berendsen_thermostat temp carbon_middle_temp
+
+## Apply an initial velocity of zero in the x, y and z directions to the top and bottom carbon groups
 velocity carbon_top set 0 0 0
-velocity carbon_bot set 0 0 0
+velocity carbon_bottom set 0 0 0
 
-variable L equal xcm(carbon_top,z)-xcm(carbon_bot,z)
-fix at1 all ave/time 10 10 100 v_L file output_cnt_length.dat
-fix at2 all ave/time 10 10 100 f_mysf1[1] f_mysf2[1] & file output_edge_force.dat
+## Ensure all forces affecting the top and bottom carbon groups are constant. Because inital velocity is zero, this ensures they remain immobile during the simulation
+fix carbon_top_force carbon_top setforce 0 0 0
+fix carbon_bottom_force carbon_bottom setforce 0 0 0
 
-dump mydmp all atom 1000 dump.lammpstrj
+## Calculate the distance between the center of mass of the top and bottom carbon groups in the z-direction
+variable carbon_top_bottom_cm_distance equal xcm(carbon_top,z)-xcm(carbon_bottom,z)
 
-fix at3 all ave/time 10 10 100 c_Tmid &
-    file output_temperature_middle_group.dat
+## Average and outputs the carbon_top_bottom_cm_distance over time. Tracks changes in nanotube length due to applied forces
+fix ave_time_1 all ave/time 10 10 100 v_carbon_top_bottom_cm_distance file output_cnt_length.dat
 
+## Averages and outputs the forces acting on the top and bottom carbon groups over time. Tracks mechanical stress experienced at nanotube edges
+fix ave_time_2 all ave/time 10 10 100 f_carbon_top_force[1] f_carbon_bottom_force[1] & file output_edge_force.dat
+
+## Output state of all atoms every 1000 timesteps
+dump dump_all_atoms_per_1000_timestep all atom 1000 dump_all_atoms_per_1000_timestep.lammpstrj
+
+## Averages and outputs temperature of the carbon_middle group over time
+fix ave_time_3 all ave/time 10 10 100 c_carbon_middle_temp & file carbon_middle_temp_output.dat
+
+## Output thermodynamic data every 100 timesteps. Particularly the temperature of the carbon_middle group
 thermo 100
-thermo_modify temp Tmid
+thermo_modify temp carbon_middle_temp
 
+## Set simulation timestep to 1.0 femtoseconds and run initial simulation of 5000 timesteps to equilibrate the system before applying any deformation
 timestep 1.0
 run 5000
 
-# 2*0.0005 A/fs = 0.001 A/fs = 100 m/s
+## Apply a constant velocity of 0.0005 Å/fs in the z-direction to the top carbon group, simulating a compressive force
+## Apply a constant velocity of -0.0005 Å/fs in the z-direction to the top carbon group, simulating a compressive force
+## Run deformation simulation of 10,000 timesteps
+## Because we have previously set all forces affecting the top and bottom carbon groups as constant, this imposes a constant velocity deformation of 2*0.0005 A/fs = 0.001 A/fs = 100 m/s
 velocity carbon_top set 0 0 0.0005
-velocity carbon_bot set 0 0 -0.0005
+velocity carbon_bottom set 0 0 -0.0005
 run 10000
