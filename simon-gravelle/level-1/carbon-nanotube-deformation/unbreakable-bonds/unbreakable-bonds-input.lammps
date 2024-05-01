@@ -1,4 +1,4 @@
-# Molecular Dynamics - Unbreakable Carbon Nanotube
+# Molecular Dynamics - Unbreakable Carbon Nanotube Deformation
 
 # 1) Initialization
 ## Define simulation temperature, T=300K
@@ -30,7 +30,7 @@ group carbon_atoms type 1
 variable carbon_xcm equal -1*xcm(carbon_atoms,x)
 variable carbon_ycm equal -1*xcm(carbon_atoms,y)
 variable carbon_zcm equal -1*xcm(carbon_atoms,z)
-displace_atoms carbon_atoms & move ${carbon_xcm} ${carbon_ycm} ${carbon_zcm}
+displace_atoms carbon_atoms move ${carbon_xcm} ${carbon_ycm} ${carbon_zcm}
 
 ## Center the simulation box about the origin (0, 0, 0) by altering dimensions to be from -40 to 40 in x, y & z directions
 change_box all x final -40 40 y final -40 40 z final -40 40
@@ -51,7 +51,7 @@ group carbon_middle region region_middle
 ## Randomly delete non-edge carbon atoms
 variable zmax_delete equal ${zmax}-2
 variable zmin_delete equal ${zmin}+2
-region region_delete block INF INF INF INF ${zmin_del} ${zmax_del}
+region region_delete block INF INF INF INF ${zmin_delete} ${zmax_delete}
 group carbon_delete region region_delete
 delete_atoms random fraction 0.02 no carbon_delete NULL 482793 bond yes
 
@@ -87,16 +87,19 @@ fix carbon_bottom_force carbon_bottom setforce 0 0 0
 variable carbon_top_bottom_cm_distance equal xcm(carbon_top,z)-xcm(carbon_bottom,z)
 
 ## Average and outputs the carbon_top_bottom_cm_distance over time. Tracks changes in nanotube length due to applied forces
-fix ave_time_1 all ave/time 10 10 100 v_carbon_top_bottom_cm_distance file output_cnt_length.dat
+fix ave_time_1 all ave/time 10 10 100 v_carbon_top_bottom_cm_distance &
+    file ave-time-output-data/output_cnt_length.dat
 
 ## Averages and outputs the forces acting on the top and bottom carbon groups over time. Tracks mechanical stress experienced at nanotube edges
-fix ave_time_2 all ave/time 10 10 100 f_carbon_top_force[1] f_carbon_bottom_force[1] & file output_edge_force.dat
+fix ave_time_2 all ave/time 10 10 100 f_carbon_top_force[1] f_carbon_bottom_force[1] &
+    file ave-time-output-data/output_edge_force.dat
 
-## Output state of all atoms every 1000 timesteps
-dump dump_all_atoms_per_1000_timestep all atom 1000 dump_all_atoms_per_1000_timestep.lammpstrj
+## Output state of all atoms every 100 timesteps
+dump dump_all_atoms_per_1000_timestep all atom 100 trajectory-output-data/dump_all_atoms_per_100_timestep.lammpstrj
 
 ## Averages and outputs temperature of the carbon_middle group over time
-fix ave_time_3 all ave/time 10 10 100 c_carbon_middle_temp & file carbon_middle_temp_output.dat
+fix ave_time_3 all ave/time 10 10 100 c_carbon_middle_temp &
+    file ave-time-output-data/carbon_middle_temp_output.dat
 
 ## Output thermodynamic data every 100 timesteps. Particularly the temperature of the carbon_middle group
 thermo 100
