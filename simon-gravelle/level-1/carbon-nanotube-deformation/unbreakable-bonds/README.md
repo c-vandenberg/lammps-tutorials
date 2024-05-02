@@ -2,7 +2,7 @@
 
 ## Introduction
 
-When using classical molecular dynamics force fields (also known as non-reactive force fields) such as OPLS-AA Force Field, the chemical bonds between the atoms are set at the start of the simulation. As the simulation is running, regardless of the forces applied to the atoms, the bonds will remain intact. Therefore, they are designed to model the interaction within molecules and materials where the bonding structure does not change throughout the simluation. 
+In classical molecular dynamics force fields (also known as non-reactive force fields) such as OPLS-AA Force Field, the chemical bonds between the atoms are set at the start of the simulation. As the simulation is running, regardless of the forces applied to the atoms, the bonds will remain intact. Therefore, they are designed to model the interaction within molecules and materials where the bonding structure does not change throughout the simulation. 
 
 The bonds between neighbouring atoms are typically modelled as springs with a given equilibrium distance r<sub>0</sub> and a spring constant k<sub>b</sub>: U<sub>b</sub> = k<sub>b</sub>(r - r<sub>0</sub>)<sup>2</sup>.
 
@@ -30,7 +30,15 @@ improper_style harmonic
 special_bonds lj 0.0 0.0 0.5
 ```
 * `variable T equal 300` - Defines the simulation temperature, T=300K
-* `units real` - Specifies the simulation is using `real` units (distances in **Å** and time in **fs**) instead of the unitless `lj` units we have used previously
+* `units real` - Specifies the simulation is using `real` units instead of the unitless `lj` units we have used previously. In the `real` units system:
+  * Distances = **Å**
+  * Energy = **kcal/mol**
+  * Force = **kcal/mol/Å**
+  * Velocity = **Å/fs**
+  * Mass = **atomic mass units (amu)**
+  * Time = **picoseconds (fs)**
+  * Temperature = **K**
+  * Pressure = **atm**
 * `bond_style harmonic` - Bonds are modelled as harmonic springs in OPLS-AA
 * `angle_style harmonic`- Bond angles are modelled as harmonic springs in OPLS-AA
 * `dihedral_style opls` - Dihedral/torsion angles can exhibit more complex behaviour than simple harmonic motion because they involve the interaction of four atoms and can have multiple energy minima. The OPLS style is therefore used as it uses a Fourier series, allowing it to cross the minima barriers and capture the multiple minima
