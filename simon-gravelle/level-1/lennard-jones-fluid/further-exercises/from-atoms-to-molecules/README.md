@@ -11,7 +11,7 @@
 </p>
 
 ## Problem
-Add a bond between particles of type 2 in order to create dumbbell molecules instead of single particles. Additionally, create a small polymer/long chain of atoms linked by bonds and defined by angles
+Add a bond between type 2 atoms in order to create dumbbell molecules instead of single atoms. Additionally, create a small polymer/long chain of atoms linked by bonds and defined by angles
 
 **Hint**
 
