@@ -10,13 +10,15 @@ boundary f f f
 pair_style airebo 2.5 1 1
 
 # 2) System definition
-## Import the modified VMD generated initial carbon nanotube topography
+## Import VMD generated initial carbon nanotube topology. Topology from cnt_molecular.data has been altered to be compatible with the AIREBO potential
 read_data cnt_atomic.data
 
 # 3) Simulation settings
-pair_coeff * * cnt.airebo C
+## Import parameters/coefficients for the AIREBO potential. This is the file from the original 'Stuart' paper
+pair_coeff * * CH.airebo C
 
 ## Center the simulation box about the origin (0, 0, 0) by altering dimensions to be from -40 to 40 in x, y & z directions
+## Increase box size along z-axis to 120 Å to allow for larger deformation in z-direction
 change_box all x final -40 40 y final -40 40 z final -60 60
 
 ## Calculate the negative of the x, y & z centre of mass (cm) components of the carbon_atoms group
@@ -98,6 +100,7 @@ thermo 100
 thermo_modify temp carbon_middle_temp
 
 ## Set simulation timestep to 1.0 femtoseconds and run initial simulation of 5000 timesteps to equilibrate the system before applying any deformation
+## Need to use a smaller timestep of 0.0005 ps (0.5 fm) as reactive force fields usually require smaller timesteps than traditional force fields
 timestep 0.0005
 run 5000
 

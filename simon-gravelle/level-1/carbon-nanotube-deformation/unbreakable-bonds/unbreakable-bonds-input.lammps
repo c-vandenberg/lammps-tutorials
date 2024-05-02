@@ -79,7 +79,7 @@ fix_modify berendsen_thermostat temp carbon_middle_temp
 velocity carbon_top set 0 0 0
 velocity carbon_bottom set 0 0 0
 
-## Ensure all forces affecting the top and bottom carbon groups are constant. Because inital velocity is zero, this ensures they remain immobile during the simulation
+## Ensure all forces affecting the top and bottom carbon groups are constant. Because initial velocity is zero, this ensures they remain immobile during the simulation
 fix carbon_top_force carbon_top setforce 0 0 0
 fix carbon_bottom_force carbon_bottom setforce 0 0 0
 
