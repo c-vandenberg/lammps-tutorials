@@ -7,6 +7,10 @@
 </p>
 
 
+![vmdscene](https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/54428654-ec35-4f60-9c9c-fbb15479f359)
+
+
+
 
 ## Introduction
 
