@@ -1,5 +1,11 @@
 # Level 1 - Carbon Nanotube Deformation Further Exercises: Inert Gas (Argon) in The Carbon Nanotube
 
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/47e5a5fb-dfa4-4951-a655-13f7fd775a96" alt="cnt-breakable-bonds-start md" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/bf52d51f-4afe-415e-b240-b40b7783ae46" alt="cnt-breakable-bonds-mid md" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/39e0d3db-ef43-461f-aa89-b0b7fc673978" alt="cnt-breakable-bonds-end md" width="325" />
+</p>
+
 ## Problem
 
 In this exercise we need to modify the input from the unbreakable CNT to add atoms of argon within the CNT. The argon atoms are to be given the following `pair_coeff`:
