@@ -1,0 +1,7 @@
+## Bonded & Non-Bonded Potentials for C and Ar. Parameters Taken from OPLS-AA (Optimised Potentials for Liquid Simulations-All-Atom) force field
+pair_coeff 1 1 0.066 3.4
+pair_coeff 2 2 0.232 3.3952
+bond_coeff 1 469 1.4
+angle_coeff 1 63 120
+dihedral_coeff 1 0 7.25 0 0
+improper_coeff 1 5 180
