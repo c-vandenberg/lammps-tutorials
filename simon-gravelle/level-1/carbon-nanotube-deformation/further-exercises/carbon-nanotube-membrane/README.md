@@ -1,5 +1,11 @@
 # Level 1 - Carbon Nanotube Deformation Further Exercises: Carbon Nanotube Membrane
 
+<p align="center">
+  <img src="" alt="cnt-unbreakable-bonds start md" width="300" />
+  <img src="" alt="cnt-unbreakable-bonds-mid md" width="300" />
+  <img src="" alt="cnt-unbreakable-bonds-end md" width="300" />
+</p>
+
 ## Problem
 
 In this exercise we are to replicate the carbon nanotube (CNT) in the x and y directions and equilibrate the system to create an infinite membrane of multiple CNTs. We are also to apply a shear stress/sheer deformation to the CNT membrane.
