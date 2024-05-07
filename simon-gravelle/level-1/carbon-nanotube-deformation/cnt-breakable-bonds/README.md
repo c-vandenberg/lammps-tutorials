@@ -2,6 +2,12 @@
 
 ## Introduction
 
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/189d5ddb-2349-41bd-81c4-ff46acc993a8" alt="cnt-breakable-bonds-start md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/348f62c0-0542-4b57-9b20-6b6eed00d8a8" alt="cnt-breakable-bonds-mid md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/de8d4a0a-325f-437f-b5f3-934b9ec62f60" alt="cnt-breakable-bonds-end md" width="300" />
+</p>
+
 Reactive molecular dynamics force fields such as AIREBO Force Field extend the capabilities of classical force fields by allowing the simulation to include the breaking & formation of chemical bonds. Therefore, they are used in dynamic systems where chemical reactions are expected to occur (e.g. synthetic & enzymatic reactions).
 
 Another key difference compared to classical force fields is higher complexity of the pre-calculated parameters is higher for reactive force fields. This is because they need to accurately model the potential energy surfaces of reacting systems.
