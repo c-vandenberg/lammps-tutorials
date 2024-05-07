@@ -14,7 +14,7 @@ pair_style airebo 2.5 1 1
 read_data cnt_atomic.data
 
 # 3) Simulation settings
-## Import parameters/coefficients for the AIREBO potential. This is the file from the original 'Stuart' paper
+## Import parameters/coefficients for the AIREBO potential. This file is from the original 'Stuart' paper
 pair_coeff * * CH.airebo C
 
 ## Center the simulation box about the origin (0, 0, 0) by altering dimensions to be from -40 to 40 in x, y & z directions
