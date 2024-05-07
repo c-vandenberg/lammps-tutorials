@@ -1,16 +1,10 @@
 # Deformation of Carbon Nanotube with Breakable Bonds
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/189d5ddb-2349-41bd-81c4-ff46acc993a8" alt="cnt-breakable-bonds-start md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/348f62c0-0542-4b57-9b20-6b6eed00d8a8" alt="cnt-breakable-bonds-mid md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/ced99628-7c14-4915-a57e-010a16ee08b4" alt="cnt-breakable-bonds-end md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/96af3932-6af6-498f-b4cb-2cddc549ef3a" alt="cnt-breakable-bonds-start md" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/66c6692a-5ed2-44db-815a-037e76780562" alt="cnt-breakable-bonds-mid md" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/69d17e3e-b0a0-4462-bead-279f00e56b46" alt="cnt-breakable-bonds-end md" width="325" />
 </p>
-
-
-![vmdscene](https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/54428654-ec35-4f60-9c9c-fbb15479f359)
-
-
-
 
 ## Introduction
 
