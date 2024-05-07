@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/189d5ddb-2349-41bd-81c4-ff46acc993a8" alt="cnt-breakable-bonds-start md" width="300" />
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/348f62c0-0542-4b57-9b20-6b6eed00d8a8" alt="cnt-breakable-bonds-mid md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/de8d4a0a-325f-437f-b5f3-934b9ec62f60" alt="cnt-breakable-bonds-end md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f56a213f-c6b9-4ddf-bcf5-6f0c9757e8ff" alt="cnt-breakable-bonds-end md" width="300" />
 </p>
 
 ## Introduction
