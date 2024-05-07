@@ -1,4 +1,4 @@
-## Level 1 - Pulling on a Carbon Nanotube
+## Level 1 - Carbon Nanotube Deformation
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b851607b-cbfe-4957-b0e6-6b751ef2f177" alt="cnt-unbreakable-bonds start md" width="" />
