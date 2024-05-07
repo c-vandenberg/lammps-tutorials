@@ -1,9 +1,9 @@
 # Deformation of Carbon Nanotube with Breakable Bonds
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/96af3932-6af6-498f-b4cb-2cddc549ef3a" alt="cnt-breakable-bonds-start md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/66c6692a-5ed2-44db-815a-037e76780562" alt="cnt-breakable-bonds-mid md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/69d17e3e-b0a0-4462-bead-279f00e56b46" alt="cnt-breakable-bonds-end md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/96af3932-6af6-498f-b4cb-2cddc549ef3a" alt="cnt-breakable-bonds-start md" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/66c6692a-5ed2-44db-815a-037e76780562" alt="cnt-breakable-bonds-mid md" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/69d17e3e-b0a0-4462-bead-279f00e56b46" alt="cnt-breakable-bonds-end md" width="325" />
 </p>
 
 ## Introduction
