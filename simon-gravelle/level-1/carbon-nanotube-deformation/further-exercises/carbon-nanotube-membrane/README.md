@@ -1,9 +1,7 @@
 # Level 1 - Carbon Nanotube Deformation Further Exercises: Carbon Nanotube Membrane
 
 <p align="center">
-  <img src="" alt="cnt-unbreakable-bonds start md" width="300" />
-  <img src="" alt="cnt-unbreakable-bonds-mid md" width="300" />
-  <img src="" alt="cnt-unbreakable-bonds-end md" width="300" />
+  <img src="" alt="cnt-membrane md" width="300" />
 </p>
 
 ## Problem
