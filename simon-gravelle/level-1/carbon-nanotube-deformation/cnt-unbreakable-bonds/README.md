@@ -2,6 +2,12 @@
 
 ## Introduction
 
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/2a77460a-021c-4732-a78c-a08935f35ef9" alt="improved-input-start md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/707aa6f3-5138-4259-88fc-754b4c901c32" alt="improved-input-mid md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/bca5260b-a3b9-4d1d-8e1b-d3f7fe2617d7" alt="improved-input-end md" width="300" />
+</p>
+
 In classical molecular dynamics force fields (also known as non-reactive force fields) such as OPLS-AA Force Field, the chemical bonds between the atoms are set at the start of the simulation. As the simulation is running, regardless of the forces applied to the atoms, the bonds will remain intact. Therefore, they are designed to model the interaction within molecules and materials where the bonding structure does not change throughout the simulation. 
 
 The bonds between neighbouring atoms are typically modelled as springs with a given equilibrium distance r<sub>0</sub> and a spring constant k<sub>b</sub>: U<sub>b</sub> = k<sub>b</sub>(r - r<sub>0</sub>)<sup>2</sup>.
