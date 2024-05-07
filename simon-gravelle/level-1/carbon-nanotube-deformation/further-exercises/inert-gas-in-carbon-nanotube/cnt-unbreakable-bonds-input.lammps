@@ -60,6 +60,7 @@ fix nve_ensemble all nve
 compute carbon_temp carbon_atoms temp
 
 ## Apply a Berendsen thermostat to the carbon_atoms group to regulate its temperature to ${T} with a relaxation time of 100 time units
+## Here we apply the Berendsen thermostat to the CNT C atoms and the Ar atoms separately to avoid having a large temperature difference between the two atom types
 fix carbon_berendsen_thermostat carbon_atoms temp/berendsen ${T} ${T} 100
 
 ## Modify Berendsen thermostat fix to use the temperature calculated by carbon_middle_temp compute command
