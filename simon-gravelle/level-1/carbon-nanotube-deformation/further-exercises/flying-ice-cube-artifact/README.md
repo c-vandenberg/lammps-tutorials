@@ -1,9 +1,8 @@
 # Level 1 - Carbon Nanotube Deformation Further Exercises: Flying Ice Cube Artifact
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/bcdccf25-9c95-4375-aea6-2a5ad565e671" alt="cnt-flying-ice-cube-artifact" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/5ce7c3e8-f472-4384-b124-b8b6576df4f6" alt="cnt-flying-ice-cube-artifact" width="300" />
 </p>
-
 
 ## Introduction
 The "flying ice cube" effect is one of the most famous artifacts (unintended behaviours)/phenomena of molecular simulations. It is where the simulated system, typically a box containing molecules or atoms, begins to exhibit a collective motion in one direction. The effect is named metaphorically; just as an ice cube might slide across a surface, the entire group of atoms/molecules in the simulation "fly" together, moving as a whole through the simulation box.
