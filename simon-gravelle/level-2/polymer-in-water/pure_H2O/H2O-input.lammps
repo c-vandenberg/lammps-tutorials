@@ -1,0 +1,27 @@
+# Molecular Dynamics - Input Script for Pure H2O
+
+# 1) Initialization
+units real
+atom_style full
+bond_style harmonic
+angle_style harmonic
+dihedral_style harmonic
+pair_style lj/cut/coul/long 12
+kspace_style pppm 1e-5
+special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes
+
+# 2) System Definition
+region box block -15 15 -15 15 -15 15
+create_box 9 box &
+bond/types 6 &
+angle/types 15 &
+dihedral/types 3 &
+extra/bond/per/atom 2 &
+extra/angle/per/atom 1 &
+extra/special/per/atom 2
+
+# 3) Simulation Settings
+include ../parameters.lammps
+
+molecule H2O_mol H2O_molecular.txt
+create_atoms H2O_molecules random 350 45615 NULL mol H2O_mol 14756 overlap 1 maxtry 50
