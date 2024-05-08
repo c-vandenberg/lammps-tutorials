@@ -42,8 +42,8 @@ dump dump_all_atoms_per_100_timestep all atom 1000 trajectory-output-data/dump_a
 variable H2O_temp equal temp
 variable H2O_vol equal vol
 
-fix ave_temp all ave/time 10 10 100 v_H2O_temp file ave-time-output-data/ave_H2O_temperature.dat
-fix ave_vol all ave/time 10 10 100 v_H2O_vol file ave-time-output-data/ave_H2O_volume.dat
+fix H2O_ave_temp all ave/time 10 10 100 v_H2O_temp file ave-time-output-data/ave_H2O_temperature.dat
+fix H2O_ave_vol all ave/time 10 10 100 v_H2O_vol file ave-time-output-data/ave_H2O_volume.dat
 
 ## Calculate number of molecules by counting number of atoms in group H2O, divided by 3
 variable H2O_molecule_number equal count(H2O)/3
@@ -51,7 +51,7 @@ variable H2O_molecule_number equal count(H2O)/3
 ## Calculate H2O density by dividing number of H2O molecules by volume
 variable H2O_density equal ${H2O_molecule_number}/v_H2O_vol
 
-fix ave_density all ave/time 10 10 100 v_H2O_density file ave-time-output-data/ave_H20_density.dat
+fix H2O_ave_density all ave/time 10 10 100 v_H2O_density file ave-time-output-data/ave_H20_density.dat
 
 thermo 100
 timestep 1.0
