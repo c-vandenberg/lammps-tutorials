@@ -34,6 +34,11 @@ Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps)
    * This generates the LAMMPS executable in the 'static' mode. If you want to generate it in the 'shared' mode, you need to run `make mode=shared ubuntu`
 6. Navigate to `tools` directory (`cd lammps/tools`) and build LAMMPS tools (`make all`)
 
+### Running Make Build LAMMPS
+1. Once you have created your `<input_file>.lammps` input script, you can run LAMMPS using:
+   * The `<absolute_configuration_to_lmp_serial> -in <input_file>.lammps` command to run LAMMPS via the `lmp_serial` binary
+   * The `mpirun -np 4 <absolute_configuration_to_lmp_mpi> -in <input_file>.lammps` command to run LAMMPS via the `lmp_mpi` binary
+
 ### LAMMPS Build with CMake
 Using CMake has multiple advantages if you want to modify or extend LAMMPS (or have limited experience compiling software). These advantages are outlined in the documentation, however the advantage we will highlight here is that CMake can generate files for different build tools and integrated development environments (IDE). This will be especially useful when we outline how to integrate LAMMPS with the CLion debugger tool, which is very useful for debugging any errors you encounter in either your build process, or input scripts.
 
@@ -49,10 +54,9 @@ Using CMake has multiple advantages if you want to modify or extend LAMMPS (or h
    * N.B. I personally had incompatiability issues with my locally installed FFTW3 (Fastest Fourier Transform in the West) library when LAMMPS tried to install the KSPACE package. As described [in the documentation](https://docs.lammps.org/Build_settings.html#fft-library), the KISS fft library is included with LAMMPS, so I got around this issue by adding the `-D FFT=KISS` flag to my configuration command - `cmake -C ../cmake/presets/most.cmake -D FFT=KISS ../cmake`
 4. Compile/build LAMMPS executable via command `cmake --build .`. This generates the `lmp` binary in your `lammps/build` directory
 
-### Running LAMMPS
+### Running CMake Build LAMMPS
 1. Once you have created your `<input_file>.lammps` input script, you can run LAMMPS using:
-   * The `lmp_serial -in <input_file>.lammps` command to run LAMMPS via the `lmp_serial` binary
-   * The `mpirun -np 4 lmp_mpi -in <input_file>.lammps` command to run LAMMPS via the `lmp_mpi` binary
+   * The `<absolute_configuration_to_lammps/build/lmp> -in <input_file>.lammps` command to run LAMMPS via the `lmp` binary
   
 ### Configuring CLion Debugger with LAMMPS
 The ability to trigger breakpoints in a codebase is an invaluable tool for debugging any errors you encounter when running an input script, and also getting more familiar with the codebase of the software you are using. I will be describing how to do this in CLion, a cross-platform IDE for C and C++ with support for Python & assembly. Unfortunately, CLion does not have a free version. But this general approach can be applied to other IDEs with support for CMake.
