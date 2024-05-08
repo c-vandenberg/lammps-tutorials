@@ -40,7 +40,7 @@ Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps)
    * The `mpirun -np 4 <absolute_configuration_to_lmp_mpi> -in <input_file>.lammps` command to run LAMMPS via the `lmp_mpi` binary
 
 ### LAMMPS Build with CMake
-Using CMake has multiple advantages if you want to modify or extend LAMMPS (or have limited experience compiling software). These advantages are outlined in the documentation, however the advantage we will highlight here is that CMake can generate files for different build tools and integrated development environments (IDE). This will be especially useful when we outline how to integrate LAMMPS with the CLion debugger tool, which is very useful for debugging any errors you encounter in either your build process, or input scripts.
+Using CMake has multiple advantages if you want to modify or extend LAMMPS (or have limited experience compiling software). These advantages are outlined in the documentation, however the advantage we will highlight here is that CMake can generate files for different build tools and integrated development environments (IDE). This will be especially useful when we outline how to integrate LAMMPS with the CLion debugger tool, which is very useful for debugging any errors you encounter in your input scripts.
 
 **N.B. You must not mix the `make` LAMMPS build procedure with the `cmake` build procedure. CMake will detect if any there are any previously installed packages or compiled executables in `lammps/src` and will throw an error. If you have previously built lammps using the `make` approach, you must remove all conflicting files in `lammps/src` via command `make no-all purge`. This will uninstall all packages and delete all auto-generated files.
 
