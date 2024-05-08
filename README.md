@@ -23,7 +23,7 @@ Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps)
 	  ifort -c micelle2d.f90 -o micelle2d
    ```
 
-### LAMMPS Build
+### LAMMPS Build with Make
 1. All build commands must be run in LAMMPS `src` directory (`cd lammps/src`)
    * If you need to install any packages, this needs to be done prior to building any LAMMPS binaries. This can be by running command `make yes-<package_name>`. E.g. `make yes-MOLECULE`
 2. Build serial LAMMPS executable using GNU g++ (`make serial`)
@@ -34,8 +34,45 @@ Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps)
    * This generates the LAMMPS executable in the 'static' mode. If you want to generate it in the 'shared' mode, you need to run `make mode=shared ubuntu`
 5. Navigate to `tools` directory (`cd lammps/tools`) and build LAMMPS tools (`make all`)
 
-### Running LAMMPS
+### Running Make Build LAMMPS
 1. Once you have created your `<input_file>.lammps` input script, you can run LAMMPS using:
-   * The `lmp_serial -in <input_file>.lammps` command to run LAMMPS via the `lmp_serial` binary
-   * The `mpirun -np 4 lmp_mpi -in <input_file>.lammps` command to run LAMMPS via the `lmp_mpi` binary
+   * The `<absolute_configuration_to_lmp_serial> -in <input_file>.lammps` command to run LAMMPS via the `lmp_serial` binary
+   * The `mpirun -np 4 <absolute_configuration_to_lmp_mpi> -in <input_file>.lammps` command to run LAMMPS via the `lmp_mpi` binary
+
+### LAMMPS Build with CMake
+Using CMake has multiple advantages if you want to modify or extend LAMMPS (or have limited experience compiling software). These advantages are outlined in the documentation, however the advantage we will highlight here is that CMake can generate files for different build tools and integrated development environments (IDE). This will be especially useful when we outline how to integrate LAMMPS with the CLion debugger tool, which is very useful for debugging any errors you encounter in your input scripts.
+
+**N.B. You must not mix the `make` LAMMPS build procedure with the `cmake` build procedure. CMake will detect if any there are any previously installed packages or compiled executables in `lammps/src` and will throw an error. If you have previously built lammps using the `make` approach, you must remove all conflicting files in `lammps/src` via command `make no-all purge`. This will uninstall all packages and delete all auto-generated files.
+
+1. Navigate to the LAMMPS distribution directory (`cd lammps`)
+2. Create `build` directory and navigate to it (`mkdir build; cd build`)
+3. Generate CMake configuration files (`CMakeCache.txt` and other build files) within the `build` directory. This is achieved by loading in the configurations defined within directory `lammps/cmake`, specifically in the `CMakeLists.txt` file within that directory via command `cmake ../cmake`
+   * It is during this configuration generation command that you should specify any additional packages you want to install
+   * This can be achieved by individual adding the packages you want via `cmake -D PKG_<NAME>=on` (e.g. `cmake -D PKG_MOLECULE=on` for the MOLECULE package)
+   * Conveniently, LAMMPS includes several package configuration 'presets' (found in `lammps/cmake/presets`). Using these preset files, you can enable/disable portions of the available packages in LAMMPS (or indeed modify them to create your own custom preset
+   * For example, to install the most of the core packages listed in `lammps/cmake/presets/most.cmake`, run command `cmake -C ../cmake/presets/most.cmake ../cmake`
+   * N.B. I personally had incompatiability issues with my locally installed FFTW3 (Fastest Fourier Transform in the West) library when LAMMPS tried to install the KSPACE package. As described [in the documentation](https://docs.lammps.org/Build_settings.html#fft-library), the KISS fft library is included with LAMMPS, so I got around this issue by adding the `-D FFT=KISS` flag to my configuration command - `cmake -C ../cmake/presets/most.cmake -D FFT=KISS ../cmake`
+4. Compile/build LAMMPS executable via command `cmake --build .`. This generates the `lmp` binary in your `lammps/build` directory
+
+### Running CMake Build LAMMPS
+1. Once you have created your `<input_file>.lammps` input script, you can run LAMMPS using:
+   * The `<absolute_configuration_to_lammps/build/lmp> -in <input_file>.lammps` command to run LAMMPS via the `lmp` binary
   
+### Configuring CLion Debugger with LAMMPS
+The ability to trigger breakpoints in a codebase is an invaluable tool for debugging any errors you encounter when running an input script, and also getting more familiar with the codebase of the software you are using. I will be describing how to do this in CLion, a cross-platform IDE for C and C++ with support for Python & assembly. Unfortunately, CLion does not have a free version. But this general approach can be applied to other IDEs with support for CMake.
+
+Note this requires building LAMMPS via the `cmake` build procedure (the `make` procedure may work, though I have no tested it)
+
+1. Open LAMMPS in CLion and build with CMake
+2. In CLion, navigate to 'File > Settings > Build, Execution, Deployment > CMake' and confirm that the 'Debug' CMake profile is there and is selected. If it is not present, generate the CMake configuration files again with the `-D CMAKE_BUILD_TYPE="Debug"` flag. E.g. `cmake -C ../cmake/presets/most.cmake -D FFT=KISS -D CMAKE_BUILD_TYPE="Debug" ../cmake`
+3. Navigate to 'Run > Edit Configurations' and select the `lmp` configuration under 'CMake Application'. If for whatever reason it doesn't exist, click 'Add New Configuration'
+4. Change 'Target' to `lmp` if it isn't already selected
+5. Change 'Executable' to the `lmp` executable within you `lammps/build` directory
+6. Change 'Program arguments' to `-in <absolute_path_to_your_input_script>`
+7. Change 'Working directory' to the absolute path of the directory where your input script is located
+8. Select 'Apply' and 'Ok'
+9. Put a breakpoint at the line of code you want to debug, and click the green Debug 'Imp' icon at the top of the IDE. LAMMPS should now run your script and stop at your breakpoint
+10. See image below for example of Configuration from steps 3 - 8:
+
+![Screenshot from 2024-05-08 16-38-49](https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/3abfa19f-c74f-40a7-8c6f-de21016b8169)
+
