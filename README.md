@@ -23,7 +23,7 @@ Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps)
 	  ifort -c micelle2d.f90 -o micelle2d
    ```
 
-### LAMMPS Build
+### LAMMPS Build with Make
 1. All build commands must be run in LAMMPS `src` directory (`cd lammps/src`)
    * If you need to install any packages, this needs to be done prior to building any LAMMPS binaries. This can be by running command `make yes-<package_name>`. E.g. `make yes-MOLECULE`
 3. Build serial LAMMPS executable using GNU g++ (`make serial`)
@@ -33,6 +33,21 @@ Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps)
 5. Build LAMMPS executable and library (`make ubuntu`)
    * This generates the LAMMPS executable in the 'static' mode. If you want to generate it in the 'shared' mode, you need to run `make mode=shared ubuntu`
 6. Navigate to `tools` directory (`cd lammps/tools`) and build LAMMPS tools (`make all`)
+
+### LAMMPS Build with CMake
+Using CMake has multiple advantages if you want to modify or extend LAMMPS (or have limited experience compiling software). These advantages are outlined in the documentation, however the advantage we will highlight here is that CMake can generate files for different build tools and integrated development environments (IDE). This will be especially useful when we outline how to integrate LAMMPS with the CLion debugger tool, which is very useful for debugging any errors you encounter in either your build process, or input scripts.
+
+**N.B. You must not mix the `make` LAMMPS build procedure with the `cmake` build procedure. CMake will detect if any there are any previously installed packages or compiled executables in `lammps/src` and will throw an error. If you have previously built lammps using the `make` approach, you must remove all conflicting files in `lammps/src` via command `make no-all purge`. This will uninstall all packages and delete all auto-generated files.
+
+1. Navigate to the LAMMPS distribution directory (`cd lammps`)
+2. Create `build` directory and navigate to it (`mkdir build; cd build`)
+3. Generate CMake configuration files (`CMakeCache.txt` and other build files) within the `build` directory. This is achieved by loading in the configurations defined within directory `lammps/cmake`, specifically in the `CMakeLists.txt` file within that directory via command `cmake ../cmake`
+   * It is during this configuration generation command that you should specify any additional packages you want to install
+   * This can be achieved by individual adding the packages you want via `cmake -D PKG_<NAME>=on` (e.g. `cmake -D PKG_MOLECULE=on` for the MOLECULE package)
+   * Conveniently, LAMMPS includes several package configuration 'presets' (found in `lammps/cmake/presets`). Using these preset files, you can enable/disable portions of the available packages in LAMMPS (or indeed modify them to create your own custom preset
+   * For example, to install the most of the core packages listed in `lammps/cmake/presets/most.cmake`, run command `cmake -C ../cmake/presets/most.cmake ../cmake`
+   * N.B. I personally had incompatiability issues with my locally installed FFTW3 (Fastest Fourier Transform in the West) library when LAMMPS tried to install the KSPACE package. As described [in the documentation](https://docs.lammps.org/Build_settings.html#fft-library), the KISS fft library is included with LAMMPS, so I got around this issue by adding the `-D FFT=KISS` flag to my configuration command - `cmake -C ../cmake/presets/most.cmake -D FFT=KISS ../cmake`
+4. Compile/build LAMMPS executable via command `cmake --build .`. This generates the `lmp` binary in your `lammps/build` directory
 
 ### Running LAMMPS
 1. Once you have created your `<input_file>.lammps` input script, you can run LAMMPS using:
