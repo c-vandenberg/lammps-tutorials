@@ -23,5 +23,14 @@ extra/special/per/atom 2
 # 3) Simulation Settings
 include ../parameters.lammps
 
-molecule H2O_mol H2O_molecular.txt
-create_atoms H2O_molecules random 350 45615 NULL mol H2O_mol 14756 overlap 1 maxtry 50
+molecule H2O_molecule H2O_molecular.data
+create_atoms 0 random 350 45615 NULL mol H2O_molecule 14756 overlap 1 maxtry 50
+
+group H2O type 8 9
+minimize 1.0e-4 1.0e-6 100 1000
+reset_timestep 0
+
+# 4) Run
+fix npt_ensemble all npt temp 300 300 100 iso 1 1 1000
+
+dump dump_all_atoms_per_100_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep.lammpstrj
