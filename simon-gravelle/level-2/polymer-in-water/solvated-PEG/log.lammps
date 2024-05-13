@@ -1,0 +1,19 @@
+LAMMPS (7 Feb 2024 - Update 1)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+# Molecular Dynamics - Input Script for PEG Solvated in H2O
+
+# 1) Initialization
+units real
+atom_style full
+bond_style harmonic
+angle_style harmonic
+dihedral_style harmonic
+pair_style lj/cut/coul/long 12
+kspace_style pppm 1e-5
+special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
+
+# 2) System Definition
+read_data ../pure-H2O/H2O.data extra/bond/per/atom 2 extra/angle/per/atom  5 extra/dihedral/per/atom 9
+ERROR: Cannot open file ../pure-H2O/H2O.data: No such file or directory (src/read_data.cpp:367)
+Last command: read_data ../pure-H2O/H2O.data extra/bond/per/atom 2 extra/angle/per/atom  5 extra/dihedral/per/atom 9

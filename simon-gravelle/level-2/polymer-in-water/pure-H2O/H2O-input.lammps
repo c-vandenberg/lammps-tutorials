@@ -37,7 +37,7 @@ reset_timestep 0
 ## Applies isotopic pressure control (`iso`), meaning pressure will be controlled uniformly in all three dimensions (i.e. the simulation box will expand or contact equally in all directions)
 fix npt_ensemble all npt temp 300 300 100 iso 1 1 1000
 
-dump dump_all_atoms_per_100_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep.lammpstrj
+dump dump_all_atoms_per_1000_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep.lammpstrj
 
 variable H2O_temp equal temp
 variable H2O_vol equal vol
@@ -59,4 +59,4 @@ run 50000
 
 replicate 3 1 1
 
-write_data H20.data
+write_data H2O.data
