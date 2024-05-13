@@ -33,7 +33,7 @@ fix berendsen_thermostat all temp/berendsen 300 300 100
 ## `dump_modify` ensures that new trajectory data is appended to the previously created `dump_all_atoms.lammpstrj` file
 dump dump_all_atoms all atom 1000 trajectory-output-data/dump_all_atoms.lammpstrj
 dump_modify dump_all_atoms append yes
-thermo 100
+thermo 1000
 
 variable PEG_temp equal temp
 fix PEG_ave_temp all ave/time 10 10 100 v_PEG_temp file ave-time-output-data/PEG_temperature.dat
