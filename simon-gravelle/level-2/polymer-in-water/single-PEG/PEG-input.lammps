@@ -14,7 +14,7 @@ special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
 read_data PEG_molecular.data
 
 # 3) Simulation Settings
-include ../parameters.lammps
+include ../H2O-PEG-parameters.lammps
 
 # 4) Run
 ## Energy minimization will be short so output trajectory & thermodynamic data every 10 timesteps

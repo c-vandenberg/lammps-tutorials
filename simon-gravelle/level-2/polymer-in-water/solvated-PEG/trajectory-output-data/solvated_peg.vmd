@@ -11,7 +11,7 @@ proc vmdrestoremymaterials {} {
       material add $mat
     }
   }
-  material change ambient Opaque 0.000000
+  material change ambient Opaque 0.150000
   material change diffuse Opaque 0.560000
   material change specular Opaque 0.120000
   material change shininess Opaque 0.290000
@@ -28,7 +28,7 @@ proc vmdrestoremymaterials {} {
   material change opacity Transparent 0.300000
   material change outline Transparent 0.000000
   material change outlinewidth Transparent 0.000000
-  material change transmode Transparent 0.000000
+  material change transmode Transparent 1.000000
   material change ambient BrushedMetal 0.080000
   material change diffuse BrushedMetal 0.390000
   material change specular BrushedMetal 0.340000
@@ -342,7 +342,7 @@ display dof_fnumber 64.000000
 display dof_focaldist 0.700000
 mol new dump_all_atoms_per_100_timestep.lammpstrj type lammpstrj first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
 mol delrep 0 top
-mol representation QuickSurf 1.100000 1.000000 0.500000 3.000000
+mol representation QuickSurf 1.000000 0.500000 1.000000 1.000000
 mol color ColorID 10
 mol selection {type 8 9}
 mol material Transparent
@@ -479,7 +479,7 @@ mol clipplane color  5 3 top {0.5 0.5 0.5 }
 mol clipplane normal 5 3 top {0.0 0.0 1.0}
 mol clipplane status 5 3 top {0}
 mol rename top dump_all_atoms_per_100_timestep.lammpstrj
-set viewpoints([molinfo top]) {{{1 0 0 -24.1339} {0 1 0 -0.103987} {0 0 1 -0.0775564} {0 0 0 1}} {{-0.999757 -0.0201801 0.00790594 0} {0.0202576 -0.999736 0.0101 0} {0.00769958 0.0102536 0.999912 0} {0 0 0 1}} {{0.0417299 0 0 0} {0 0.0417299 0 0} {0 0 0.0417299 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
+set viewpoints([molinfo top]) {{{1 0 0 -24.1339} {0 1 0 -0.103987} {0 0 1 -0.0775564} {0 0 0 1}} {{-0.999872 -0.00711775 -0.00631542 0} {0.00945872 -0.658697 -0.752315 0} {0.00121673 -0.752374 0.658654 0} {0 0 0 1}} {{0.0415134 0 0 0} {0 0.0415134 0 0} {0 0 0.0415134 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
 lappend viewplist [molinfo top]
 set topmol [molinfo top]
 # done with molecule 0
@@ -643,6 +643,7 @@ color scale colors WBlk {1.0 1.0 1.0} {0.5 0.5 0.5} {0.0 0.0 0.0}
     {color Segname {} blue}
     {color Conformation {all} blue}
     {color Molecule {0} blue}
+    {color Molecule {dump_all_atoms_per_100_timestep.lammpstrj} blue}
     {color Structure {3_10_Helix} blue}
     {color Surface {Grasp} gray}
     {color Labels {Springs} orange}
@@ -660,6 +661,7 @@ color scale colors WBlk {1.0 1.0 1.0} {0.5 0.5 0.5} {0.0 0.0 0.0}
   color change rgb 6 0.6000000238418579 0.6000000238418579 0.6000000238418579
   color change rgb 7 0.0 1.0 0.0
   color change rgb 9 1.0 0.6000000238418579 0.6000000238418579
+  color change rgb 10 0.30000001192092896 1.0 1.0
   color change rgb 11 0.6499999761581421 0.0 0.6499999761581421
   color change rgb 12 0.5 0.8999999761581421 0.4000000059604645
   color change rgb 13 0.8999999761581421 0.4000000059604645 0.699999988079071

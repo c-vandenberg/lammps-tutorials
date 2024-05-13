@@ -1,4 +1,4 @@
-# Molecular Dynamics - Input Script for PEG Solvated in H2O
+# Molecular Dynamics - Input Script for H2O Solvated PEG
 
 # 1) Initialization
 units real
@@ -15,7 +15,7 @@ read_data ../pure-H2O/H2O.data extra/bond/per/atom 2 extra/angle/per/atom  5 ext
 read_data ../single-PEG/PEG.data add append shift 25 0 0
 
 # 3) Simulation Settings
-include ../parameters.lammps
+include ../H2O-PEG-parameters.lammps
 
 group H2O type 8 9
 group PEG type 1 2 3 4 5 6 7
