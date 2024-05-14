@@ -9,7 +9,7 @@ In the most general sense, LAMMPS integrates Newton’s equations of motion for 
 Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps) to be installed and built on your local machine. Detailed [documentation](https://docs.lammps.org/) is available, however a simplified step by step guide is given below. This guide is for a build on Linux, specifically Ubuntu 23.10.
 
 ### LAMMPS Installation & Required Package Installation
-1. Clone LAMMPS Github repo either using [SSH protocol](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) (`git clone git@github.com:lammps/lammps.git`), or using HTTPS (`git clone https://github.com/lammps/lammps.git`)
+1. Clone LAMMPS GitHub repo either using [SSH protocol](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) (`git clone git@github.com:lammps/lammps.git`), or using HTTPS (`git clone https://github.com/lammps/lammps.git`)
 2. Set up virtual environment e.g. using Conda (`conda activate <virtual_environment>`)
 3. Install required packages (further packages will be added as more exercises are added to the tutorial):
    * `sudo apt install gcc g++ gfortran wget make lammps libopenmpi-dev mpi-default-bin mpi-default-dev libfftw3-dev libjpeg-dev libpng-dev libreadline-dev`
