@@ -27,7 +27,7 @@ group pull_oxygen_7 type 7
 fix nvt_ensemble all nvt temp 300 300 100
 timestep 1.0
 
-dump dump_all_atoms_per_1000_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep-2.lammpstrj
+dump dump_all_atoms_per_1000_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep.lammpstrj
 
 variable solvated_PEG_temp equal temp
 fix solvated_PEG_ave_temp all ave/time 10 10 100 v_solvated_PEG_temp file ave-time-output-data/ave_solvated_PEG_temperature.dat

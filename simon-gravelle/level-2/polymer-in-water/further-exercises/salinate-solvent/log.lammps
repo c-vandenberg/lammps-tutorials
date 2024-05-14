@@ -1,0 +1,260 @@
+LAMMPS (7 Feb 2024 - Update 1)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+# Molecular Dynamics - Input Script for H2O-NaCl Solvated PEG
+
+# 1) Initialization
+units real
+atom_style full
+bond_style harmonic
+angle_style harmonic
+dihedral_style harmonic
+pair_style lj/cut/coul/long 12
+kspace_style pppm 1e-5
+special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
+
+# 2) System Definition
+read_data H2O_PEG_salt_molecular.data
+Reading data file ...
+  orthogonal box = (-11.857424 -12.128791 -12.128791) to (60.372587 12.128791 12.128791)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  3146 atoms
+  reading velocities ...
+  3146 velocities
+  scanning bonds ...
+  3 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  scanning dihedrals ...
+  9 = max dihedrals/atom
+  reading bonds ...
+  2130 bonds
+  reading angles ...
+  1198 angles
+  reading dihedrals ...
+  210 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        1       
+     4 = max # of 1-2 neighbors
+     6 = max # of 1-3 neighbors
+    12 = max # of 1-4 neighbors
+  2396 = # of 1-3 neighbors before angle trim
+  2396 = # of 1-3 neighbors after angle trim
+  2592 = # of 1-4 neighbors before dihedral trim
+  420 = # of 1-4 neighbors after dihedral trim
+    14 = max # of special neighbors
+  special bonds CPU = 0.001 seconds
+  read_data CPU = 0.016 seconds
+
+# 3) Simulation Settings
+include H2O-PEG-salt-parameters.lammps
+mass 1 15.9994 # PEG O
+mass 2 12.011 # PEG C
+mass 3 1.008 # PEG H
+mass 4 1.008 # PEG H
+mass 5 12.011 # PEG C
+mass 6 15.9994 # PEG O
+mass 7 15.9994 # PEG O
+mass 8 15.9994 # H2O O
+mass 9 1.008 # H2O H
+mass 10 22.98 # Na
+mass 11 35.453 # Cl
+
+pair_coeff 1 1 0.25265643 2.8491607 # PEG O
+pair_coeff 2 2 0.06630155 3.5811794 # PEG C
+pair_coeff 3 3 0.028293679 2.373408 # PEG H
+pair_coeff 4 4 0.0 0.0 # PEG H
+pair_coeff 5 5 0.24501823 2.8114421 # PEG C
+pair_coeff 6 6 0.11949714 3.1000042 # PEG O
+pair_coeff 7 7 0.11949714 3.1000042 # PEG O
+pair_coeff 8 8 0.119431704 3.400251 # H2O O
+pair_coeff 9 9 0.0 0.0 # H2O H
+pair_coeff 10 10 0.04690 2.43 # Na
+pair_coeff 11 11 0.1500 4.045 # Cl
+
+bond_coeff 1 400.05737 1.4
+bond_coeff 2 400.0343 1.53
+bond_coeff 3 155.35373 1.42
+bond_coeff 4 143.40344 1.11
+bond_coeff 5 621.4149 0.938
+bond_coeff 6 442.1606 0.972
+
+angle_coeff 1 47.555878 103.0
+angle_coeff 2 50.17089 108.0
+angle_coeff 3 30.173132 109.5
+angle_coeff 4 47.69405 109.5
+angle_coeff 5 55.12715 109.5
+angle_coeff 6 47.634956 109.6
+angle_coeff 7 55.113907 111.0
+angle_coeff 8 59.79372 115.0
+angle_coeff 9 52.476738 107.57
+angle_coeff 10 54.956596 107.6
+angle_coeff 11 54.993103 110.3
+angle_coeff 12 55.0234 111.4
+angle_coeff 13 30.173132 110.0
+angle_coeff 14 509.99622 112.0
+angle_coeff 15 47.555878 103.0
+
+dihedral_coeff 1 0.30114722 1 3
+dihedral_coeff 2 1.414914 1 3
+dihedral_coeff 3 0.0 1 1
+
+create_atoms 10 random 20 456415 NULL overlap 0.5 maxtry 50
+Created 20 atoms
+  using lattice units in orthogonal box = (-11.857424 -12.128791 -12.128791) to (60.372587 12.128791 12.128791)
+  create_atoms CPU = 0.001 seconds
+create_atoms 11 random 20 456415 NULL overlap 0.5 maxtry 50
+Created 20 atoms
+  using lattice units in orthogonal box = (-11.857424 -12.128791 -12.128791) to (60.372587 12.128791 12.128791)
+  create_atoms CPU = 0.001 seconds
+
+group H2O type 8 9
+3045 atoms in group H2O
+group PEG type 1 2 3 4 5 6 7
+101 atoms in group PEG
+group NaCl type 10 11
+40 atoms in group NaCl
+
+set type 10 charge 1
+Setting atom values ...
+  20 settings made for charge
+set type 11 charge -1
+Setting atom values ...
+  20 settings made for charge
+
+minimize 1.0e-4 1.0e-6 100 1000
+PPPM initialization ...
+  using 12-bit tables for long-range coulomb (src/kspace.cpp:342)
+  G vector (1/distance) = 0.24932057
+  grid = 40 18 18
+  stencil order = 5
+  estimated absolute RMS force accuracy = 0.0032601146
+  estimated relative force accuracy = 9.8177383e-06
+  using double precision KISS FFT
+  3d grid and FFT values/proc = 29375 12960
+Generated 55 of 55 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 14
+  ghost atom cutoff = 14
+  binsize = 7, bins = 11 4 4
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 33.81 | 33.81 | 33.81 Mbytes
+   Step          Temp          E_pair         E_mol          TotEng         Press     
+         0   300.95158      37598254       1449.7516      37602561       2.4272101e+08
+       100   300.95158     -13297.206      529.71901     -9910.289      -431.60358    
+Loop time of 3.76838 on 1 procs for 100 steps with 3186 atoms
+
+99.9% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+Minimization stats:
+  Stopping criterion = max iterations
+  Energy initial, next-to-last, final = 
+      37599703.6190929  -12751.9341308646  -12767.4872735052
+  Force two-norm initial, final = 4.1179229e+08 170.2426
+  Force max component initial, final = 2.2470317e+08 58.393275
+  Final line search alpha, max atom move = 0.0016683454 0.097420153
+  Iterations, force evaluations = 100 171
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 3.3862     | 3.3862     | 3.3862     |   0.0 | 89.86
+Bond    | 0.010782   | 0.010782   | 0.010782   |   0.0 |  0.29
+Kspace  | 0.25817    | 0.25817    | 0.25817    |   0.0 |  6.85
+Neigh   | 0.10031    | 0.10031    | 0.10031    |   0.0 |  2.66
+Comm    | 0.0070989  | 0.0070989  | 0.0070989  |   0.0 |  0.19
+Output  | 2.4265e-05 | 2.4265e-05 | 2.4265e-05 |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.005841   |            |       |  0.16
+
+Nlocal:           3186 ave        3186 max        3186 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:          17234 ave       17234 max       17234 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    1.37156e+06 ave 1.37156e+06 max 1.37156e+06 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 1371559
+Ave neighs/atom = 430.49561
+Ave special neighs/atom = 2.2209667
+Neighbor list builds = 5
+Dangerous builds = 0
+reset_timestep 0
+
+fix npt_ensemble all npt temp 300 300 100 iso 1 1 1000
+
+variable peg_com_x equal xcm(PEG,x)
+variable peg_com_y equal xcm(PEG,y)
+variable peg_com_z equal xcm(PEG,z)
+fix recenter_PEG PEG recenter ${peg_com_x} ${peg_com_y} ${peg_com_z}
+fix recenter_PEG PEG recenter 23.2765843356395 ${peg_com_y} ${peg_com_z}
+fix recenter_PEG PEG recenter 23.2765843356395 -2.11583485048627 ${peg_com_z}
+fix recenter_PEG PEG recenter 23.2765843356395 -2.11583485048627 2.32888506828211
+
+timestep 1.0
+thermo 5000
+dump dump_all_atoms_per_1000_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep.lammpstrj
+
+run 50000
+PPPM initialization ...
+  using 12-bit tables for long-range coulomb (src/kspace.cpp:342)
+  G vector (1/distance) = 0.24932057
+  grid = 40 18 18
+  stencil order = 5
+  estimated absolute RMS force accuracy = 0.0032601146
+  estimated relative force accuracy = 9.8177383e-06
+  using double precision KISS FFT
+  3d grid and FFT values/proc = 29375 12960
+Generated 55 of 55 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 31.56 | 31.56 | 31.56 Mbytes
+   Step          Temp          E_pair         E_mol          TotEng         Press          Volume    
+         0   300.95158     -13297.206      529.71901     -9910.289      -431.60358      42502.323    
+      5000   303.09614     -11574.698      1364.4365     -7332.7035      167.07564      42670.599    
+     10000   305.25588     -11688.312      1397.3415     -7392.9076      521.9149       41669.414    
+     15000   297.96822     -11832.448      1383.7879     -7619.7855     -491.34558      42398.857    
+     20000   297.92735     -11804.192      1369.5178     -7606.1878      462.40288      42725.319    
+     25000   299.65713     -11876.667      1391.866      -7639.8923     -191.07215      41432.344    
+     30000   305.06463     -11863.717      1443.4384     -7524.0312      472.58294      41365.933    
+     35000   307.98035     -11828.283      1487.1596     -7417.1951     -757.60606      41291.435    
+     40000   300.21712     -11772.151      1455.4817     -7466.4442      1000.0604      40987.631    
+     45000   305.97585     -11819.332      1472.0675     -7442.3663     -716.18478      41959.179    
+     50000   300.57697     -11782.754      1433.2717     -7495.8404     -339.53632      41843.229    
+Loop time of 898.81 on 1 procs for 50000 steps with 3186 atoms
+
+Performance: 4.806 ns/day, 4.993 hours/ns, 55.629 timesteps/s, 177.234 katom-step/s
+100.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 684.74     | 684.74     | 684.74     |   0.0 | 76.18
+Bond    | 4.022      | 4.022      | 4.022      |   0.0 |  0.45
+Kspace  | 77.335     | 77.335     | 77.335     |   0.0 |  8.60
+Neigh   | 53.384     | 53.384     | 53.384     |   0.0 |  5.94
+Comm    | 2.3377     | 2.3377     | 2.3377     |   0.0 |  0.26
+Output  | 0.055016   | 0.055016   | 0.055016   |   0.0 |  0.01
+Modify  | 76.373     | 76.373     | 76.373     |   0.0 |  8.50
+Other   |            | 0.5627     |            |       |  0.06
+
+Nlocal:           3186 ave        3186 max        3186 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:          17482 ave       17482 max       17482 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    1.39322e+06 ave 1.39322e+06 max 1.39322e+06 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 1393225
+Ave neighs/atom = 437.29598
+Ave special neighs/atom = 2.2209667
+Neighbor list builds = 2550
+Dangerous builds = 0
+Total wall time: 0:15:02
