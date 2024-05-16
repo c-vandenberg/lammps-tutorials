@@ -14,7 +14,43 @@ The Extended SPC (SPC/E) model introduced a self-polarization energy correction 
 
 ## Input Script Command Syntax
 
+Breaking down the new commands we encounter in this input script:
 
+```
+# 1) Initialization
+units real
+atom_style full
+bond_style harmonic
+angle_style harmonic
+dihedral_style harmonic
+pair_style lj/cut/coul/long 12
+kspace_style pppm 1e-5
+special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes
+```
+* `kspace_style pppm 1e-5` - Defines the **K-space long range solver** used to compute long-range Coulombic interactions as PPPM (Particle-Particle Particle-Mesh) with an accuracy of 1e-5
+* `special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes` - Modifies the non-bonded interactions (Lennard-Jones & Coulombic) between atoms connected by bonds. This command scales:
+  * **1-2 Lennard-Jones interactions** (i.e. atoms directly bonded) by **0.0**, ignoring these interactions
+  * **1-3 Lennard-Jones interactions** (i.e. atoms two bonds apart/angle interactions) by **0.0**, ignoring these interactions
+  * **1-4 Lennard-Jones interactions** (i.e. atoms three bonds apart/dihedral interactions) by **0.5**, halving the calculated interaction value
+  * **1-2 Coulombic interactions** (i.e. atoms directly bonded) by **0.0**, ignoring these interactions
+  * **1-3 Coulombic interactions** (i.e. atoms two bonds apart/angle interactions) by **0.0**, ignoring these interactions
+  * **1-4 Coulombic interactions** (i.e. atoms three bonds apart/dihedral interactions) by **1.0**, therefore are not altered/scaled
+  * `angle yes` - Specifies that the 1-3 interactions weighting factor will be ignored is the atoms are not listed as the first and last atoms in any angle
+
+```
+# 2) System Definition
+region box block -15 15 -15 15 -15 15
+create_box 9 box &
+bond/types 6 &
+angle/types 15 &
+dihedral/types 3 &
+extra/bond/per/atom 2 &
+extra/angle/per/atom 1 &
+extra/special/per/atom 2
+```
+* `extra/bond/per/atom 2` - Used to allocated additional memory for bonds on a per-atom basis, so that enough is allocated for bonds that are created during the simulation. Here, additional memory is allocated for `2` additional bonds for each atom
+* `extra/angle/per/atom 1` - Allocates additional memory for `1` angle for each atom
+* `extra/special/per/atom 2` - Allocates additional memory for `2` special pairwise interactions for each atom
 
 ## References
 [1] Wu, Y., Tepper, H.L. and Voth, G.A. (2006) ‘Flexible simple point-charge water model with improved liquid-state properties’, *The Journal of Chemical Physics*, 124(2).

@@ -51,8 +51,8 @@ special_bonds lj 0.0 0.0 0.5
 * `improper_style harmonic` - Improper torsions are modelled as harmonic springs in OPLS-AA
 * `special_bonds lj 0.0 0.0 0.5` - Atoms connected by a bond typically do not interact through Lennard-Jones interation. Therefore, they must be excluded from the Lennard-Jones potential calculation. This command scales:
   * **1-2 Lennard-Jones interactions** (i.e. atoms directly bonded) by **0.0**, ignoring these interactions
-  * **1-3 Lennard-Jones interactions** (i.e. atoms two bonds apart) by **0.0**, ignoring these interactions
-  * **1-4 Lennard-Jones interactions** (i.e. atoms three bonds apart) by **0.5**, halving the calculated interaction value
+  * **1-3 Lennard-Jones interactions** (i.e. atoms two bonds apart/angle interactions) by **0.0**, ignoring these interactions
+  * **1-4 Lennard-Jones interactions** (i.e. atoms three bonds apart/dihedral interactions) by **0.5**, halving the calculated interaction value
 
 ```
 # 3) Simulation settings
