@@ -21,10 +21,13 @@ extra/angle/per/atom 1 &
 extra/special/per/atom 2
 
 # 3) Simulation Settings
-include ../parameters.lammps
+include ../H2O-PEG-parameters.lammps
 
+## Randomly create 1050 H2O molecules using the H2O molecular data from H2O_molecular.data. The `overlap 1.0` option ensures no atoms are placed exactly in the same position, which would cause the simulation to crash by rejecting the atom creation
+## The `maxtry 50` option specifies if no suitable position is found after 50 attempts, a new atom is created elsewhere and the process starts again
+## In some cases, depending on the system and the values of `overlap` and `maxtry`, LAMMPS may not create the desired number of molecules. It is therefore important to check the number of atoms created in the log file after starting the simulation
 molecule H2O_molecule H2O_molecular.data
-create_atoms 0 random 350 45615 NULL mol H2O_molecule 14756 overlap 1 maxtry 50
+create_atoms 0 random 1050 87910 NULL mol H2O_molecule 454756 overlap 1 maxtry 50
 group H2O type 8 9
 
 minimize 1.0e-4 1.0e-6 100 1000
@@ -42,6 +45,7 @@ dump dump_all_atoms_per_1000_timestep all atom 1000 trajectory-output-data/dump_
 variable H2O_temp equal temp
 variable H2O_vol equal vol
 
+## Calculate the average H2O temperature and volume every 10 timesteps, calculate 10 times and output every 100 timesteps
 fix H2O_ave_temp all ave/time 10 10 100 v_H2O_temp file ave-time-output-data/ave_H2O_temperature.dat
 fix H2O_ave_vol all ave/time 10 10 100 v_H2O_vol file ave-time-output-data/ave_H2O_volume.dat
 
@@ -49,6 +53,8 @@ fix H2O_ave_vol all ave/time 10 10 100 v_H2O_vol file ave-time-output-data/ave_H
 variable H2O_molecule_number equal count(H2O)/3
 
 ## Calculate H2O density by dividing number of H2O molecules by volume
+## Note that we used underscore (`v_`) to get the variable value previously, but now are using dollar sign. With the dollar sign, the initial value of the variable is returned, whereas with underscore, the instantaneous value of the variable is returned
+## Therefore, to probe the evolution of a variable over time, the underscore approach must be used
 variable H2O_density equal ${H2O_molecule_number}/v_H2O_vol
 
 fix H2O_ave_density all ave/time 10 10 100 v_H2O_density file ave-time-output-data/ave_H20_density.dat

@@ -27,7 +27,12 @@ pair_style lj/cut/coul/long 12
 kspace_style pppm 1e-5
 special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes
 ```
+* `pair_style lj/cut/coul/long 12` - Specifies that atoms interact via both Lennard-Jones potential & Coulombic interactions, with a cut-off of 12 Å
+  * The cutoff of 12 Å applies to both Lennard-Jones and Coulombic interactions, slightly differently for each interaction
+  * For Lennard-Jones interactions (`lj/cut` here), atoms interact with each other only if they are separated by a distance smaller than the cutoff
+  * For Coulombic interactions (`coul/long` here), interactions between atoms closer than the cutoff are computed directly, and interactions between atoms outside that cutoff are computed in the reciprocal space
 * `kspace_style pppm 1e-5` - Defines the **K-space long range solver** used to compute long-range Coulombic interactions as PPPM (Particle-Particle Particle-Mesh) with an accuracy of 1e-5
+  * Derived by *Luty et al.*<sup>2</sup>, the PPPM method is based on separating the total interaction between particles into the sum of short-range interactions (computed by direct particle-particle summation), and long-range interactions (calculated by solving Poisson's equation using periodic boundary conditions)
 * `special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes` - Modifies the non-bonded interactions (Lennard-Jones & Coulombic) between atoms connected by bonds. This command scales:
   * **1-2 Lennard-Jones interactions** (i.e. atoms directly bonded) by **0.0**, ignoring these interactions
   * **1-3 Lennard-Jones interactions** (i.e. atoms two bonds apart/angle interactions) by **0.0**, ignoring these interactions
@@ -54,3 +59,4 @@ extra/special/per/atom 2
 
 ## References
 [1] Wu, Y., Tepper, H.L. and Voth, G.A. (2006) ‘Flexible simple point-charge water model with improved liquid-state properties’, *The Journal of Chemical Physics*, 124(2).
+[2] Luty, B.A. and van Gunsteren, W.F. (1996) ‘Calculating electrostatic interactions using the particle−particle particle−mesh method with nonperiodic long-range interactions’, **The Journal of Physical Chemistry**, 100(7), pp. 2581–2587.
