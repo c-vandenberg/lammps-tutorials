@@ -46,16 +46,18 @@ special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes
 # 2) System Definition
 region box block -15 15 -15 15 -15 15
 create_box 9 box &
-bond/types 6 &
-angle/types 15 &
-dihedral/types 3 &
-extra/bond/per/atom 2 &
-extra/angle/per/atom 1 &
-extra/special/per/atom 2
+bond/types 7 &
+angle/types 8 &
+dihedral/types 4 &
+extra/bond/per/atom 3 &
+extra/angle/per/atom 6 &
+extra/dihedral/per/atom 10 &
+extra/special/per/atom 14
 ```
-* `extra/bond/per/atom 2` - Used to allocated additional memory for bonds on a per-atom basis, so that enough is allocated for bonds that are created during the simulation. Here, additional memory is allocated for `2` additional bonds for each atom
-* `extra/angle/per/atom 1` - Allocates additional memory for `1` angle for each atom
-* `extra/special/per/atom 2` - Allocates additional memory for `2` special pairwise interactions for each atom
+* `extra/bond/per/atom 3` - Used to allocated additional memory for bonds on a per-atom basis, so that enough is allocated for bonds that are created during the simulation. Here, additional memory is allocated for `3` additional bonds for each atom
+* `extra/angle/per/atom 6` - Allocates additional memory for `6` angles for each atom
+* `extra/dihedral/per/atom 20` - Allocates additional memory for `10` dihedrals for each atom
+* `extra/special/per/atom 14` - Allocates additional memory for `14` special pairwise interactions for each atom
 
 ## References
 [1] Wu, Y., Tepper, H.L. and Voth, G.A. (2006) ‘Flexible simple point-charge water model with improved liquid-state properties’, *The Journal of Chemical Physics*, 124(2).

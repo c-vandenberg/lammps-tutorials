@@ -1,4 +1,4 @@
-LAMMPS (7 Feb 2024 - Update 1)
+LAMMPS (7 Feb 2024 - Development - patch_7Feb2024_update1-413-gde8b1b49a6)
 OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
   using 1 OpenMP thread(s) per MPI task
 # Molecular Dynamics - Input Script for Deformation of H2O Solvated PEG
@@ -12,17 +12,19 @@ dihedral_style harmonic
 pair_style lj/cut/coul/long 12
 kspace_style pppm 1e-5
 special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
+
+## Declare force variable in kcal/mol/A. 1 kcal/mol/A = 67.2 pN so we have a total force of 67.2 pN * 5 = 336 pN
 variable force_0 equal 5
 
 # 2) System Definition
 read_data ../solvated-PEG/solvated_PEG.data
 Reading data file ...
-  orthogonal box = (-11.941243 -12.049871 -12.049871) to (60.357981 12.049871 12.049871)
+  orthogonal box = (-33.19869 -15 -15) to (167.89777 15 15)
   1 by 1 by 1 MPI processor grid
   reading atoms ...
-  3125 atoms
+  9401 atoms
   reading velocities ...
-  3125 velocities
+  9401 velocities
   scanning bonds ...
   3 = max bonds/atom
   scanning angles ...
@@ -30,9 +32,9 @@ Reading data file ...
   scanning dihedrals ...
   9 = max dihedrals/atom
   reading bonds ...
-  2116 bonds
+  6300 bonds
   reading angles ...
-  1191 angles
+  3283 angles
   reading dihedrals ...
   210 dihedrals
 Finding 1-2 1-3 1-4 neighbors ...
@@ -41,65 +43,65 @@ Finding 1-2 1-3 1-4 neighbors ...
      4 = max # of 1-2 neighbors
      6 = max # of 1-3 neighbors
     12 = max # of 1-4 neighbors
-  2382 = # of 1-3 neighbors before angle trim
-  2382 = # of 1-3 neighbors after angle trim
-  2578 = # of 1-4 neighbors before dihedral trim
+  6566 = # of 1-3 neighbors before angle trim
+  6566 = # of 1-3 neighbors after angle trim
+  6762 = # of 1-4 neighbors before dihedral trim
   420 = # of 1-4 neighbors after dihedral trim
     14 = max # of special neighbors
-  special bonds CPU = 0.001 seconds
-  read_data CPU = 0.015 seconds
+  special bonds CPU = 0.003 seconds
+  read_data CPU = 0.054 seconds
 
 # 3) Simulation Settings
-include ../parameters.lammps
-mass 1 15.9994 # PEG O
-mass 2 12.011 # PEG C
-mass 3 1.008 # PEG H
-mass 4 1.008 # PEG H
-mass 5 12.011 # PEG C
-mass 6 15.9994 # PEG O
-mass 7 15.9994 # PEG O
-mass 8 15.9994 # H2O O
-mass 9 1.008 # H2O H
+include ../H2O-PEG-parameters.lammps
+# LAMMPS input script by Simon Gravelle
+# This input is part of a tutorial from https://lammpstutorials.github.io
+# Last tested using the 2Aug2023 stable LAMMPS version
+# This file was released under the GNU general public license v3.0
 
-pair_coeff 1 1 0.25265643 2.8491607
-pair_coeff 2 2 0.06630155 3.5811794
-pair_coeff 3 3 0.028293679 2.373408
-pair_coeff 4 4 0.0 0.0
-pair_coeff 5 5 0.24501823 2.8114421
-pair_coeff 6 6 0.11949714 3.1000042
-pair_coeff 7 7 0.11949714 3.1000042
-pair_coeff 8 8 0.119431704 3.400251
-pair_coeff 9 9 0.0 0.0
+mass 1 15.9994 # PEG O (GROMOS 54A7)
+mass 2 12.011 # PEG C (GROMOS 54A7)
+mass 3 1.008 # PEG H (GROMOS 54A7)
+mass 4 1.008 # PEG H (GROMOS 54A7)
+mass 5 12.011 # PEG C (GROMOS 54A7)
+mass 6 15.9994 # PEG O (GROMOS 54A7)
+mass 7 15.9994 # PEG O (GROMOS 54A7)
+mass 8 15.9994 # H2O O (SPC/Fw)
+mass 9 1.008 # H2O H (SPC/Fw)
 
-bond_coeff 1 400.05737 1.4
-bond_coeff 2 400.0343 1.53
-bond_coeff 3 155.35373 1.42
-bond_coeff 4 143.40344 1.11
-bond_coeff 5 621.4149 0.938
-bond_coeff 6 442.1606 0.972
+pair_coeff 1 1 0.2526 2.8492 # PEG O (GROMOS 54A7)
+pair_coeff 2 2 0.0663 3.5812 # PEG C (GROMOS 54A7)
+pair_coeff 3 3 0.0283 2.3734 # PEG H (GROMOS 54A7)
+pair_coeff 4 4 0.0 0.0 # PEG H (GROMOS 54A7)
+pair_coeff 5 5 0.2450 2.8114 # PEG C (GROMOS 54A7)
+pair_coeff 6 6 0.1195 3.1000 # PEG O (GROMOS 54A7)
+pair_coeff 7 7 0.1195 3.1000 # PEG O (GROMOS 54A7)
+pair_coeff 8 8 0.155 3.165  # H2O O (SPC/Fw)
+pair_coeff 9 9 0.0 0.0 # H2O H (SPC/Fw)
 
-angle_coeff 1 47.555878 103.0
-angle_coeff 2 50.17089 108.0
-angle_coeff 3 30.173132 109.5
-angle_coeff 4 47.69405 109.5
-angle_coeff 5 55.12715 109.5
-angle_coeff 6 47.634956 109.6
-angle_coeff 7 55.113907 111.0
-angle_coeff 8 59.79372 115.0
-angle_coeff 9 52.476738 107.57
-angle_coeff 10 54.956596 107.6
-angle_coeff 11 54.993103 110.3
-angle_coeff 12 55.0234 111.4
-angle_coeff 13 30.173132 110.0
-angle_coeff 14 509.99622 112.0
-angle_coeff 15 47.555878 103.0
+bond_coeff 1 1109.2926 1.12
+bond_coeff 2 399.7916 1.43
+bond_coeff 3 299.8440 1.52
+bond_coeff 4 400.0343 1.53
+bond_coeff 5 310.7075 1.41
+bond_coeff 6 179.2543 0.971
+bond_coeff 7 1059.162 1.012 # H2O O-H (SPC/Fw)
 
-dihedral_coeff 1 0.30114722 1 3
-dihedral_coeff 2 1.414914 1 3
-dihedral_coeff 3 0.0 1 1
+angle_coeff 1 47.6940 109.5
+angle_coeff 2 55.1271 109.5
+angle_coeff 3 47.6350 109.6
+angle_coeff 4 55.1139 111.0
+angle_coeff 5 54.9931 110.3
+angle_coeff 6 180.4602 109.0
+angle_coeff 7 30.1731 110.0
+angle_coeff 8 75.90 113.24 # H2O H-O-H (SPC/Fw)
+
+dihedral_coeff 1 0.3011 1 3
+dihedral_coeff 2 1.4149 1 3
+dihedral_coeff 3 0.2390 -1 3
+dihedral_coeff 4 0.0 1 1
 
 group H2O type 8 9
-3024 atoms in group H2O
+9300 atoms in group H2O
 group PEG type 1 2 3 4 5 6 7
 101 atoms in group PEG
 
@@ -112,202 +114,14 @@ group pull_oxygen_7 type 7
 fix nvt_ensemble all nvt temp 300 300 100
 timestep 1.0
 
-dump dump_all_atoms_per_1000_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep-2.lammpstrj
+dump dump_all_atoms_per_1000_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep.lammpstrj
 
 variable solvated_PEG_temp equal temp
-fix solvated_PEG_ave_temp all ave/time 10 10 100 v_solvated_PEG_temp file ave-time-output-data/ave_solvated_PEG_temperature-2.dat
+fix solvated_PEG_ave_temp all ave/time 10 10 100 v_solvated_PEG_temp file ave-time-output-data/ave_solvated_PEG_temperature.dat
 
 variable oxygen_6_x_coordinate equal xcm(pull_oxygen_6,x)
 variable oxygen_6_y_coordinate equal xcm(pull_oxygen_6,y)
 variable oxygen_6_z_coordinate equal xcm(pull_oxygen_6,z)
 variable oxygen_7_x_coordinate equal xcm(pull_oxygen_7,x)
 variable oxygen_7_y_coordinate equal xcm(pull_oxygen_7,y)
-variable oxygen_7_z_coordinate equal xcm(pull_oxygen_7,z)
-variable oxygen_6_7_distance equal sqrt((v_oxygen_6_x_coordinate-v_oxygen_7_x_coordinate)^2+(v_oxygen_6_y_coordinate-v_oxygen_7_y_coordinate)^2+(v_oxygen_7_x_coordinate-v_oxygen_7_z_coordinate)^2)
-
-fix ave_oxygen_6_7_distance all ave/time 10 10 100 v_oxygen_6_7_distance file ave-time-output-data/ave_PEG_end_to_end_distance-2.dat
-thermo 1000
-
-variable peg_com_x equal xcm(PEG,x)
-variable peg_com_y equal xcm(PEG,y)
-variable peg_com_z equal xcm(PEG,z)
-
-fix recenter_PEG PEG recenter ${peg_com_x} ${peg_com_y} ${peg_com_z}
-fix recenter_PEG PEG recenter 25.694713920804 ${peg_com_y} ${peg_com_z}
-fix recenter_PEG PEG recenter 25.694713920804 1.19595643116846 ${peg_com_z}
-fix recenter_PEG PEG recenter 25.694713920804 1.19595643116846 1.71273093069621
-
-run 30000
-PPPM initialization ...
-  using 12-bit tables for long-range coulomb (src/kspace.cpp:342)
-  G vector (1/distance) = 0.24952423
-  grid = 40 18 18
-  stencil order = 5
-  estimated absolute RMS force accuracy = 0.0031205121
-  estimated relative force accuracy = 9.3973294e-06
-  using double precision KISS FFT
-  3d grid and FFT values/proc = 29375 12960
-Generated 36 of 36 mixed pair_coeff terms from geometric mixing rule
-Neighbor list info ...
-  update: every = 1 steps, delay = 0 steps, check = yes
-  max neighbors/atom: 2000, page size: 100000
-  master list distance cutoff = 14
-  ghost atom cutoff = 14
-  binsize = 7, bins = 11 4 4
-  1 neighbor lists, perpetual/occasional/extra = 1 0 0
-  (1) pair lj/cut/coul/long, perpetual
-      attributes: half, newton on
-      pair build: half/bin/newton
-      stencil: half/bin/3d
-      bin: standard
-Per MPI rank memory allocation (min/avg/max) = 31.54 | 31.54 | 31.54 Mbytes
-   Step          Temp          E_pair         E_mol          TotEng         Press     
-         0   305.50623     -7630.4617      1403.7938     -3381.7785      341.1264     
-      1000   297.51605     -7576.3269      1361.4018     -3444.4406      919.091      
-      2000   302.37118     -7659.9807      1510.5341     -3333.7509     -1129.4817    
-      3000   305.80686     -7688.3121      1465.2413     -3375.3817     -146.68534    
-      4000   296.77429     -7664.0944      1467.5092     -3433.008      -532.32568    
-      5000   296.56214     -7750.3869      1401.1439     -3587.6413     -1149.0595    
-      6000   302.00672     -7661.996       1437.3287     -3412.3655     -169.45692    
-      7000   294.53432     -7518.6752      1376.365      -3399.5916      351.32412    
-      8000   303.2987      -7690.8655      1443.4091     -3423.1236      639.67075    
-      9000   303.6791      -7628.2061      1415.463      -3384.8679      1293.8851    
-     10000   291.77882     -7666.2162      1400.3819     -3548.7752     -299.78642    
-     11000   305.93824     -7695.2101      1460.5741     -3385.7236     -719.1014     
-     12000   301.59228     -7694.0279      1363.9144     -3521.6709      288.61548    
-     13000   304.12257     -7652.9368      1386.8842     -3434.0479     -73.652853    
-     14000   300.69258     -7637.1868      1411.1955     -3425.9268     -871.39366    
-     15000   305.01207     -7661.6537      1374.2852     -3447.0807      570.72447    
-     16000   299.58717     -7754.357       1426.78       -3537.8062     -170.32774    
-     17000   302.73199     -7674.3749      1375.2015     -3480.1177      679.29545    
-     18000   299.29519     -7640.7182      1394.217      -3459.4492     -373.99194    
-     19000   295.6119      -7649.2031      1389.1537     -3507.2964     -27.315147    
-     20000   301.47873     -7634.9845      1418.2161     -3409.3832      1237.7549    
-     21000   300.34394     -7624.8715      1381.2237     -3446.8299     -311.74053    
-     22000   296.77172     -7727.1102      1404.3097     -3559.2472      122.35922    
-     23000   303.25532     -7649.1845      1454.4494     -3370.8062      755.4907     
-     24000   297.4346      -7631.6225      1414.358      -3447.5385      236.51928    
-     25000   300.0705      -7689.4292      1443.8999     -3451.2576     -946.12894    
-     26000   298.72677     -7594.6205      1379.3587     -3433.503      -221.52388    
-     27000   298.11518     -7650.6962      1363.804      -3510.8286      629.65051    
-     28000   303.37146     -7720.1739      1459.2361     -3435.9274     -330.33726    
-     29000   304.83709     -7672.855       1414.9905     -3419.2061      435.85533    
-     30000   295.78463     -7740.9372      1495.4581     -3491.1176     -769.6207     
-Loop time of 472.372 on 1 procs for 30000 steps with 3125 atoms
-
-Performance: 5.487 ns/day, 4.374 hours/ns, 63.509 timesteps/s, 198.466 katom-step/s
-99.9% CPU use with 1 MPI tasks x 1 OpenMP threads
-
-MPI task timing breakdown:
-Section |  min time  |  avg time  |  max time  |%varavg| %total
----------------------------------------------------------------
-Pair    | 391        | 391        | 391        |   0.0 | 82.77
-Bond    | 1.7371     | 1.7371     | 1.7371     |   0.0 |  0.37
-Kspace  | 45.616     | 45.616     | 45.616     |   0.0 |  9.66
-Neigh   | 30.982     | 30.982     | 30.982     |   0.0 |  6.56
-Comm    | 1.4527     | 1.4527     | 1.4527     |   0.0 |  0.31
-Output  | 0.032886   | 0.032886   | 0.032886   |   0.0 |  0.01
-Modify  | 1.1874     | 1.1874     | 1.1874     |   0.0 |  0.25
-Other   |            | 0.3605     |            |       |  0.08
-
-Nlocal:           3125 ave        3125 max        3125 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:          17128 ave       17128 max       17128 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1.33501e+06 ave 1.33501e+06 max 1.33501e+06 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-
-Total # of neighbors = 1335007
-Ave neighs/atom = 427.20224
-Ave special neighs/atom = 2.25088
-Neighbor list builds = 1527
-Dangerous builds = 0
-
-fix oxygen_6_force pull_oxygen_6 addforce ${force_0} 0 0
-fix oxygen_6_force pull_oxygen_6 addforce 5 0 0
-fix oxygen_7_force pull_oxygen_7 addforce -${force_0} 0 0
-fix oxygen_7_force pull_oxygen_7 addforce -5 0 0
-
-variable peg_com_x equal xcm(PEG,x)
-variable peg_com_y equal xcm(PEG,y)
-variable peg_com_z equal xcm(PEG,z)
-
-fix recenter_PEG PEG recenter ${peg_com_x} ${peg_com_y} ${peg_com_z}
-fix recenter_PEG PEG recenter 25.694713920804 ${peg_com_y} ${peg_com_z}
-fix recenter_PEG PEG recenter 25.694713920804 1.19595643116846 ${peg_com_z}
-fix recenter_PEG PEG recenter 25.694713920804 1.19595643116846 1.71273093069621
-
-run 30000
-PPPM initialization ...
-  using 12-bit tables for long-range coulomb (src/kspace.cpp:342)
-  G vector (1/distance) = 0.24952423
-  grid = 40 18 18
-  stencil order = 5
-  estimated absolute RMS force accuracy = 0.0031205121
-  estimated relative force accuracy = 9.3973294e-06
-  using double precision KISS FFT
-  3d grid and FFT values/proc = 29375 12960
-Generated 36 of 36 mixed pair_coeff terms from geometric mixing rule
-Per MPI rank memory allocation (min/avg/max) = 32.66 | 32.66 | 32.66 Mbytes
-   Step          Temp          E_pair         E_mol          TotEng         Press     
-     30000   295.78463     -7740.9372      1495.4581     -3491.1176     -769.6207     
-     31000   294.00945     -7784.9759      1456.1885     -3590.9565     -2059.7697    
-     32000   305.15018     -7647.4251      1401.202      -3404.6491      208.82276    
-     33000   294.70977     -7678.8942      1432.5174     -3502.0244     -801.4194     
-     34000   298.80437     -7638.0506      1419.4444     -3436.1248     -490.28988    
-     35000   303.26274     -7608.1191      1421.9584     -3362.1628     -59.896307    
-     36000   301.33815     -7598.7648      1404.9179     -3387.7707      180.89287    
-     37000   299.73722     -7559.3187      1378.4075     -3389.743       1875.0189    
-     38000   299.0229      -7605.6971      1392.8368     -3428.3439      266.95929    
-     39000   300.91617     -7643.5848      1423.034      -3418.4042     -68.325982    
-     40000   301.02333     -7592.4341      1423.4364     -3365.8533      600.32953    
-     41000   306.55818     -7598.0708      1410.9391     -3332.4465     -906.65918    
-     42000   305.17421     -7692.0252      1415.8313     -3434.3963     -683.82131    
-     43000   296.6012      -7681.4135      1398.4739     -3520.9742     -418.91252    
-     44000   305.63877     -7592.6929      1417.4901     -3329.0791     -11.61429     
-     45000   294.92878     -7692.1668      1477.782      -3467.9931      98.237956    
-     46000   294.8436      -7667.8172      1419.1339     -3503.0848      723.38264    
-     47000   302.96929     -7602.1524      1336.9824     -3443.9046      39.178441    
-     48000   307.80067     -7647.5425      1404.0572     -3377.2299     -91.870049    
-     49000   300.21314     -7596.6568      1390.0954     -3410.9614     -171.39039    
-     50000   302.05214     -7603.7274      1405.7847     -3385.2178     -453.05867    
-     51000   300.34277     -7781.953       1443.8341     -3541.3117     -838.64048    
-     52000   301.52232     -7672.2406      1417.7923     -3446.6572     -572.96361    
-     53000   305.78348     -7647.6296      1407.1975     -3392.9608     -56.326954    
-     54000   304.81952     -7690.9711      1401.889      -3450.5873      281.99566    
-     55000   301.04301     -7671.0775      1451.182      -3416.5677     -2126.4576    
-     56000   311.11723     -7668.7431      1370.0513     -3401.5524     -569.11609    
-     57000   298.90317     -7589.7593      1428.047      -3378.3108     -546.58422    
-     58000   303.07745     -7683.8074      1387.8013     -3473.7335     -144.93177    
-     59000   305.08274     -7677.2443      1415.0095     -3421.2889     -1019.599     
-     60000   303.59291     -7582.3371      1365.0426     -3390.222       373.92921    
-Loop time of 474.382 on 1 procs for 30000 steps with 3125 atoms
-
-Performance: 5.464 ns/day, 4.392 hours/ns, 63.240 timesteps/s, 197.625 katom-step/s
-99.9% CPU use with 1 MPI tasks x 1 OpenMP threads
-
-MPI task timing breakdown:
-Section |  min time  |  avg time  |  max time  |%varavg| %total
----------------------------------------------------------------
-Pair    | 392.39     | 392.39     | 392.39     |   0.0 | 82.72
-Bond    | 1.7358     | 1.7358     | 1.7358     |   0.0 |  0.37
-Kspace  | 46.084     | 46.084     | 46.084     |   0.0 |  9.71
-Neigh   | 31.002     | 31.002     | 31.002     |   0.0 |  6.54
-Comm    | 1.4708     | 1.4708     | 1.4708     |   0.0 |  0.31
-Output  | 0.032866   | 0.032866   | 0.032866   |   0.0 |  0.01
-Modify  | 1.2961     | 1.2961     | 1.2961     |   0.0 |  0.27
-Other   |            | 0.3706     |            |       |  0.08
-
-Nlocal:           3125 ave        3125 max        3125 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:          17120 ave       17120 max       17120 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:    1.33487e+06 ave 1.33487e+06 max 1.33487e+06 min
-Histogram: 1 0 0 0 0 0 0 0 0 0
-
-Total # of neighbors = 1334873
-Ave neighs/atom = 427.15936
-Ave special neighs/atom = 2.25088
-Neighbor list builds = 1523
-Dangerous builds = 0
-Total wall time: 0:15:46
+variable oxyg

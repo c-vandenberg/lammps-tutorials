@@ -11,10 +11,21 @@ kspace_style pppm 1e-5
 special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
 
 # 2) System Definition
-read_data PEG_GROMOS.mol
+region box block -45 45 -15 15 -15 15
+create_box 9 box &
+bond/types 7 &
+angle/types 8 &
+dihedral/types 4 &
+extra/bond/per/atom 3 &
+extra/angle/per/atom 6 &
+extra/dihedral/per/atom 10 &
+extra/special/per/atom 14
 
 # 3) Simulation Settings
 include ../H2O-PEG-parameters.lammps
+
+molecule PEG_molecule PEG_GROMOS.mol
+create_atoms 0 single 0 0 0 mol PEG_molecule 454756
 
 # 4) Run
 ## Energy minimization will be short so output trajectory & thermodynamic data every 10 timesteps

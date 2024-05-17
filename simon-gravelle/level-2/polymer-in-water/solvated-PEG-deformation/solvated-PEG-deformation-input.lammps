@@ -9,6 +9,8 @@ dihedral_style harmonic
 pair_style lj/cut/coul/long 12
 kspace_style pppm 1e-5
 special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
+
+## Declare force variable in kcal/mol/A. 1 kcal/mol/A = 67.2 pN so we have a total force of 67.2 pN * 5 = 336 pN
 variable force_0 equal 5
 
 # 2) System Definition
@@ -48,10 +50,5 @@ run 30000
 
 fix oxygen_6_force pull_oxygen_6 addforce ${force_0} 0 0
 fix oxygen_7_force pull_oxygen_7 addforce -${force_0} 0 0
-
-variable peg_com_x equal xcm(PEG,x)
-variable peg_com_y equal xcm(PEG,y)
-variable peg_com_z equal xcm(PEG,z)
-fix recenter_PEG PEG recenter ${peg_com_x} ${peg_com_y} ${peg_com_z}
 
 run 30000
