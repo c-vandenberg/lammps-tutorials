@@ -11,8 +11,8 @@ kspace_style pppm 1e-5
 special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
 
 # 2) System Definition
-read_data ../pure-H2O/H2O.data extra/bond/per/atom 2 extra/angle/per/atom  5 extra/dihedral/per/atom 9
-read_data ../single-PEG/PEG.data add append shift 25 0 0
+read_data ../pure-H2O/H2O.data extra/bond/per/atom 2 extra/angle/per/atom  5 extra/dihedral/per/atom 9 extra/special/per/atom 14
+read_data ../single-PEG/PEG.data
 
 # 3) Simulation Settings
 include ../H2O-PEG-parameters.lammps

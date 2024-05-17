@@ -11,7 +11,7 @@ kspace_style pppm 1e-5
 special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
 
 # 2) System Definition
-read_data PEG_molecular.data
+read_data PEG_GROMOS.mol
 
 # 3) Simulation Settings
 include ../H2O-PEG-parameters.lammps

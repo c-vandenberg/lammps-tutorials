@@ -40,7 +40,7 @@ special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes
   * **1-2 Coulombic interactions** (i.e. atoms directly bonded) by **0.0**, ignoring these interactions
   * **1-3 Coulombic interactions** (i.e. atoms two bonds apart/angle interactions) by **0.0**, ignoring these interactions
   * **1-4 Coulombic interactions** (i.e. atoms three bonds apart/dihedral interactions) by **1.0**, therefore are not altered/scaled
-  * `angle yes` - Specifies that the 1-3 interactions weighting factor will be ignored is the atoms are not listed as the first and last atoms in any angle
+  * `angle yes` - Specifies that the 1-3 interactions weighting factor will be ignored if the atoms are not listed as the first and last atoms in any angle defined in the simulation
 
 ```
 # 2) System Definition
