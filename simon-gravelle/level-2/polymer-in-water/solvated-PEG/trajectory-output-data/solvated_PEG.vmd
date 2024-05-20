@@ -11,7 +11,7 @@ proc vmdrestoremymaterials {} {
       material add $mat
     }
   }
-  material change ambient Opaque 0.000000
+  material change ambient Opaque 0.150000
   material change diffuse Opaque 0.560000
   material change specular Opaque 0.120000
   material change shininess Opaque 0.290000
@@ -444,7 +444,7 @@ mol clipplane center 5 2 top {0.0 0.0 0.0}
 mol clipplane color  5 2 top {0.5 0.5 0.5 }
 mol clipplane normal 5 2 top {0.0 0.0 1.0}
 mol clipplane status 5 2 top {0}
-mol representation QuickSurf 1.530000 3.275879 0.765000 3.000000
+mol representation QuickSurf 1.500000 3.300000 1.000000 3.000000
 mol color ColorID 10
 mol selection {type 8 9}
 mol material Transparent
@@ -479,7 +479,7 @@ mol clipplane color  5 3 top {0.5 0.5 0.5 }
 mol clipplane normal 5 3 top {0.0 0.0 1.0}
 mol clipplane status 5 3 top {0}
 mol rename top dump_all_atoms_per_100_timestep.lammpstrj
-set viewpoints([molinfo top]) {{{1 0 0 -66.2715} {0 1 0 -0.00821946} {0 0 1 0.424494} {0 0 0 1}} {{0.99778 0.00397745 0.0664209 0} {-0.00396708 0.99999 -0.000286584 0} {-0.0664206 2.21526e-05 0.99779 0} {0 0 0 1}} {{0.0280956 0 0 0} {0 0.0280956 0 0} {0 0 0.0280956 0} {0 0 0 1}} {{1 0 0 2.28} {0 1 0 0.09} {0 0 1 0} {0 0 0 1}}}
+set viewpoints([molinfo top]) {{{1 0 0 -1.26278} {0 1 0 -0.0128871} {0 0 1 -0.024542} {0 0 0 1}} {{0.998275 0.0254161 0.0529088 0} {-0.0256414 0.999663 0.00358407 0} {-0.0528002 -0.00493406 0.998591 0} {0 0 0 1}} {{0.0391082 0 0 0} {0 0.0391082 0 0} {0 0 0.0391082 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
 lappend viewplist [molinfo top]
 set topmol [molinfo top]
 # done with molecule 0

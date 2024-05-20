@@ -16,10 +16,12 @@ read_data ../pure-H2O/H2O.data &
     extra/angle/per/atom 6 &
     extra/dihedral/per/atom 10 &
     extra/special/per/atom 14
-read_data ../single-PEG/PEG.data add append shift 50 0 0
 
 # 3) Simulation Settings
 include ../H2O-PEG-parameters.lammps
+
+molecule PEG_molecule ../single-PEG/PEG_GROMOS.mol
+create_atoms 0 single 0 0 0 mol PEG_molecule 454756
 
 group H2O type 8 9
 group PEG type 1 2 3 4 5 6 7
@@ -29,14 +31,15 @@ group PEG type 1 2 3 4 5 6 7
 delete_atoms overlap 2.0 H2O PEG mol yes
 
 # 4) Run
+minimize 1.0e-4 1.0e-6 1000 10000
+reset_timestep 0
+
 ## Apply the NPT ensemble to all atoms
 ## Starting temp=300K, target temp=300k, temp dampening constant=100 fs
 ## Starting pressure=1 atm, target pressure=1 atm, pressure dampening constant=1000fs
 ## Applies x-axis pressure control (`x`), meaning pressure will be controlled in the x direction (i.e. the simulation box will expand or contact in the x direction)
 fix npt_ensemble all npt temp 300 300 100 x 1 1 1000
 timestep 1.0
-
-fix recenter_PEG PEG recenter INIT INIT INIT
 
 dump dump_all_atoms_per_100_timestep all atom 100 trajectory-output-data/dump_all_atoms_per_100_timestep.lammpstrj
 thermo 100
@@ -50,5 +53,5 @@ fix solvated_PEG_ave_vol all ave/time 10 10 100 v_solvated_PEG_vol file ave-time
 variable solvated_PEG_enthalpy equal enthalpy
 fix solvated_PEG_ave_enthalpy all ave/time 10 10 100 v_solvated_PEG_enthalpy file ave-time-output-data/ave_solvated_PEG_enthalpy.dat
 
-run 100
+run 30000
 write_data solvated_PEG.data
