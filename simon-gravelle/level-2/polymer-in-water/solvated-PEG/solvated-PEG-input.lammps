@@ -16,12 +16,10 @@ read_data ../pure-H2O/H2O.data &
     extra/angle/per/atom 6 &
     extra/dihedral/per/atom 10 &
     extra/special/per/atom 14
+read_data ../single-PEG/PEG.data add
 
 # 3) Simulation Settings
 include ../H2O-PEG-parameters.lammps
-
-molecule PEG_molecule ../single-PEG/PEG_GROMOS.mol
-create_atoms 0 single 0 0 0 mol PEG_molecule 454756
 
 group H2O type 8 9
 group PEG type 1 2 3 4 5 6 7
