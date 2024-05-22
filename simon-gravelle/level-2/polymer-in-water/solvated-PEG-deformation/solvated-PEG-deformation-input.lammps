@@ -57,6 +57,12 @@ thermo 1000
 ## Run simulation for 30,000 fs to serve as benchmark for subsequent changes induced by applied force
 run 30000
 
+## Recenter PEG to center of simulation box
+variable peg_com_x equal xcm(PEG,x)
+variable peg_com_y equal xcm(PEG,y)
+variable peg_com_z equal xcm(PEG,z)
+fix recenter_PEG PEG recenter ${peg_com_x} ${peg_com_y} ${peg_com_z}
+
 ## Apply positive force variable to group pull_oxygen_6 and negative force variable to group pull_oxygen_7
 fix oxygen_6_force pull_oxygen_6 addforce ${force_0} 0 0
 fix oxygen_7_force pull_oxygen_7 addforce -${force_0} 0 0
