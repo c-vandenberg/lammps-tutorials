@@ -1,6 +1,6 @@
 ## Level 2 - Polymer in Water
 
-https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b33c1977-2828-4035-80df-34d08ebf21df
+https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/aa14bf6b-29a2-475f-8f1a-cdfd3ae44f42
 
 The objective of this tutorial is to use LAMMPS to solvate the small hydrophobic polymer PolyEthylene Glycol (PEG) in a reservoir of water.
 
