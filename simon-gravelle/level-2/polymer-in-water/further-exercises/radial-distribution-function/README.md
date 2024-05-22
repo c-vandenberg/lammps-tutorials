@@ -11,7 +11,9 @@ The RDF is typically computed via these (simplified) steps:
 3. **Bin the Distances Into a Histogram** - Divide the distance range into smaller intervals (**bins**) and count the number of particles that fall within each bin. These bins are then plotted on a histogram (a graphical representation of the RDF. Usually an RDF-distance graph)
 4. **Normalise** - Adjust the raw counts of particles in each bin dividing the total number of particles in each bin by (number of reference particles * volume of the spherical shell/bin * average number density of all particles in the system). This is normalization in the context of the RDF.
 
-An RDF-distance graph/histogram will give a series of peaks that correspond to the first, second, third etc. coordination/solvation shell of the reference particle. Generally, the larger the RDF value for a given peak, the higher the particle density around the reference particle. Additionally, we can calculate the coordination number/average number of neighbours surrounding the reference particle if we integrate the peak/calculate the area under it
+An RDF-distance graph/histogram will give a series of peaks that correspond to the first, second, third etc. coordination/solvation shell of the reference particle. Generally, the larger the RDF value for a given peak, the higher the particle density around the reference particle. Additionally, we can calculate the coordination number/average number of neighbours surrounding the reference particle if we integrate the peak/calculate the area under it.
+
+In this exercise we will extract the RDF (or *g(r)*) between the oxygen atom of the water molecules and two oxygen atoms of the PEG molecule. We will compare the RDF before and after the force is applied to the PEG.
 
 ## Input Script Command Syntax
 
