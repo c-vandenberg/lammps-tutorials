@@ -1,5 +1,9 @@
 # Preparing The Single PEG Polymer
 
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/0d7184df-4101-436b-adc2-24cdbf2b4f0a" alt="cnt-unbreakable-bonds start md" width="" />
+</p>
+
 ## Introduction
 
 The molecular topology for the single PEG (C<sub>28</sub>H<sub>58</sub>O<sub>15</sub>) polymer was downloaded from the Automated Topology Builder (ATB) repository<sup>1</sup> <sup>2</sup>. An all-atom description is used by using parameters taken from the GROMOS 54A7 force field<sup>3</sup>.
