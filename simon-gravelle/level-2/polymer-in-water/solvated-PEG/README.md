@@ -1,5 +1,7 @@
 # Solvating the PEG in Water
 
+https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/58a02fc5-91b0-4af8-b660-782eb3208f98
+
 ## Introduction
 
 Now that we have created & equilibrated both our water reservoir and single PEG polymer, we can now combine the two systems to solvate the PEG in the water reservoir.
