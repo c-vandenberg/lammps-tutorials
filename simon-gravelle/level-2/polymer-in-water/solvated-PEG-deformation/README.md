@@ -1,6 +1,10 @@
 # Deforming/Stretching the Water Solvated PEG Polymer Molecule
 
-https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b31c501c-5577-40a9-89d7-59bdd6eb7096
+
+
+https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/aa14bf6b-29a2-475f-8f1a-cdfd3ae44f42
+
+
 
 ## Introduction
 
