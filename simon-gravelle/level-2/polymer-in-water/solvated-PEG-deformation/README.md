@@ -1,5 +1,7 @@
 # Deforming/Stretching the Water Solvated PEG Polymer Molecule
 
+https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b31c501c-5577-40a9-89d7-59bdd6eb7096
+
 ## Introduction
 
 We will now apply a constant force to the oxygen atoms on both ends of the PEG polymer molecule until it stretches. This will allow us to probe the deformation via the changing intra-molecular parameters (see `PEG-deformation-evaluation` further exercise). The force magnitude was chosen via trial & error to be large enough to overcome the thermal agitation & the entropic contribution from both water and PEG molecules.
