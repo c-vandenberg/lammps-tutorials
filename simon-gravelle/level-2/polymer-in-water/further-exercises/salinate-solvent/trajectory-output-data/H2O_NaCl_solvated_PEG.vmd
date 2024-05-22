@@ -444,7 +444,7 @@ mol clipplane center 5 2 top {0.0 0.0 0.0}
 mol clipplane color  5 2 top {0.5 0.5 0.5 }
 mol clipplane normal 5 2 top {0.0 0.0 1.0}
 mol clipplane status 5 2 top {0}
-mol representation QuickSurf 1.000000 0.500000 1.000000 3.000000
+mol representation QuickSurf 1.500000 3.300000 1.000000 3.000000
 mol color ColorID 10
 mol selection {type 8 9}
 mol material Transparent
@@ -547,7 +547,7 @@ mol clipplane color  5 5 top {0.5 0.5 0.5 }
 mol clipplane normal 5 5 top {0.0 0.0 1.0}
 mol clipplane status 5 5 top {0}
 mol rename top dump_all_atoms_per_1000_timestep.lammpstrj
-set viewpoints([molinfo top]) {{{1 0 0 -23.952} {0 1 0 0.139208} {0 0 1 -0.150987} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}} {{0.0360723 0 0 0} {0 0.0360723 0 0} {0 0 0.0360723 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
+set viewpoints([molinfo top]) {{{1 0 0 -23.952} {0 1 0 0.139208} {0 0 1 -0.150987} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}} {{0.0518611 0 0 0} {0 0.0518611 0 0} {0 0 0.0518611 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
 lappend viewplist [molinfo top]
 set topmol [molinfo top]
 # done with molecule 0
@@ -711,6 +711,7 @@ color scale colors WBlk {1.0 1.0 1.0} {0.5 0.5 0.5} {0.0 0.0 0.0}
     {color Segname {} blue}
     {color Conformation {all} blue}
     {color Molecule {0} blue}
+    {color Molecule {dump_all_atoms_per_1000_timestep.lammpstrj} blue}
     {color Structure {3_10_Helix} blue}
     {color Surface {Grasp} gray}
     {color Labels {Springs} orange}
