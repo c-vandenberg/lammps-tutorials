@@ -1,5 +1,9 @@
 # Preparing The Water Reservoir
 
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/39ea814b-b169-42f3-9e50-563cda79c1de" alt="cnt-unbreakable-bonds start md" width="" />
+</p>
+
 ## Introduction
 
 First, a rectangular water reservoir will be created & equilibrated in the absence of the PEG chain. The water model we will use is the Single Point Charge/Flexible Water (SPC/Fw) model<sup>1</sup>.
