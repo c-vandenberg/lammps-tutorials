@@ -13,7 +13,7 @@ The RDF is typically computed via these (simplified) steps:
 
 An RDF-distance graph/histogram will give a series of peaks that correspond to the first, second, third etc. coordination/solvation shell of the reference particle. Generally, the larger the RDF value for a given peak, the higher the particle density around the reference particle. Additionally, we can calculate the coordination number/average number of neighbours surrounding the reference particle if we integrate the peak/calculate the area under it.
 
-In this exercise we will extract the RDF (or *g(r)*) between the oxygen atom of the water molecules and two oxygen atoms of the PEG molecule. We will compare the RDF before and after the force is applied to the PEG.
+In this exercise we will extract the RDF (or *g(r)*) between the oxygen atom of the water molecules and two oxygen atoms of the PEG molecule, and compare the RDF before and after the force is applied to the PEG.
 
 ## Input Script Command Syntax
 
