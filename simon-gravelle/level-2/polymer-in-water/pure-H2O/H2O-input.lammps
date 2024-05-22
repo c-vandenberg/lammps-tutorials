@@ -1,0 +1,67 @@
+# Molecular Dynamics - Input Script for Pure H2O
+
+# 1) Initialization
+units real
+atom_style full
+bond_style harmonic
+angle_style harmonic
+dihedral_style harmonic
+pair_style lj/cut/coul/long 12
+kspace_style pppm 1e-5
+special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes
+
+# 2) System Definition
+region box block -45 45 -15 15 -15 15
+create_box 9 box &
+bond/types 7 &
+angle/types 8 &
+dihedral/types 4 &
+extra/bond/per/atom 3 &
+extra/angle/per/atom 6 &
+extra/dihedral/per/atom 10 &
+extra/special/per/atom 14
+
+# 3) Simulation Settings
+include ../H2O-PEG-parameters.lammps
+
+## Randomly create 1050 H2O molecules using the H2O molecular data from H2O_molecular.data. The `overlap 1.0` option ensures no atoms are placed exactly in the same position, which would cause the simulation to crash by rejecting the atom creation
+## The `maxtry 50` option specifies if no suitable position is found after 50 attempts, a new atom is created elsewhere and the process starts again
+## In some cases, depending on the system and the values of `overlap` and `maxtry`, LAMMPS may not create the desired number of molecules. It is therefore important to check the number of atoms created in the log file after starting the simulation
+molecule H2O_molecule H2O_SPCFw.mol
+create_atoms 0 random 1050 87910 NULL mol H2O_molecule 454756 overlap 1 maxtry 50
+group H2O type 8 9
+
+minimize 1.0e-4 1.0e-6 100 1000
+reset_timestep 0
+
+# 4) Run
+## Apply the NPT ensemble to all atoms
+## Starting temp=300K, target temp=300k, temp dampening constant=100 fs
+## Starting pressure=1 atm, target pressure=1 atm, pressure dampening constant=1000fs
+## Applies isotopic pressure control (`iso`), meaning pressure will be controlled uniformly in all three dimensions (i.e. the simulation box will expand or contact equally in all directions)
+fix npt_ensemble all npt temp 300 300 100 iso 1 1 1000
+
+dump dump_all_atoms_per_1000_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep.lammpstrj
+
+variable H2O_temp equal temp
+variable H2O_vol equal vol
+
+## Calculate the average H2O temperature and volume every 10 timesteps, calculate 10 times and output every 100 timesteps
+fix H2O_ave_temp all ave/time 10 10 100 v_H2O_temp file ave-time-output-data/ave_H2O_temperature.dat
+fix H2O_ave_vol all ave/time 10 10 100 v_H2O_vol file ave-time-output-data/ave_H2O_volume.dat
+
+## Calculate number of molecules by counting number of atoms in group H2O, divided by 3
+variable H2O_molecule_number equal count(H2O)/3
+
+## Calculate H2O density by dividing number of H2O molecules by volume
+## Note that we used underscore (`v_`) to get the variable value previously, but now are using dollar sign. With the dollar sign, the initial value of the variable is returned, whereas with underscore, the instantaneous value of the variable is returned
+## Therefore, to probe the evolution of a variable over time, the underscore approach must be used
+variable H2O_density equal ${H2O_molecule_number}/v_H2O_vol
+
+fix H2O_ave_density all ave/time 10 10 100 v_H2O_density file ave-time-output-data/ave_H20_density.dat
+
+thermo 100
+timestep 1.0
+run 20000
+
+write_data H2O.data

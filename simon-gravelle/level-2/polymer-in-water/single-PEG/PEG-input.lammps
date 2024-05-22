@@ -1,0 +1,54 @@
+# Molecular Dynamics - Input Script for Single PEG
+
+# 1) Initialization
+units real
+atom_style full
+bond_style harmonic
+angle_style harmonic
+dihedral_style harmonic
+pair_style lj/cut/coul/long 12
+kspace_style pppm 1e-5
+special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
+
+# 2) System Definition
+region box block -45 45 -15 15 -15 15
+create_box 9 box &
+bond/types 7 &
+angle/types 8 &
+dihedral/types 4 &
+extra/bond/per/atom 3 &
+extra/angle/per/atom 6 &
+extra/dihedral/per/atom 10 &
+extra/special/per/atom 14
+
+# 3) Simulation Settings
+include ../H2O-PEG-parameters.lammps
+
+molecule PEG_molecule PEG_GROMOS.mol
+create_atoms 0 single 0 0 0 mol PEG_molecule 454756
+
+# 4) Run
+## Energy minimization will be short so output trajectory & thermodynamic data every 10 timesteps
+dump dump_all_atoms all atom 10 trajectory-output-data/dump_all_atoms.lammpstrj
+thermo 1
+minimize 1.0e-4 1.0e-6 100 1000
+
+## Cancel previous dump command and replace with lower frequency dump command
+undump dump_all_atoms
+reset_timestep 0
+
+## Equilibrate PEG in the NVT ensemble (NVE fix + Berendsen thermostat temp control == NVT)
+fix nve_ensemble all nve
+fix berendsen_thermostat all temp/berendsen 300 300 100
+
+## `dump_modify` ensures that new trajectory data is appended to the previously created `dump_all_atoms.lammpstrj` file
+dump dump_all_atoms all atom 1000 trajectory-output-data/dump_all_atoms.lammpstrj
+dump_modify dump_all_atoms append yes
+thermo 1000
+
+variable PEG_temp equal temp
+fix PEG_ave_temp all ave/time 10 10 100 v_PEG_temp file ave-time-output-data/PEG_temperature.dat
+
+timestep 1.0
+run 10000
+write_data PEG.data

@@ -1,0 +1,59 @@
+# Molecular Dynamics - Input Script for H2O Solvated PEG
+
+# 1) Initialization
+units real
+atom_style full
+bond_style harmonic
+angle_style harmonic
+dihedral_style harmonic
+pair_style lj/cut/coul/long 12
+kspace_style pppm 1e-5
+special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
+
+# 2) System Definition
+## Import the two previously generated data file H2O.data and PEG.data. Again we are using the `extra/x/per/atom` commands for memory allocation
+## When using the `read_data` command more than once. we need to use the `add append` arguments
+read_data ../pure-H2O/H2O.data &
+    extra/bond/per/atom 3 &
+    extra/angle/per/atom 6 &
+    extra/dihedral/per/atom 10 &
+    extra/special/per/atom 14
+read_data ../single-PEG/PEG.data add append
+
+# 3) Simulation Settings
+include ../H2O-PEG-parameters.lammps
+
+# Create 2 groups to differentiate the PEG molecule from the water molecules
+group H2O type 8 9
+group PEG type 1 2 3 4 5 6 7
+
+## Delete any water molecules overlapping with the PEG polymer within 2 Å to avoid future simulation crashing
+## Cutoff value of 2 Å was determined through trial & error. If the cutoff is too small, the simulation will crash. If the cutoff is too large, too many water molecules will unnecessarily be deleted
+delete_atoms overlap 2.0 H2O PEG mol yes
+
+# 4) Run
+minimize 1.0e-4 1.0e-6 1000 10000
+reset_timestep 0
+
+## Apply the NPT ensemble to all atoms
+## Starting temp=300K, target temp=300k, temp dampening constant=100 fs
+## Starting pressure=1 atm, target pressure=1 atm, pressure dampening constant=1000fs
+## Applies x-axis pressure control (`x`), meaning pressure will be controlled in the x direction (i.e. the simulation box will expand or contact in the x direction)
+fix npt_ensemble all npt temp 300 300 100 x 1 1 1000
+timestep 1.0
+
+dump dump_all_atoms_per_100_timestep all atom 100 trajectory-output-data/dump_all_atoms_per_100_timestep.lammpstrj
+thermo 100
+
+variable solvated_PEG_temp equal temp
+variable solvated_PEG_vol equal vol
+
+fix solvated_PEG_ave_temp all ave/time 10 10 100 v_solvated_PEG_temp file ave-time-output-data/ave_solvated_PEG_temperature.dat
+fix solvated_PEG_ave_vol all ave/time 10 10 100 v_solvated_PEG_vol file ave-time-output-data/ave_solvated_PEG_volume.dat
+
+## Output average total enthalpy of system over time
+variable solvated_PEG_enthalpy equal enthalpy
+fix solvated_PEG_ave_enthalpy all ave/time 10 10 100 v_solvated_PEG_enthalpy file ave-time-output-data/ave_solvated_PEG_enthalpy.dat
+
+run 30000
+write_data solvated_PEG.data
