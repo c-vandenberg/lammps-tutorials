@@ -1,7 +1,7 @@
 # Preparing The Water Reservoir
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/711696bc-d0c6-4be4-95ab-6448cddf15b0" alt="cnt-unbreakable-bonds start md" width="" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/dcbb5fe3-9e4e-4de5-a64a-931e866c2523" alt="cnt-unbreakable-bonds start md" width="" />
 </p>
 
 ## Introduction
