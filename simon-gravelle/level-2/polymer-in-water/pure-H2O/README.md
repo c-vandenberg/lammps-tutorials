@@ -2,7 +2,7 @@
 
 ## Introduction
 
-First, a rectangular water reservoir will be created & equilibrated in the absence of the PEG chain. The water model we will use is the Single Point Charge/Flexible Water (SPC/Fw) model is used <sup>1</sup>.
+First, a rectangular water reservoir will be created & equilibrated in the absence of the PEG chain. The water model we will use is the Single Point Charge/Flexible Water (SPC/Fw) model<sup>1</sup>.
 
 The SPC/Fw model is a refinement of the simple SPC model & Extended SPC (SPC/E) model where the water molecule is represented with three interaction sites, corresponding to two hydrogen atoms and the oxygen atom. In the simple SPC model, the intramolecular degrees of freedom are usually frozen to give rigid models, while the intermolecular interactions are described by Lennard-Jones & Coulombic potentials between sites with fixed-point charges. The main limitations of the simple SPC model are:
 1. **The self-diffusion constant is poorly defined** - The self-diffusion constant is a measure of how fast water molecules move through the bulk liquid. The simple SPC model tends to underestimate the self-diffusion of water and therefore, water molecules tend to move slower than they do in reality in simulations that use this model
