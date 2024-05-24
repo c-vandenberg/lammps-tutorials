@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from ..constants import md_analysis_constants
 
 
-class SolvatedPEGTrajectory:
+class SolvatedPEGTrajectoryPlot:
     def __init__(self):
         self._md_universe = None
 
@@ -16,21 +16,22 @@ class SolvatedPEGTrajectory:
         topology_file_format: str = os.path.splitext(topology_file_path)[1]
         trajectory_file_format: str = os.path.splitext(trajectory_file_path)[1]
 
-        supported_topology_formats = MDAnalysis.t
+        supported_topology_formats = MDAnalysis.topology.topology.guess_format.__globals__['_READERS']
         supported_trajectory_formats = MDAnalysis.coordinates.core.reader.__globals__['_READERS']
 
-        if topology_format not in supported_topology_formats:
-            raise ValueError(f"Unsupported topology file format: {topology_ext}")
-        if traj_format not in supported_trajectory_formats:
-            raise ValueError(f"Unsupported trajectory file format: {trajectory_ext}")
+        if topology_file_format not in supported_topology_formats:
+            raise ValueError(f"Unsupported topology file format: {topology_file_format}")
 
+        if trajectory_file_format not in supported_trajectory_formats:
+            raise ValueError(f"Unsupported trajectory file format: {trajectory_file_format}")
 
         self._md_universe: MDAnalysis.Universe = MDAnalysis.Universe(
             topology_file_path,
             trajectory_file_path,
-            topology_format="data",
-            format="lammpsdump"
+            topology_format=topology_file_format,
+            format=trajectory_file_format
         )
+
 
 
 # Instantiate MD Universe object with `./solvated_PEG.data` molecular topology data
