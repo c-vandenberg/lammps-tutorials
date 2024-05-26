@@ -18,11 +18,13 @@ def main():
         vdwradii={'1': 1.7}
     )
 
+    # Instantiate dedicated class for plotting CNT breakable bonds data
     breakable_cnt_bonds_plot: BreakableCNTBondsPlot = BreakableCNTBondsPlot()
 
     # Instantiate carbon atoms (atom type 1) AtomGroup object
     cnt_atom_group: AtomGroup = md_universe.select_atoms('type 1')
 
+    # Extract 'bond length vs timestep frame' and 'bond number vs timestep frame' data
     breakable_cnt_bonds_plot.extract_bond_lengths_bond_numbers(
         md_universe,
         cnt_atom_group,
@@ -30,11 +32,11 @@ def main():
         '../data/processed/bond_number_vs_timestep_frame.dat'
     )
 
-    # Load data
+    # Load 'bond length vs timestep frame' and 'bond number vs timestep frame' data
     bond_length_vs_timestep_frame = numpy.loadtxt("../data/processed/bond_length_vs_timestep_frame.dat")
     bond_number_vs_timestep_frame = numpy.loadtxt("../data/processed/bond_number_vs_timestep_frame.dat")
 
-    # Define plot configurations
+    # Define subplot configurations
     data_arrays: List[ndarray] = [bond_length_vs_timestep_frame, bond_number_vs_timestep_frame]
     subplot_titles: List = [
         'CNT Bond Length vs Timestep Frame (a)',
@@ -47,9 +49,11 @@ def main():
     figure_title: str = (r'$\bf{Fig\ 1}$ Evolution of carbon nanotube (CNT) average bond length (a) '
                          r'and bond number (b) as a function of time.')
 
-    # Create dynamic subplots
+    # Create 'bond length vs timestep frame' and 'bond number vs timestep frame' subplots
     breakable_cnt_bonds_plot.line_graph_subplots(data_arrays, subplot_titles, x_labels, y_labels, y_lims, x_lim,
                                                  figure_title)
+
+    # C
 
 
 if __name__ == '__main__':
