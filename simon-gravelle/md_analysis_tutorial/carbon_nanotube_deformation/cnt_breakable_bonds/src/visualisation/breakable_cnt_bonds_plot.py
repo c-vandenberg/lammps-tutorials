@@ -1,9 +1,20 @@
 #!/usr/bin/env python3
 
+import sys
 import MDAnalysis as md_analysis
 import numpy
 import matplotlib.pyplot as pyplot
 from numpy import ndarray
+from constants.breakable_cnt_bonds_constants import BreakableCNTBondsConstants
+
+sys.path.append(
+    BreakableCNTBondsConstants.BASE_DIRECTORY
+)
+
+from src.modules.md_universe import MDUniverse
+
+class BreakableCNTBondsPlot(MDUniverse):
+
 
 # Instantiate MD Universe object with `./cnt_atomic.data` molecular topology data
 # & `./cnt_breakable_bonds_dump.lammpstrj` simulation trajectory coordinates
