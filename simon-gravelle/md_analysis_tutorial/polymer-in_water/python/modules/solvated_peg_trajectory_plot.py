@@ -2,45 +2,17 @@
 
 from typing import List, Dict, Union
 import sys
+from MDAnalysis import AtomGroup
 
 sys.path.append(
-    '/home/chris-vdb/Computational-Chemistry/lammps-tutorials/simon-gravelle/md_analysis_tutorial/python/src'
+    '/home/chris-vdb/Computational-Chemistry/lammps-tutorials/simon-gravelle/md_analysis_tutorial/python'
 )
 
-import MDAnalysis as MDAnalysis
-from MDAnalysis import AtomGroup
-import numpy
-import matplotlib.pyplot as pyplot
-from modules.scatter_plot import ScatterPlot
+from src.modules.scatter_plot import ScatterPlot
+from src.modules.md_universe import MDUniverse
 
 
-class SolvatedPEGTrajectoryPlot(ScatterPlot):
-    def __init__(self):
-        self._md_universe = None
-
-    def md_universe(
-            self,
-            topology_file_path: str,
-            trajectory_file_path: str,
-            topology_file_format: str,
-            trajectory_file_format: str
-    ):
-        try:
-            self._md_universe: MDAnalysis.Universe = MDAnalysis.Universe(
-                topology_file_path,
-                trajectory_file_path,
-                topology_format=topology_file_format,
-                format=trajectory_file_format
-            )
-        except Exception as e:
-            raise ValueError(e)
-
-    def get_atom_group(self, molecule_atoms: str) -> AtomGroup:
-        try:
-            return self._md_universe.select_atoms(molecule_atoms)
-        except Exception as e:
-            raise ValueError(e)
-
+class SolvatedPEGTrajectoryPlot(MDUniverse, ScatterPlot):
     def get_first_atom_temporal_evolution_from_type(self, molecule: AtomGroup, atom_type: str):
         try:
             first_atom: AtomGroup = molecule.select_atoms(atom_type)[0]
