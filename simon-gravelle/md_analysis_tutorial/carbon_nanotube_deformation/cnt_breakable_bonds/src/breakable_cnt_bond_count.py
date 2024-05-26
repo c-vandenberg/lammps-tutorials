@@ -8,8 +8,8 @@ from numpy import ndarray
 # Instantiate MD Universe object with `./cnt_atomic.data` molecular topology data
 # & `./cnt_breakable_bonds_dump.lammpstrj` simulation trajectory coordinates
 md_universe: md_analysis.Universe = md_analysis.Universe(
-    "./cnt_atomic.data",
-    "./cnt_breakable_bonds_dump.lammpstrj",
+    "../../data/raw/cnt_atomic.data",
+    "../../data/raw/cnt_breakable_bonds_dump.lammpstrj",
     topology_format="data",
     format="lammpsdump",
     atom_style='id type x y z',
@@ -43,12 +43,12 @@ for timestep in md_universe.trajectory:
     bond_number_vs_timestep_frame.append([frame, number_of_bonds])
 
 # Save 'bond length vs timestep frame' and 'bond number vs timestep frame' data to file
-numpy.savetxt("bond_length_vs_timestep_frame.dat", bond_length_vs_timestep_frame)
-numpy.savetxt("bond_number_vs_timestep_frame.dat", bond_number_vs_timestep_frame)
+numpy.savetxt("../../data/processed/bond_length_vs_timestep_frame.dat", bond_length_vs_timestep_frame)
+numpy.savetxt("../../data/processed/bond_number_vs_timestep_frame.dat", bond_number_vs_timestep_frame)
 
 # Load data
-bond_length_vs_timestep_frame: ndarray = numpy.loadtxt("./bond_length_vs_timestep_frame.dat")
-bond_number_vs_timestep_frame: ndarray = numpy.loadtxt("./bond_number_vs_timestep_frame.dat")
+bond_length_vs_timestep_frame: ndarray = numpy.loadtxt("../../data/processed/bond_length_vs_timestep_frame.dat")
+bond_number_vs_timestep_frame: ndarray = numpy.loadtxt("../../data/processed/bond_number_vs_timestep_frame.dat")
 
 # Create two line graphs/subplots
 line_graphs, (bond_length_vs_timestep_frame_axes, bond_number_vs_timestep_frame_axes) = pyplot.subplots(

@@ -1,4 +1,4 @@
-from modules.solvated_peg_trajectory_plot import SolvatedPEGTrajectoryPlot
+from visualisation.solvated_peg_trajectory_plot import SolvatedPEGTrajectoryPlot
 from MDAnalysis import AtomGroup
 from constants.solvated_peg_constants import SolvatedPEGConstants
 
@@ -6,8 +6,8 @@ from constants.solvated_peg_constants import SolvatedPEGConstants
 def main():
     solvated_peg_traj_plot: SolvatedPEGTrajectoryPlot = SolvatedPEGTrajectoryPlot()
     solvated_peg_traj_plot.md_universe(
-        '../solvated_PEG.data',
-        '../solvated_PEG_dump.lammpstrj',
+        '../data/raw/solvated_PEG.data',
+        '../data/raw/solvated_PEG_dump.lammpstrj',
         'data',
         'lammpsdump'
     )
