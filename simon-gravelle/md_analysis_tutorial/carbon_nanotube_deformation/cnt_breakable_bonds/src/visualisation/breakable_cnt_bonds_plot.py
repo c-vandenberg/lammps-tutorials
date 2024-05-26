@@ -2,6 +2,7 @@
 
 import sys
 import numpy
+from numpy import ndarray
 from MDAnalysis import AtomGroup, Universe
 from constants.breakable_cnt_bonds_constants import BreakableCNTBondsConstants
 
@@ -24,19 +25,22 @@ class BreakableCNTBondsPlot(LineGraph):
         bond_number_vs_timestep_frame: list = []
 
         for timestep in md_universe.trajectory:
-            frame = timestep.frame
+            frame: int = timestep.frame
             current_timestep_bond_lengths: list = []
+
+            # `cnt_atom_group.atoms.bonds.indices` is a list of tuples and the expression `index_1, index_2`
+            # unpacks each tuple (index_1 and index_2 represent the indices of the two atoms in each bond)
             for index_1, index_2 in cnt_atom_group.atoms.bonds.indices:
-                position_1 = md_universe.atoms.positions[md_universe.atoms.indices == index_1]
-                position_2 = md_universe.atoms.positions[md_universe.atoms.indices == index_2]
+                position_1: ndarray = md_universe.atoms.positions[md_universe.atoms.indices == index_1]
+                position_2: ndarray = md_universe.atoms.positions[md_universe.atoms.indices == index_2]
 
                 bond_length: float = numpy.sqrt(numpy.sum((position_1 - position_2) ** 2))
 
                 if bond_length < 1.8:
                     current_timestep_bond_lengths.append(bond_length)
 
-            mean_bond_length = numpy.mean(current_timestep_bond_lengths)
-            number_of_bonds: float = round(
+            mean_bond_length: float = numpy.mean(current_timestep_bond_lengths)
+            number_of_bonds: int = round(
                 len(current_timestep_bond_lengths) / 2)  # Divide by two to avoid counting twice
 
             bond_length_vs_timestep_frame.append([frame, mean_bond_length])

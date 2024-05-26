@@ -13,7 +13,8 @@ from src.modules.scatter_plot import ScatterPlot
 
 
 class SolvatedPEGTrajectoryPlot(ScatterPlot):
-    def get_first_atom_temporal_evolution_from_type(self, md_universe: Universe, molecule: AtomGroup, atom_type: str):
+    @staticmethod
+    def get_first_atom_temporal_evolution_from_type(md_universe: Universe, molecule: AtomGroup, atom_type: str):
         try:
             first_atom: AtomGroup = molecule.select_atoms(atom_type)[0]
         except Exception as e:
