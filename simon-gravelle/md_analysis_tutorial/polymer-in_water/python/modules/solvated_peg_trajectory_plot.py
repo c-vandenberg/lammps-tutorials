@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-from typing import List, Dict, Union
 import sys
+from typing import List, Dict, Union
 from MDAnalysis import AtomGroup
+from constants.solvated_peg_constants import SolvatedPEGConstants
 
 sys.path.append(
-    '/home/chris-vdb/Computational-Chemistry/lammps-tutorials/simon-gravelle/md_analysis_tutorial/python'
+    SolvatedPEGConstants.BASE_DIRECTORY
 )
 
 from src.modules.scatter_plot import ScatterPlot
