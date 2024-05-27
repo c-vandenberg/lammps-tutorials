@@ -70,18 +70,35 @@ def main():
         maximum_deformation_bond_length_distributions_data
     ]
 
-    bond_length_plot_title: List = [
+    bond_length_distributions_plot_line_labels: List = [
+        'At Start (Frames 1 - 20)',
+        'During Maximum Deformation (Frames 200 - 220)'
+    ]
+    bond_length_distributions_line_colours: List = [
+        'cyan',
+        'orange'
+    ]
+    bond_length_distributions_plot_x_label: str = 'Bond Length (Å)'
+    bond_length_distributions_plot_y_label: str = 'Probability'
+    bond_length_distributions_plot_y_lim: Union[Tuple, List[Tuple]] = (0.00, 0.13)
+    bond_length_distributions_plot_x_lim: Union[Tuple, List[Tuple]] = (1.30, 1.65)
+
+    bond_length_distributions_plot_title: List = [
         'CNT Bond Length Distributions'
     ]
-    bond_length_plot_x_labels: List = ['Bond Length (Å)']
-    bond_length_plot_y_labels: List = ['Probability']
-    bond_length_plot_y_lims: Union[Tuple, List[Tuple]] = (0.00, 1.17)
-    bond_length_plot_x_lim: Union[Tuple, List[Tuple]] = (1.25, 1.65)
-    bond_length_plot_figure_title: str = (r'$\bf{Fig\ 2}$ Bond length distribution carbon nanotube (CNT) at start of '
-                                          r'simulation & at maximum deformation.')
+    bond_length_distributions_plot_figure_title: str = (
+        r'$\bf{Fig\ 2}$ Bond length distribution carbon nanotube (CNT) at start of '
+        r'simulation & at maximum deformation.')
 
-    breakable_cnt_bonds_plot.plot_bond_length_distributions(starting_bond_length_distributions_data,
-                                                            maximum_deformation_bond_length_distributions_data)
+    breakable_cnt_bonds_plot.single_line_graph(bond_length_distributions_data,
+                                               bond_length_distributions_plot_line_labels,
+                                               bond_length_distributions_line_colours,
+                                               bond_length_distributions_plot_x_label,
+                                               bond_length_distributions_plot_y_label,
+                                               bond_length_distributions_plot_y_lim,
+                                               bond_length_distributions_plot_x_lim,
+                                               bond_length_distributions_plot_title,
+                                               bond_length_distributions_plot_figure_title)
 
 
 if __name__ == '__main__':

@@ -42,16 +42,8 @@ class LineGraph:
         pyplot.show()
 
     @staticmethod
-    def plot_bond_length_distributions(starting_bond_length_distribution,
-                                       maximum_deformation_bond_length_distribution):
-
-        # Extract data for plotting
-        starting_bin_centers = starting_bond_length_distribution[0]
-        starting_histogram = starting_bond_length_distribution[1]
-
-        deformation_bin_centers = maximum_deformation_bond_length_distribution[0]
-        deformation_histogram = maximum_deformation_bond_length_distribution[1]
-
+    def single_line_graph(data_arrays: List[ndarray], line_labels: List, line_colours: List, x_label: str,
+                          y_label: str, y_lim: Tuple, x_lim: Tuple, graph_title: str, figure_text: str):
         # Set up the plot
         fig, ax = pyplot.subplots(figsize=(10, 6))
         fig.patch.set_facecolor('black')
@@ -62,16 +54,17 @@ class LineGraph:
         for spine in ax.spines.values():
             spine.set_edgecolor('white')
 
-        # Plot the data
-        ax.plot(starting_bin_centers, starting_histogram, color='cyan', label='At Start (Frames 1 - 20)')
-        ax.plot(deformation_bin_centers, deformation_histogram, color='orange',
-                label='During Maximum Deformation (Frames 200 - 220)')
+        # Extract data and plot
+        for key, data in enumerate(data_arrays):
+            y_axis_data = data[0]
+            x_axis_data = data[1]
+            ax.plot(y_axis_data, x_axis_data, color=line_colours[key], label=line_labels[key])
 
-        # Set labels and title
-        ax.set_xlabel('Bond Length (Å)', color='white')
-        ax.set_ylabel('Probability', color='white')
-        ax.set_ylim([0.00, 0.13])
-        ax.set_xlim([1.30, 1.65])
+        # Set axes labels, limits and graph title
+        ax.set_xlabel(x_label, color='white')
+        ax.set_ylabel(y_label, color='white')
+        ax.set_ylim(y_lim)
+        ax.set_xlim(x_lim)
 
         # Add legend
         legend = ax.legend(loc='upper right', frameon=False, fontsize=12)
@@ -80,7 +73,7 @@ class LineGraph:
 
         # Add figure title
         fig.text(0.5, 0.0005,
-                 r'$\bf{Fig\ 2}$ Bond length distribution carbon nanotube (CNT) at start of simulation & at maximum deformation.',
+                 figure_text,
                  ha='center', va='center', color='white', fontsize=12)
 
         # Show plot
