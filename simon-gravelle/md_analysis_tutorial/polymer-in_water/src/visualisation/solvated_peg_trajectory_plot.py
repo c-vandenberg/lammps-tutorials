@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
+import os
 import sys
 from typing import List, Dict, Union
 from MDAnalysis import AtomGroup, Universe
-from constants.solvated_peg_constants import SolvatedPEGConstants
 
 sys.path.append(
-    SolvatedPEGConstants.BASE_DIRECTORY
+    os.getenv('LAMMPS_MD_ANALYSIS_BASE_DIRECTORY')
 )
 
 from src.modules.scatter_plot import ScatterPlot

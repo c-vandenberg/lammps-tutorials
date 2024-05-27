@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
+import os
 import sys
 import numpy
 from numpy import ndarray
 from MDAnalysis import AtomGroup, Universe
-from constants.breakable_cnt_bonds_constants import BreakableCNTBondsConstants
 
 sys.path.append(
-    BreakableCNTBondsConstants.BASE_DIRECTORY
+    os.getenv('LAMMPS_MD_ANALYSIS_BASE_DIRECTORY')
 )
 
 from src.modules.line_graph import LineGraph
