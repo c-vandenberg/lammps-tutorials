@@ -46,12 +46,12 @@ def main():
     x_labels: List = ['t (ps)', 't (ps)']
     y_lims: Union[Tuple, List[Tuple]] = [(1.35, 1.65), (500, 520)]
     x_lim: Union[Tuple, List[Tuple]] = (0, 300)
-    figure_title: str = (r'$\bf{Fig\ 1}$ Evolution of carbon nanotube (CNT) average bond length (a) '
+    figure_text: str = (r'$\bf{Fig\ 1}$ Evolution of carbon nanotube (CNT) average bond length (a) '
                          r'and bond number (b) as a function of time.')
 
     # Create 'bond length vs timestep frame' and 'bond number vs timestep frame' subplots
     breakable_cnt_bonds_plot.line_graph_subplots(data_arrays, subplot_titles, x_labels, y_labels, y_lims, x_lim,
-                                                 figure_title)
+                                                 figure_text)
 
     # Extract bond length distribution data
     breakable_cnt_bonds_plot.extract_bond_length_distributions(
@@ -61,6 +61,7 @@ def main():
         '../data/processed/maximum_deformation_bond_length_distribution.dat'
     )
 
+    # Load bond length distribution data and plot on custom line graph
     starting_bond_length_distributions_data = numpy.loadtxt('../data/processed/starting_bond_length_distribution.dat').T
     maximum_deformation_bond_length_distributions_data = (
         numpy.loadtxt('../data/processed/maximum_deformation_bond_length_distribution.dat').T)
@@ -83,9 +84,7 @@ def main():
     bond_length_distributions_plot_y_lim: Union[Tuple, List[Tuple]] = (0.00, 0.13)
     bond_length_distributions_plot_x_lim: Union[Tuple, List[Tuple]] = (1.30, 1.65)
 
-    bond_length_distributions_plot_title: List = [
-        'CNT Bond Length Distributions'
-    ]
+    bond_length_distributions_plot_title: str = 'CNT Bond Length Distributions'
     bond_length_distributions_plot_figure_title: str = (
         r'$\bf{Fig\ 2}$ Bond length distribution carbon nanotube (CNT) at start of '
         r'simulation & at maximum deformation.')

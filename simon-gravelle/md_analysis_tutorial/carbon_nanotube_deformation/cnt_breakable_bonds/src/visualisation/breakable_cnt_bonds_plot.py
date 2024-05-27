@@ -67,7 +67,7 @@ class BreakableCNTBondsPlot(LineGraph):
                 # Histogram calculation of all bond lengths and 50 bins ranging from 1.3 to 1.65
                 # Variable `bond_length_histo` contains counts of bond lengths in each bin
                 bond_length_histo, bin_edges = numpy.histogram(current_timestep_bond_lengths, bins=50,
-                                                               range=(1.3, 1.65), density=True)
+                                                               range=(1.3, 1.65))
 
                 # Convert bin edges to bin centers by averaging each pair of adjacent bin edges
                 bin_centers = (bin_edges[1:] + bin_edges[:-1]) / 2
