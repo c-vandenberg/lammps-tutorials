@@ -7,6 +7,9 @@ For analysing and processing data via Python, this exercise utilises both a proc
 Before the main exercises there is some basic MDAnalysis manipulations in the Jupyter Lab notebook (counting atoms & timestep frames, accessing bonded atom indices, and extracting atomic positions)
 
 ## Evolution of CNT Average Bond Length & Bond Number as a Function of Time
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/bd03ad37-523d-41d9-8dc5-cd9d3c060891" alt="cnt_average_bond_length_bond_number_vs_timestep" width="" />
+</p>
 
 In order to measure the evolution of the number of bonds over time, we loop over the simulation trajectory and manually extract the inter-atomic distance over time.
 
@@ -15,6 +18,9 @@ Within this simulation trajectory loop, there is a nested loop to iterate over t
 This data is then plotted on two scatter graph subplots via Matplotlib Pyplot. The subplots display 'bond length vs timestep frame' and 'bond number vs timestep frame'.
 
 ## Bond Length Distributions
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f061e4e7-9d28-4fb7-b29b-ca5f485940a6" alt="cnt_bond_length_distributions" width="" />
+</p>
 
 Using similar logic as above, this exercise extracts bond length distribution at the beginning of the simulation (frames 1 - 20), and during maximum deformation (frames 200 - 220).
 
