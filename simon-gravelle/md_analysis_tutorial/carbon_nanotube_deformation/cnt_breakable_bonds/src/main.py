@@ -91,9 +91,9 @@ def main():
     bond_length_distributions_plot_y_lim: Union[Tuple, List[Tuple]] = (0.00, 0.13)
     bond_length_distributions_plot_x_lim: Union[Tuple, List[Tuple]] = (1.30, 1.65)
 
-    bond_length_distributions_plot_title: str = 'CNT Bond Length Distributions'
+    bond_length_distributions_plot_title: str = 'Carbon Nanotube Bond Length Probability Densities'
     bond_length_distributions_plot_figure_title: str = (
-        r'$\bf{Fig\ 2}$ Bond length distribution carbon nanotube (CNT) at start of '
+        r'$\bf{Fig\ 2}$ Carbon nanotube (CNT) bond length distribution at start of '
         r'simulation & at maximum deformation.')
 
     breakable_cnt_bonds_plot.single_line_graph(bond_length_distributions_data,
