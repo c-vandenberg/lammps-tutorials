@@ -7,6 +7,26 @@ class ScatterPlot:
     @staticmethod
     def two_dimensional_scatter_plot(x_axis_values: list, y_axis_values: list, x_axis_label: str, y_axis_label: str,
                                      title: str):
+        """
+        Create a two-dimensional scatter plot.
+
+        Parameters
+        ----------
+        x_axis_values : List[float]
+            List of values for the x-axis.
+        y_axis_values : List[float]
+            List of values for the y-axis.
+        x_axis_label : str
+            Label for the x-axis.
+        y_axis_label : str
+            Label for the y-axis.
+        title : str
+            Title of the scatter plot.
+
+        Returns
+        -------
+        None
+        """
         # Create graph
         two_dimension_figure, two_dimension_axes = pyplot.subplots(figsize=(10, 6))
 
@@ -30,6 +50,34 @@ class ScatterPlot:
     def three_dimensional_scatter_plot(x_axis_values: list, y_axis_values: list, z_axis_values: list,
                                        marker_colours: list, x_axis_label: str, y_axis_label: str, z_axis_label: str,
                                        marker_colours_label: str, title: str):
+        """
+        Create a three-dimensional scatter plot.
+
+        Parameters
+        ----------
+        x_axis_values : List[float]
+            List of values for the x-axis.
+        y_axis_values : List[float]
+            List of values for the y-axis.
+        z_axis_values : List[float]
+            List of values for the z-axis.
+        marker_colours : List[float]
+            List of values to determine the color of each marker.
+        x_axis_label : str
+            Label for the x-axis.
+        y_axis_label : str
+            Label for the y-axis.
+        z_axis_label : str
+            Label for the z-axis.
+        marker_colours_label : str
+            Label for the color bar representing marker colors.
+        title : str
+            Title of the scatter plot.
+
+        Returns
+        -------
+        None
+        """
         three_dimension_figure: pyplot.Figure = pyplot.figure(figsize=(10, 6))
         three_dimension_axes: mplot3d.Axes3D = three_dimension_figure.add_subplot(111, projection='3d')
 

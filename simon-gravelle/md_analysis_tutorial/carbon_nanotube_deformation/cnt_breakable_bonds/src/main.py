@@ -25,7 +25,7 @@ def main():
     cnt_atom_group: AtomGroup = md_universe.select_atoms('type 1')
 
     # Extract 'bond length vs timestep frame' and 'bond number vs timestep frame' data
-    breakable_cnt_bonds_plot.extract_bond_lengths_bond_numbers(
+    breakable_cnt_bonds_plot.extract_mean_bond_lengths_bond_numbers(
         md_universe,
         cnt_atom_group,
         '../data/processed/bond_length_vs_timestep_frame.dat',
@@ -37,28 +37,35 @@ def main():
     bond_number_vs_timestep_frame = numpy.loadtxt("../data/processed/bond_number_vs_timestep_frame.dat")
 
     # Define subplot configurations
-    data_arrays: List[ndarray] = [bond_length_vs_timestep_frame, bond_number_vs_timestep_frame]
-    subplot_titles: List = [
+    subplots_data_arrays: List[ndarray] = [bond_length_vs_timestep_frame, bond_number_vs_timestep_frame]
+    subplots_titles: List = [
         'CNT Bond Length vs Timestep Frame (a)',
         'CNT Number of Bonds vs Timestep Frame (b)'
     ]
-    y_labels: List = ['Bond Length (Å)', 'Number of Bonds']
-    x_labels: List = ['t (ps)', 't (ps)']
-    y_lims: Union[Tuple, List[Tuple]] = [(1.35, 1.65), (500, 520)]
-    x_lim: Union[Tuple, List[Tuple]] = (0, 300)
-    figure_text: str = (r'$\bf{Fig\ 1}$ Evolution of carbon nanotube (CNT) average bond length (a) '
-                         r'and bond number (b) as a function of time.')
+    subplots_y_labels: List = ['Bond Length (Å)', 'Number of Bonds']
+    subplots_x_labels: List = ['t (ps)', 't (ps)']
+    subplots_y_lims: Union[Tuple, List[Tuple]] = [(1.35, 1.65), (500, 520)]
+    subplots_x_lim: Union[Tuple, List[Tuple]] = (0, 300)
+    subplots_title: str = 'CNT Average Bond Length & Bond Number vs Timestep Frame'
+    subplots_figure_text: str = (r'$\bf{Fig\ 1}$ Evolution of carbon nanotube (CNT) average bond length (a) '
+                                 r'and bond number (b) as a function of time.')
 
     # Create 'bond length vs timestep frame' and 'bond number vs timestep frame' subplots
-    breakable_cnt_bonds_plot.line_graph_subplots(data_arrays, subplot_titles, x_labels, y_labels, y_lims, x_lim,
-                                                 figure_text)
+    breakable_cnt_bonds_plot.line_graph_subplots(subplots_data_arrays, subplots_titles, subplots_x_labels,
+                                                 subplots_y_labels, subplots_y_lims, subplots_x_lim, subplots_title,
+                                                 subplots_figure_text)
 
     # Extract bond length distribution data
     breakable_cnt_bonds_plot.extract_bond_length_distributions(
         md_universe,
         cnt_atom_group,
         '../data/processed/starting_bond_length_distribution.dat',
-        '../data/processed/maximum_deformation_bond_length_distribution.dat'
+        '../data/processed/maximum_deformation_bond_length_distribution.dat',
+        1.8,
+        50,
+        (1.3, 1.65),
+        (0, 20),
+        (200, 220)
     )
 
     # Load bond length distribution data and plot on custom line graph
@@ -66,11 +73,11 @@ def main():
     maximum_deformation_bond_length_distributions_data = (
         numpy.loadtxt('../data/processed/maximum_deformation_bond_length_distribution.dat').T)
 
+    # Define line graph configurations
     bond_length_distributions_data = [
         starting_bond_length_distributions_data,
         maximum_deformation_bond_length_distributions_data
     ]
-
     bond_length_distributions_plot_line_labels: List = [
         'At Start (Frames 1 - 20)',
         'During Maximum Deformation (Frames 200 - 220)'
