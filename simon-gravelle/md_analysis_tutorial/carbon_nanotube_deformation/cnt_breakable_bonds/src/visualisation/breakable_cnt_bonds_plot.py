@@ -48,7 +48,8 @@ class BreakableCNTBondsPlot(LineGraph):
 
     @staticmethod
     def extract_bond_length_distributions(md_universe: Universe, cnt_atom_group: AtomGroup,
-                                          bond_length_distributions_path: str):
+                                          starting_bond_length_path: str,
+                                          maximum_deformation_bond_length_distribution_path: str):
         bond_length_distributions = []
         for timestep in md_universe.trajectory:
             frame: int = timestep.frame
@@ -62,10 +63,30 @@ class BreakableCNTBondsPlot(LineGraph):
                 if bond_length < 1.8:
                     current_timestep_bond_lengths.append(bond_length)
 
-            if frame > 0:  # ignore the first frame
+            if frame > 0:  # Ignore first frame
+                # Histogram calculation of all bond lengths and 50 bins ranging from 1.3 to 1.65
+                # Variable `bond_length_histo` contains counts of bond lengths in each bin
                 bond_length_histo, bin_edges = numpy.histogram(current_timestep_bond_lengths, bins=50,
-                                                               range=(1.3, 1.65))
+                                                               range=(1.3, 1.65), density=True)
+
+                # Convert bin edges to bin centers by averaging each pair of adjacent bin edges
                 bin_centers = (bin_edges[1:] + bin_edges[:-1]) / 2
+
+                # Normalize histogram counts by calculating bin widths & dividing histogram counts by total number of
+                # bond lengths * the bin width
+                bin_width = bin_edges[1] = bin_edges[0]
+                bond_length_histo = bond_length_histo / (numpy.sum(bond_length_histo) * bin_width)
+
+                # Store bin center and normalized histogram counts by stacking vertically using `numpy.vstack`, and
+                # appending to `bond_length_distributions` list
                 bond_length_distributions.append(numpy.vstack([bin_centers, bond_length_histo]))
 
-        numpy.savetxt(bond_length_distributions_path, bond_length_distributions)
+        # Slice `bond_length_distributions` list to extract first bond length distributions for first 20 frames
+        # Calculate mean of these 20 distributions along the vertical axis
+        starting_bond_length_distribution = numpy.mean(bond_length_distributions[0:20], axis=0)
+
+        # Slice `bond_length_distributions` list to extract first bond length distributions between frames 200 & 220
+        maximum_deformation_bond_length_distribution = numpy.mean(bond_length_distributions[200:220], axis=0)
+
+        numpy.savetxt(starting_bond_length_path, starting_bond_length_distribution.T)
+        numpy.savetxt(maximum_deformation_bond_length_distribution_path, maximum_deformation_bond_length_distribution.T)

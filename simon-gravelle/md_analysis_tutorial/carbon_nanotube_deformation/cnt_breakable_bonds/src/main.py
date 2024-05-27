@@ -24,36 +24,37 @@ def main():
     # Instantiate carbon atoms (atom type 1) AtomGroup object
     cnt_atom_group: AtomGroup = md_universe.select_atoms('type 1')
 
-    # Extract 'bond length vs timestep frame' and 'bond number vs timestep frame' data
-    breakable_cnt_bonds_plot.extract_bond_lengths_bond_numbers(
+
+
+    # Extract bond length distribution data
+    breakable_cnt_bonds_plot.extract_bond_length_distributions(
         md_universe,
         cnt_atom_group,
-        '../data/processed/bond_length_vs_timestep_frame.dat',
-        '../data/processed/bond_number_vs_timestep_frame.dat'
+        '../data/processed/starting_bond_length_distribution.dat',
+        '../data/processed/maximum_deformation_bond_length_distribution.dat'
     )
 
-    # Load 'bond length vs timestep frame' and 'bond number vs timestep frame' data
-    bond_length_vs_timestep_frame = numpy.loadtxt("../data/processed/bond_length_vs_timestep_frame.dat")
-    bond_number_vs_timestep_frame = numpy.loadtxt("../data/processed/bond_number_vs_timestep_frame.dat")
+    starting_bond_length_distributions_data = numpy.loadtxt('../data/processed/starting_bond_length_distribution.dat').T
+    maximum_deformation_bond_length_distributions_data = (
+        numpy.loadtxt('../data/processed/maximum_deformation_bond_length_distribution.dat').T)
 
-    # Define subplot configurations
-    data_arrays: List[ndarray] = [bond_length_vs_timestep_frame, bond_number_vs_timestep_frame]
-    subplot_titles: List = [
-        'CNT Bond Length vs Timestep Frame (a)',
-        'CNT Number of Bonds vs Timestep Frame (b)'
+    bond_length_distributions_data = [
+        starting_bond_length_distributions_data,
+        maximum_deformation_bond_length_distributions_data
     ]
-    x_labels: List = ['t (ps)', 't (ps)']
-    y_labels: List = ['Bond Length (Å)', 'Number of Bonds']
-    y_lims: Union[Tuple, List[Tuple]] = [(1.35, 1.65), (500, 520)]
-    x_lim: Union[Tuple, List[Tuple]] = (0, 300)
-    figure_title: str = (r'$\bf{Fig\ 1}$ Evolution of carbon nanotube (CNT) average bond length (a) '
-                         r'and bond number (b) as a function of time.')
 
-    # Create 'bond length vs timestep frame' and 'bond number vs timestep frame' subplots
-    breakable_cnt_bonds_plot.line_graph_subplots(data_arrays, subplot_titles, x_labels, y_labels, y_lims, x_lim,
-                                                 figure_title)
+    bond_length_plot_title: List = [
+        'CNT Bond Length Distributions'
+    ]
+    bond_length_plot_x_labels: List = ['Bond Length (Å)']
+    bond_length_plot_y_labels: List = ['Probability']
+    bond_length_plot_y_lims: Union[Tuple, List[Tuple]] = (0.00, 1.17)
+    bond_length_plot_x_lim: Union[Tuple, List[Tuple]] = (1.25, 1.65)
+    bond_length_plot_figure_title: str = (r'$\bf{Fig\ 2}$ Bond length distribution carbon nanotube (CNT) at start of '
+                                          r'simulation & at maximum deformation.')
 
-    # C
+    breakable_cnt_bonds_plot.plot_bond_length_distributions(starting_bond_length_distributions_data,
+                                                            maximum_deformation_bond_length_distributions_data)
 
 
 if __name__ == '__main__':
