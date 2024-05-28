@@ -1,7 +1,7 @@
 import matplotlib.pyplot as pyplot
 import mpl_toolkits.mplot3d as mplot3d
 import mpl_toolkits.mplot3d.art3d as art3d
-from typing import List, Union, Tuple
+from typing import List
 
 
 class ScatterPlot:

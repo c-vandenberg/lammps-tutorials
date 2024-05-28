@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import numpy
 from numpy import ndarray
 from typing import List, Union, Tuple

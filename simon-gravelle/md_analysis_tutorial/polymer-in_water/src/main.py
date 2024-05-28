@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from visualisation.solvated_peg_trajectory_plot import SolvatedPEGTrajectoryPlot
 from MDAnalysis import AtomGroup, Universe
 from constants.solvated_peg_constants import SolvatedPEGConstants
