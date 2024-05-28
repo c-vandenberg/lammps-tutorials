@@ -38,22 +38,19 @@ def main():
 
     # Define subplot configurations
     subplots_data_arrays: List[ndarray] = [bond_length_vs_timestep_frame, bond_number_vs_timestep_frame]
-    subplots_titles: List = [
-        'CNT Bond Length vs Timestep Frame (a)',
-        'CNT Number of Bonds vs Timestep Frame (b)'
-    ]
-    subplots_y_labels: List = ['Bond Length (Å)', 'Number of Bonds']
-    subplots_x_labels: List = ['t (ps)', 't (ps)']
-    subplots_y_lims: Union[Tuple, List[Tuple]] = [(1.35, 1.65), (500, 520)]
-    subplots_x_lim: Union[Tuple, List[Tuple]] = (0, 300)
-    subplots_title: str = 'CNT Average Bond Length & Bond Number vs Timestep Frame'
-    subplots_figure_text: str = (r'$\bf{Fig\ 1}$ Evolution of carbon nanotube (CNT) average bond length (a) '
-                                 r'and bond number (b) as a function of time.')
 
     # Create 'bond length vs timestep frame' and 'bond number vs timestep frame' subplots
-    breakable_cnt_bonds_plot.line_graph_subplots(subplots_data_arrays, subplots_titles, subplots_x_labels,
-                                                 subplots_y_labels, subplots_y_lims, subplots_x_lim, subplots_title,
-                                                 subplots_figure_text)
+    breakable_cnt_bonds_plot.line_graph_subplots(
+        subplots_data_arrays,
+        ['CNT Bond Length vs Timestep Frame (a)', 'CNT Number of Bonds vs Timestep Frame (b)'],
+        ['t (ps)', 't (ps)'],
+        ['Bond Length (Å)', 'Number of Bonds'],
+        [(1.35, 1.65), (500, 520)],
+        (0, 300),
+        'CNT Average Bond Length & Bond Number vs Timestep Frame',
+        (r'$\bf{Fig\ 1}$ Evolution of carbon nanotube (CNT) average bond length (a) and bond number (b) as a '
+         r'function of time.')
+    )
 
     # Extract bond length distribution data
     breakable_cnt_bonds_plot.extract_bond_length_distributions(
@@ -78,33 +75,23 @@ def main():
         starting_bond_length_distributions_data,
         maximum_deformation_bond_length_distributions_data
     ]
-    bond_length_distributions_plot_line_labels: List = [
-        'At Start (Frames 1 - 20)',
-        'During Maximum Deformation (Frames 200 - 220)'
-    ]
-    bond_length_distributions_line_colours: List = [
-        'cyan',
-        'orange'
-    ]
-    bond_length_distributions_plot_x_label: str = 'Bond Length (Å)'
-    bond_length_distributions_plot_y_label: str = 'Probability'
-    bond_length_distributions_plot_y_lim: Union[Tuple, List[Tuple]] = (0.00, 0.13)
-    bond_length_distributions_plot_x_lim: Union[Tuple, List[Tuple]] = (1.30, 1.65)
 
-    bond_length_distributions_plot_title: str = 'Carbon Nanotube Bond Length Probability Densities'
-    bond_length_distributions_plot_figure_title: str = (
-        r'$\bf{Fig\ 2}$ Carbon nanotube (CNT) bond length distribution at start of '
-        r'simulation & at maximum deformation.')
-
-    breakable_cnt_bonds_plot.single_line_graph(bond_length_distributions_data,
-                                               bond_length_distributions_plot_line_labels,
-                                               bond_length_distributions_line_colours,
-                                               bond_length_distributions_plot_x_label,
-                                               bond_length_distributions_plot_y_label,
-                                               bond_length_distributions_plot_y_lim,
-                                               bond_length_distributions_plot_x_lim,
-                                               bond_length_distributions_plot_title,
-                                               bond_length_distributions_plot_figure_title)
+    breakable_cnt_bonds_plot.single_line_graph(
+        bond_length_distributions_data,
+        (10, 6),
+        ['At Start (Frames 1 - 20)', 'During Maximum Deformation (Frames 200 - 220)'],
+        ['cyan', 'orange'],
+        'Bond Length (Å)',
+        'Probability',
+        (0.00, 0.13),
+        (1.30, 1.65),
+        'Carbon Nanotube Bond Length Probability Densities',
+        (r'$\bf{Fig\ 2}$ Carbon nanotube (CNT) bond length distribution at start of simulation & at '
+         r'maximum deformation.'),
+        12,
+        10,
+        1.5
+    )
 
 
 if __name__ == '__main__':

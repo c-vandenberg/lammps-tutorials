@@ -70,8 +70,9 @@ class LineGraph:
         pyplot.show()
 
     @staticmethod
-    def single_line_graph(data_arrays: List[ndarray], line_labels: List, line_colours: List, x_label: str,
-                          y_label: str, y_lim: Tuple, x_lim: Tuple, graph_title: str, figure_text: str):
+    def single_line_graph(data_arrays: List[ndarray], figure_size: Tuple[int, int], line_labels: List,
+                          line_colours: List, x_label: str, y_label: str, y_lim: Tuple, x_lim: Tuple, graph_title: str,
+                          figure_text: str, font_size: int, label_size: int, line_width: int):
         """
         Create a single line graph with multiple lines.
 
@@ -79,6 +80,8 @@ class LineGraph:
         ----------
         data_arrays : List[ndarray]
             List of NumPy data arrays where each array contains x and y data for a line plot.
+        figure_size : Tuple[int, int]
+            Size of the figure (width, height)
         line_labels : List[str]
             List of labels for each line.
         line_colours : List[str]
@@ -95,18 +98,24 @@ class LineGraph:
             Title for the graph.
         figure_text : str
             Additional text to display at the bottom of the figure.
+        font_size : int
+            Font size for the axis labels and title.
+        label_size : int
+            Font size for the tick labels.
+        line_width : int
+            Width of the lines in the plot.
 
         Returns
         -------
         None
         """
         # Set up the line graph
-        line_graph, line_graph_axes = pyplot.subplots(figsize=(10, 6))
+        line_graph, line_graph_axes = pyplot.subplots(figsize=figure_size)
         line_graph.patch.set_facecolor('black')
         line_graph_axes.set_facecolor('black')
 
         # Stylise ticks and spines
-        line_graph_axes.tick_params(colors='white', which='both')
+        line_graph_axes.tick_params(colors='white', which='both', labelsize=label_size)
         for spine in line_graph_axes.spines.values():
             spine.set_edgecolor('white')
 
@@ -114,24 +123,25 @@ class LineGraph:
         for key, data in enumerate(data_arrays):
             y_axis_data = data[0]
             x_axis_data = data[1]
-            line_graph_axes.plot(y_axis_data, x_axis_data, color=line_colours[key], label=line_labels[key])
+            line_graph_axes.plot(y_axis_data, x_axis_data, color=line_colours[key], linewidth=line_width,
+                                 label=line_labels[key])
 
         # Set axes labels, limits and graph title
-        line_graph_axes.set_xlabel(x_label, color='white')
-        line_graph_axes.set_ylabel(y_label, color='white')
+        line_graph_axes.set_xlabel(x_label, fontsize=font_size, color='white')
+        line_graph_axes.set_ylabel(y_label, fontsize=font_size, color='white')
         line_graph_axes.set_ylim(y_lim)
         line_graph_axes.set_xlim(x_lim)
-        line_graph_axes.set_title(graph_title, color='white')
+        line_graph_axes.set_title(graph_title, fontsize=font_size, color='white')
 
         # Add legend
-        legend: Legend = line_graph_axes.legend(loc='upper right', frameon=False, fontsize=12)
+        legend: Legend = line_graph_axes.legend(loc='upper right', frameon=False, fontsize=font_size)
         for text in legend.get_texts():
             text.set_color('white')
 
         # Add figure title
         line_graph.text(0.5, 0.0005,
                         figure_text,
-                        ha='center', va='center', color='white', fontsize=12)
+                        ha='center', va='center', color='white', fontsize=font_size)
 
         # Show plot
         pyplot.tight_layout()

@@ -1,11 +1,12 @@
 import matplotlib.pyplot as pyplot
 import mpl_toolkits.mplot3d as mplot3d
 import mpl_toolkits.mplot3d.art3d as art3d
+from typing import List, Union, Tuple
 
 
 class ScatterPlot:
     @staticmethod
-    def two_dimensional_scatter_plot(x_axis_values: list, y_axis_values: list, x_axis_label: str, y_axis_label: str,
+    def two_dimensional_scatter_plot(x_axis_values: List, y_axis_values: List, x_axis_label: str, y_axis_label: str,
                                      title: str):
         """
         Create a two-dimensional scatter plot.
@@ -47,8 +48,8 @@ class ScatterPlot:
         pyplot.show()
 
     @staticmethod
-    def three_dimensional_scatter_plot(x_axis_values: list, y_axis_values: list, z_axis_values: list,
-                                       marker_colours: list, x_axis_label: str, y_axis_label: str, z_axis_label: str,
+    def three_dimensional_scatter_plot(x_axis_values: List, y_axis_values: List, z_axis_values: List,
+                                       marker_colours: List, x_axis_label: str, y_axis_label: str, z_axis_label: str,
                                        marker_colours_label: str, title: str):
         """
         Create a three-dimensional scatter plot.
