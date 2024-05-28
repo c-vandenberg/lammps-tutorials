@@ -47,8 +47,8 @@ def main():
         subplot_titles=['CNT Bond Length vs Timestep Frame (a)', 'CNT Number of Bonds vs Timestep Frame (b)'],
         x_labels=['t (ps)', 't (ps)'],
         y_labels=['Bond Length (Å)', 'Number of Bonds'],
+        x_lim=(0, 300),
         y_lims=[(1.35, 1.65), (500, 520)],
-        x_lims=(0, 300),
         graph_title='CNT Average Bond Length & Bond Number vs Timestep Frame',
         figure_text=(
             r'$\bf{Fig\ 1}$ Evolution of carbon nanotube (CNT) average bond length (a) and bond number (b) as a '
@@ -83,7 +83,6 @@ def main():
     breakable_cnt_bonds_plot.single_line_graph(
         data_arrays=bond_length_distributions_data,
         figure_size=(10, 6),
-        line_labels=['At Start (Frames 1 - 20)', 'During Maximum Deformation (Frames 200 - 220)'],
         line_colours=['cyan', 'orange'],
         x_label='Bond Length (Å)',
         y_label='Probability',
@@ -94,7 +93,8 @@ def main():
                      r'maximum deformation.'),
         font_size=12,
         label_size=10,
-        line_width=1.5
+        line_width=1.5,
+        line_labels=['At Start (Frames 1 - 20)', 'During Maximum Deformation (Frames 200 - 220)']
     )
 
 

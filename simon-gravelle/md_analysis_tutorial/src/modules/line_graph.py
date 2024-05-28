@@ -7,7 +7,7 @@ from typing import List, Union, Tuple
 class LineGraph:
     @staticmethod
     def line_graph_subplots(data_arrays: List[ndarray], subplot_titles: List, x_labels: List, y_labels: List,
-                            y_lims: Union[Tuple, List[Tuple]], x_lim: Union[Tuple, List[Tuple]], graph_title: str,
+                            x_lim: Union[Tuple, List[Tuple]], y_lims: Union[Tuple, List[Tuple]], graph_title: str,
                             figure_text: str):
         """
         Create multiple line graph subplots.
@@ -22,10 +22,10 @@ class LineGraph:
             List of x-axis labels for each subplot.
         y_labels : List[str]
             List of y-axis labels for each subplot.
-        y_lims : Union[Tuple[float, float], List[Tuple[float, float]]]
-            Limits for the y-axis. Can be a single tuple for a single subplot or a list of tuples for multiple subplots.
         x_lim : Union[Tuple[float, float], List[Tuple[float, float]]]
             Limits for the x-axis. Can be a single tuple for a single subplot or a list of tuples for multiple subplots.
+        y_lims : Union[Tuple[float, float], List[Tuple[float, float]]]
+            Limits for the y-axis. Can be a single tuple for a single subplot or a list of tuples for multiple subplots.
         graph_title : str
             Title for the graph.
         figure_text : str
@@ -70,9 +70,10 @@ class LineGraph:
         pyplot.show()
 
     @staticmethod
-    def single_line_graph(data_arrays: List[ndarray], figure_size: Tuple[int, int], line_labels: List,
+    def single_line_graph(data_arrays: List[ndarray], figure_size: Tuple[int, int],
                           line_colours: List, x_label: str, y_label: str, y_lim: Tuple, x_lim: Tuple, graph_title: str,
-                          figure_text: str, font_size: int, label_size: int, line_width: int):
+                          figure_text: str, font_size: int, label_size: int, line_width: int,
+                          line_labels: Union[List, None] = None):
         """
         Create a single line graph with multiple lines.
 
@@ -82,8 +83,6 @@ class LineGraph:
             List of NumPy data arrays where each array contains x and y data for a line plot.
         figure_size : Tuple[int, int]
             Size of the figure (width, height)
-        line_labels : List[str]
-            List of labels for each line.
         line_colours : List[str]
             List of colors for each line.
         x_label : str
@@ -104,6 +103,8 @@ class LineGraph:
             Font size for the tick labels.
         line_width : int
             Width of the lines in the plot.
+        line_labels : Union[List, None]
+            List of labels for each line (optional).
 
         Returns
         -------
@@ -123,8 +124,11 @@ class LineGraph:
         for key, data in enumerate(data_arrays):
             y_axis_data = data[0]
             x_axis_data = data[1]
-            line_graph_axes.plot(y_axis_data, x_axis_data, color=line_colours[key], linewidth=line_width,
-                                 label=line_labels[key])
+            if line_labels and len(line_labels) > 0:
+                line_graph_axes.plot(y_axis_data, x_axis_data, color=line_colours[key], linewidth=line_width,
+                                     label=line_labels[key])
+            else:
+                line_graph_axes.plot(y_axis_data, x_axis_data, color=line_colours[key], linewidth=line_width)
 
         # Set axes labels, limits and graph title
         line_graph_axes.set_xlabel(x_label, fontsize=font_size, color='white')
