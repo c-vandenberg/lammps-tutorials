@@ -23,9 +23,9 @@ def main():
 
     # Extract temporal evolution data of first type 4 hydrogen atom in PEG molecule
     peg_hydrogen_atom_4_traj: list = solvated_peg_trajectory_plot.get_first_atom_temporal_evolution_from_type(
-        md_universe,
-        peg_molecule,
-        'type 4'
+        md_universe=md_universe,
+        molecule=peg_molecule,
+        atom_type='type 4'
     )
 
     # Extract temporal evolution data into separate list variables for timestep frames and x, y, z coordinates
@@ -36,24 +36,24 @@ def main():
 
     # Plot x and y coordinates occupied by first type 4 hydrogen atom during simulation on 2-D scatter plot
     solvated_peg_trajectory_plot.two_dimensional_scatter_plot(
-        x_coordinates,
-        y_coordinates,
-        'x (Å)',
-        'y (Å)',
-        'X and Y Coordinates of Hydrogen Atom 4 During Equilibration'
+        x_axis_values=x_coordinates,
+        _axis_values=y_coordinates,
+        x_axis_label='x (Å)',
+        y_axis_label='y (Å)',
+        graph_title='X and Y Coordinates of Hydrogen Atom 4 During Equilibration'
     )
 
     # Plot x, y, z coordinates on 3-D scatter plot, with colour bar representing timestep frames
     solvated_peg_trajectory_plot.three_dimensional_scatter_plot(
-        x_coordinates,
-        y_coordinates,
-        z_coordinates,
-        timestep_frames,
-        'x (Å)',
-        'y (Å)',
-        'z (Å)',
-        'Timestep Frame',
-        '3D Coordinates of Hydrogen Atom 4 During Equilibration'
+        x_axis_values=x_coordinates,
+        y_axis_values=y_coordinates,
+        z_axis_values=z_coordinates,
+        marker_colours=timestep_frames,
+        x_axis_label='x (Å)',
+        y_axis_label='y (Å)',
+        z_axis_label='z (Å)',
+        marker_colours_label='Timestep Frame',
+        graph_title='3D Coordinates of Hydrogen Atom 4 During Equilibration'
     )
 
 

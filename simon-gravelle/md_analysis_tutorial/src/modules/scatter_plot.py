@@ -7,7 +7,7 @@ from typing import List
 class ScatterPlot:
     @staticmethod
     def two_dimensional_scatter_plot(x_axis_values: List, y_axis_values: List, x_axis_label: str, y_axis_label: str,
-                                     title: str):
+                                     graph_title: str):
         """
         Create a two-dimensional scatter plot.
 
@@ -21,7 +21,7 @@ class ScatterPlot:
             Label for the x-axis.
         y_axis_label : str
             Label for the y-axis.
-        title : str
+        graph_title : str
             Title of the scatter plot.
 
         Returns
@@ -37,7 +37,7 @@ class ScatterPlot:
         two_dimension_axes.scatter(x_axis_values, y_axis_values, c='cyan', marker='o', alpha=0.6)
         two_dimension_axes.set_ylim(12, two_dimension_axes.get_ylim()[1])
 
-        pyplot.title(title, color='white')
+        pyplot.title(graph_title, color='white')
         pyplot.xlabel(x_axis_label, color='white')
         pyplot.ylabel(y_axis_label, color='white')
         two_dimension_axes.tick_params(colors='white', which='both')
@@ -50,7 +50,7 @@ class ScatterPlot:
     @staticmethod
     def three_dimensional_scatter_plot(x_axis_values: List, y_axis_values: List, z_axis_values: List,
                                        marker_colours: List, x_axis_label: str, y_axis_label: str, z_axis_label: str,
-                                       marker_colours_label: str, title: str):
+                                       marker_colours_label: str, graph_title: str):
         """
         Create a three-dimensional scatter plot.
 
@@ -72,7 +72,7 @@ class ScatterPlot:
             Label for the z-axis.
         marker_colours_label : str
             Label for the color bar representing marker colors.
-        title : str
+        graph_title : str
             Title of the scatter plot.
 
         Returns
@@ -96,7 +96,7 @@ class ScatterPlot:
         colour_bar.set_label(marker_colours_label)
 
         # Set titles and labels
-        three_dimension_axes.set_title(title)
+        three_dimension_axes.set_title(graph_title)
         three_dimension_axes.set_xlabel(x_axis_label)
         three_dimension_axes.set_ylabel(y_axis_label)
         three_dimension_axes.set_zlabel(z_axis_label)
