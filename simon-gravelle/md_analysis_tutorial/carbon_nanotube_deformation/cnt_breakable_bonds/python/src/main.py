@@ -9,10 +9,10 @@ from MDAnalysis import AtomGroup, Universe
 
 def main():
     # Instantiate MD Universe object with `../../data/raw/cnt_atomic.data` molecular topology data
-    # & `../../data/raw/cnt_breakable_bonds_dump.lammpstrj` simulation trajectory-data-data coordinates
+    # & `../../data/raw/cnt_breakable_bonds_dump.lammpstrj` simulation trajectory-data coordinates
     md_universe: Universe = Universe(
-        "../../data/raw/topology-data/cnt_atomic.data",
-        "../../data/raw/trajectory-data/cnt_breakable_bonds_dump.lammpstrj",
+        "../../data/raw/topology/cnt_atomic.data",
+        "../../data/raw/trajectory/cnt_breakable_bonds_dump.lammpstrj",
         topology_format="data",
         format="lammpsdump",
         atom_style='id type x y z',
@@ -30,15 +30,15 @@ def main():
     breakable_cnt_bonds_plot.extract_mean_bond_lengths_bond_numbers(
         md_universe=md_universe,
         cnt_atom_group=cnt_atom_group,
-        bond_length_vs_timestep_path='../../data/processed/bond-length-vs-time-data/bond_length_vs_timestep_frame.dat',
-        bond_number_vs_timestep_path='../../data/processed/bond-number-vs-time-data/bond_number_vs_timestep_frame.dat'
+        bond_length_vs_timestep_path='../../data/processed/bond-length-vs-time/bond_length_vs_timestep_frame.dat',
+        bond_number_vs_timestep_path='../../data/processed/bond-number-vs-time/bond_number_vs_timestep_frame.dat'
     )
 
     # Load 'bond length vs timestep frame' and 'bond number vs timestep frame' data
     bond_length_vs_timestep_frame = numpy.loadtxt(
-        "../../data/processed/bond-length-vs-time-data/bond_length_vs_timestep_frame.dat")
+        "../../data/processed/bond-length-vs-time/bond_length_vs_timestep_frame.dat")
     bond_number_vs_timestep_frame = numpy.loadtxt(
-        "../../data/processed/bond-number-vs-time-data/bond_number_vs_timestep_frame.dat")
+        "../../data/processed/bond-number-vs-time/bond_number_vs_timestep_frame.dat")
 
     # Define subplot configurations
     subplots_data_arrays: List[ndarray] = [bond_length_vs_timestep_frame, bond_number_vs_timestep_frame]
@@ -62,9 +62,9 @@ def main():
     breakable_cnt_bonds_plot.extract_bond_length_distributions(
         md_universe=md_universe,
         cnt_atom_group=cnt_atom_group,
-        first_bond_length_distribution_path=('../../data/processed/bond-length-distribution-data'
+        first_bond_length_distribution_path=('../../data/processed/bond-length-distribution'
                                              '/starting_bond_length_distribution.dat'),
-        second_bond_length_distribution_path=('../../data/processed/bond-length-distribution-data'
+        second_bond_length_distribution_path=('../../data/processed/bond-length-distribution'
                                               '/maximum_deformation_bond_length_distribution.dat'),
         bond_length_cutoff=1.8,
         number_of_bins=50,
@@ -75,10 +75,10 @@ def main():
 
     # Load bond length distribution data and plot on custom line graph
     starting_bond_length_distributions_data = numpy.loadtxt(
-        '../../data/processed/bond-length-distribution-data/starting_bond_length_distribution.dat').T
+        '../../data/processed/bond-length-distribution/starting_bond_length_distribution.dat').T
     maximum_deformation_bond_length_distributions_data = (
         numpy.loadtxt(
-            '../../data/processed/bond-length-distribution-data/maximum_deformation_bond_length_distribution.dat').T)
+            '../../data/processed/bond-length-distribution/maximum_deformation_bond_length_distribution.dat').T)
 
     # Define line graph configurations
     bond_length_distributions_data = [
