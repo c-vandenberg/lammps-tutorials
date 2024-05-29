@@ -8,7 +8,7 @@ sys.path.append(
     os.getenv('LAMMPS_MD_ANALYSIS_BASE_DIRECTORY')
 )
 
-from src.modules.line_graph import LineGraph
+from modules.line_graph import LineGraph
 
 
 class LennardJonesFluidInteractionsPlot(LineGraph):

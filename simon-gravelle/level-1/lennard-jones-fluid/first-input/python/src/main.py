@@ -22,6 +22,7 @@ def main():
         lj_parameters
     )
 
+    # Plot line graph of Lennard-Jones potentials vs intermolecular range
     lennard_jones_fluid_interactions_plot.single_line_graph(
         data_arrays=lj_potentials,
         figure_size=(18, 6),
@@ -37,14 +38,15 @@ def main():
         font_size=20,
         label_size=20,
         line_width=4
-
     )
 
-    log_file: lammps_logfile.File = lammps_logfile.File('../../logs/first-input-improved-input-min-log.lammps')
+    # Extract first-input-log.lammps log file data & instantiate lammps_logfile.File object
+    log_file: lammps_logfile.File = lammps_logfile.File('../../logs/first-input-log.lammps')
     timestep: float = 0.005
     pe_vs_time: List[ndarray] = []
     ke_vs_time: List[ndarray] = []
 
+    # Extract timestep, potential energy & kinetic energy for energy minimization run from lammps_logfile.File object
     energy_min_time: ndarray = log_file.get("Step", run_num=0) * timestep
     energy_min_potential_energy: ndarray = log_file.get("PotEng", run_num=0)
     energy_min_kinetic_energy: ndarray = log_file.get("KinEng", run_num=0)
@@ -52,6 +54,7 @@ def main():
     pe_vs_time.append(numpy.vstack((energy_min_time, energy_min_potential_energy)))
     ke_vs_time.append(numpy.vstack((energy_min_time, energy_min_kinetic_energy)))
 
+    # Extract timestep, potential energy & kinetic energy for molecular dynamics run from lammps_logfile.File object
     molecular_dynamics_time: ndarray = log_file.get("Step", run_num=1) * timestep
     molecular_dynamics_potential_energy: ndarray = log_file.get("PotEng", run_num=1)
     molecular_dynamics_kinetic_energy: ndarray = log_file.get("KinEng", run_num=1)
@@ -59,6 +62,7 @@ def main():
     pe_vs_time.append(numpy.vstack((molecular_dynamics_time, molecular_dynamics_potential_energy)))
     ke_vs_time.append(numpy.vstack((molecular_dynamics_time, molecular_dynamics_kinetic_energy)))
 
+    # Plot line graph of potential energy vs time for energy minimization & molecular dynamics simulation
     lennard_jones_fluid_interactions_plot.single_line_graph(
         data_arrays=pe_vs_time,
         figure_size=(18, 10),
@@ -78,6 +82,7 @@ def main():
         line_width=3.5
     )
 
+    # Plot line graph of kinetic energy vs time for energy minimization & molecular dynamics simulation
     lennard_jones_fluid_interactions_plot.single_line_graph(
         data_arrays=ke_vs_time,
         figure_size=(18, 10),
