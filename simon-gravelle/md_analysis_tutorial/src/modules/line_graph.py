@@ -72,7 +72,7 @@ class LineGraph:
     @staticmethod
     def single_line_graph(data_arrays: List[ndarray], figure_size: Tuple[int, int],
                           line_colours: List, x_label: str, y_label: str, y_lim: Tuple, x_lim: Tuple, graph_title: str,
-                          figure_text: str, font_size: int, label_size: int, line_width: int,
+                          figure_text: str, figure_text_font_size: int, font_size: int, label_size: int, line_width: int,
                           line_labels: Union[List, None] = None):
         """
         Create a single line graph with multiple lines.
@@ -97,8 +97,10 @@ class LineGraph:
             Title for the graph.
         figure_text : str
             Additional text to display at the bottom of the figure.
+        figure_text_font_size: int
+            Font size for the text displayed at the bottom of the figure.
         font_size : int
-            Font size for the axis labels and title.
+            Font size for the axis labels, tick labels and title.
         label_size : int
             Font size for the tick labels.
         line_width : int
@@ -138,14 +140,15 @@ class LineGraph:
         line_graph_axes.set_title(graph_title, fontsize=font_size, color='white')
 
         # Add legend
-        legend: Legend = line_graph_axes.legend(loc='upper right', frameon=False, fontsize=font_size)
+        legend: Legend = line_graph_axes.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False,
+                                                fontsize=font_size)
         for text in legend.get_texts():
             text.set_color('white')
 
         # Add figure title
         line_graph.text(0.5, 0.0005,
                         figure_text,
-                        ha='center', va='center', color='white', fontsize=font_size)
+                        ha='center', va='center', color='white', fontsize=figure_text_font_size)
 
         # Show plot
         pyplot.tight_layout()

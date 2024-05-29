@@ -91,6 +91,7 @@ def main():
         graph_title='Carbon Nanotube Bond Length Probability Densities',
         figure_text=(r'$\bf{Fig\ 2}$ Carbon nanotube (CNT) bond length distribution at start of simulation & at '
                      r'maximum deformation.'),
+        figure_text_font_size=12,
         font_size=12,
         label_size=10,
         line_width=1.5,
