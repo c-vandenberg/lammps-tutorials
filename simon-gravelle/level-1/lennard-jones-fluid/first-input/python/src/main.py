@@ -40,7 +40,7 @@ def main():
 
     )
 
-    log_file: lammps_logfile.File = lammps_logfile.File('../log.lammps')
+    log_file: lammps_logfile.File = lammps_logfile.File('../../logs/first-input-improved-input-min-log.lammps')
     timestep: float = 0.005
     pe_vs_time: List[ndarray] = []
     ke_vs_time: List[ndarray] = []
