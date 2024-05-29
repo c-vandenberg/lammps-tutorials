@@ -51,7 +51,7 @@ def main():
         y_labels=['Bond Length (Å)', 'Number of Bonds'],
         x_lim=(0, 300),
         y_lims=[(1.35, 1.65), (500, 520)],
-        graph_title='CNT Average Bond Length & Bond Number vs Timestep Frame',
+        graph_title=r'$\bf{CNT\ Average\ Bond\ Length\ &\ Bond\ Number\ vs\ Timestep\ Frame}$',
         figure_text=(
             r'$\bf{Fig\ 1}$ Evolution of carbon nanotube (CNT) average bond length (a) and bond number (b) as a '
             r'function of time.'
@@ -94,7 +94,7 @@ def main():
         y_label='Probability',
         y_lim=(0.00, 0.13),
         x_lim=(1.30, 1.65),
-        graph_title='Carbon Nanotube Bond Length Probability Densities',
+        graph_title=r'$\bf{Carbon\ Nanotube\ Bond\ Length\ Probability\ Densities}$',
         figure_text=(r'$\bf{Fig\ 2}$ Carbon nanotube (CNT) bond length distribution at start of simulation & at '
                      r'maximum deformation.'),
         figure_text_font_size=12,

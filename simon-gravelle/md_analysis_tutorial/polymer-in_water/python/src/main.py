@@ -40,7 +40,7 @@ def main():
         y_axis_values=y_coordinates,
         x_axis_label='x (Å)',
         y_axis_label='y (Å)',
-        graph_title='X and Y Coordinates of Hydrogen Atom 4 During Equilibration'
+        graph_title=r'$\bf{X\ and\ Y\ Coordinates\ of\ Hydrogen\ Atom\ 4\ During\ Equilibration}$'
     )
 
     # Plot x, y, z coordinates on 3-D scatter plot, with colour bar representing timestep frames
