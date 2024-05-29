@@ -30,7 +30,7 @@ minimize 1.0e-4 1.0e-6 1000 10000
 # PART B - MOLECULAR DYNAMICS
 # 1) Visualization
 thermo 50
-dump dump_all_atoms_per_100_timestep all atom 100 ../data/raw/dump_all_atoms_per_100_timestep.lammpstrj
+dump dump_all_atoms_per_100_timestep all atom 100 ../data/raw/trajectory-data/dump_all_atoms_per_100_timestep.lammpstrj
 
 # 2) Run
 fix fix_nve_ensemble all nve
