@@ -25,8 +25,8 @@ pair_coeff 2 2 0.5 3.0
 # 4) Visualization
 thermo 10
 thermo_style custom step temp pe ke etotal press
-dump dump_all_atoms_per_100_timestep all atom 10 ../data/raw/dump_all_atoms_per_100_timestep.min.lammpstrj
+dump dump_all_atoms_per_100_timestep all atom 10 ../data/raw/trajectory/dump_all_atoms_per_100_timestep.min.lammpstrj
 
 # 5) Run
 minimize 1.0e-4 1.0e-6 1000 10000
-write_data ../data/raw/minimized_coordinate.data pair ij
+write_data ../data/raw/topology/minimized_coordinate.data pair ij

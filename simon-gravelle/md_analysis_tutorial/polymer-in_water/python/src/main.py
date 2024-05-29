@@ -7,7 +7,7 @@ from constants.solvated_peg_constants import SolvatedPEGConstants
 
 def main():
     # Instantiate MD Universe object with `../data/raw/solvated_PEG.data` molecular topology data
-    # & `../data/raw/solvated_PEG_dump.lammpstrj` simulation trajectory-data coordinates
+    # & `../data/raw/solvated_PEG_dump.lammpstrj` simulation trajectory coordinates
     md_universe: Universe = Universe(
         '../../data/raw/topology/solvated_PEG.data',
         '../../data/raw/trajectory/solvated_PEG_dump.lammpstrj',

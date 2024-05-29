@@ -9,7 +9,7 @@ from MDAnalysis import AtomGroup, Universe
 
 def main():
     # Instantiate MD Universe object with `../../data/raw/cnt_atomic.data` molecular topology data
-    # & `../../data/raw/cnt_breakable_bonds_dump.lammpstrj` simulation trajectory-data coordinates
+    # & `../../data/raw/cnt_breakable_bonds_dump.lammpstrj` simulation trajectory coordinates
     md_universe: Universe = Universe(
         "../../data/raw/topology/cnt_atomic.data",
         "../../data/raw/trajectory/cnt_breakable_bonds_dump.lammpstrj",
@@ -35,9 +35,9 @@ def main():
     )
 
     # Load 'bond length vs timestep frame' and 'bond number vs timestep frame' data
-    bond_length_vs_timestep_frame = numpy.loadtxt(
+    bond_length_vs_timestep_frame: ndarray = numpy.loadtxt(
         "../../data/processed/bond-length-vs-time/bond_length_vs_timestep_frame.dat")
-    bond_number_vs_timestep_frame = numpy.loadtxt(
+    bond_number_vs_timestep_frame: ndarray = numpy.loadtxt(
         "../../data/processed/bond-number-vs-time/bond_number_vs_timestep_frame.dat")
 
     # Define subplot configurations
