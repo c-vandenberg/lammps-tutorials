@@ -1,0 +1,50 @@
+# 1) Initialization
+units lj
+dimension 3
+atom_style atomic
+pair_style lj/cut 2.5
+boundary p p p
+
+# 2) System definition
+region simulation_box block -20 20 -20 20 -20 20
+create_box 1 simulation_box
+Created orthogonal box = (-20 -20 -20) to (20 20 20)
+  1 by 1 by 1 MPI processor grid
+create_atoms 1 random 1000 341841 simulation_box
+Created 1000 atoms
+  using lattice units in orthogonal box = (-20 -20 -20) to (20 20 20)
+  create_atoms CPU = 0.000 seconds
+
+# 3) Simulation settings
+mass 1 1
+pair_coeff 1 1 1.0 1.0
+
+# 4) Visualization
+dump dump_all_atoms_per_100_timestep all atom 100 ../data/raw/trajectory/dump_all_atoms_per_100_timestep_error.lammpstrj
+thermo 100
+thermo_style custom step temp pe ke etotal press
+
+# 5) Run
+fix fix_nve_ensemble all nve
+fix fix_langevin_thermostat all langevin 1.0 1.0 0.1 1530917
+timestep 0.005
+
+run 10000
+Generated 0 of 0 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 2.8
+  ghost atom cutoff = 2.8
+  binsize = 1.4, bins = 29 29 29
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut, perpetual
+      attributes: half, newton on
+      pair build: half/bin/atomonly/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 3.217 | 3.217 | 3.217 Mbytes
+   Step          Temp          PotEng         KinEng         TotEng         Press     
+         0   0              2722.52        0              2722.52        170.35982    
+ERROR: Lost atoms: original 1000 current 984 (src/thermo.cpp:490)
+Last command: run 10000

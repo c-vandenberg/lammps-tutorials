@@ -1,0 +1,31 @@
+log ../logs/demixed-dense-phase-md-log.lammps
+# PART B - MOLECULAR DYNAMICS
+
+# 1) Initialization
+units lj
+dimension 3
+atom_style atomic
+pair_style lj/cut 2.5
+boundary p p p
+
+# 2) System definition
+read_data ../../energy-minimization/data/raw/topology/minimized_coordinate.data
+group atom_type_1 type 1
+group atom_type_2 type 2
+
+# 3) Visualization
+thermo 1000
+dump dump_all_atoms_per_100_timestep all atom 1000 ../data/raw/trajectory/dump_all_atoms_per_100_timestep.md.lammpstrj
+
+compute compute_atom_type_1_2_coordination_number atom_type_1 coord/atom cutoff 2.0 group atom_type_2
+compute compute_average_atom_type_1_2_coordination_number all reduce ave c_compute_atom_type_1_2_coordination_number
+
+fix fix_average_atom_type_1_2_coordination_number all ave/time 10 200 2000 &
+    c_compute_average_atom_type_1_2_coordination_number &
+    file ../data/raw/atom-coordination-number/average_atom_type_1_2_coordination_number.dat
+
+# 4) Run
+velocity all create 1.0 4928459 mom yes rot yes dist gaussian
+fix fix_nph_ensemble all nph iso 1.0 1.0 0.5
+timestep 0.005
+run 100000
