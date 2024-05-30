@@ -1,0 +1,86 @@
+log ../logs/inert-gas-in-cnt-log.lammps
+# Molecular Dynamics - Argon Gas in Carbon Nanotube with Unbreakable Bonds
+
+# 1) Initialization
+## Define simulation temperature, T=300K
+variable T equal 300
+
+units real
+atom_style molecular
+boundary f f f
+pair_style lj/cut 14
+
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+improper_style harmonic
+
+special_bonds lj 0.0 0.0 0.5
+
+# 2) System definition
+## Import VMD generated initial carbon nanotube topography
+read_data ../data/raw/topology/inert_gas_cnt_molecular.data
+
+# 3) Simulation settings
+## Import OPLS-AA Force Field Bonded & Non-Bonded Potentials
+include ../data/force-field/opls-aa.lammps
+
+## Group type 1 atoms (C atoms that make up CNT) and type 2 atoms (Ar atoms)
+## Calculate the negative of the x, y & z centre of mass (cm) components of the carbon_atoms group &
+## Recenter the carbon nanotube at the origin (0, 0, 0) by displacing them by the calculated center of mass variables
+group carbon_atoms type 1
+group argon_atoms type 2
+variable carbon_xcm equal -1*xcm(carbon_atoms,x)
+variable carbon_ycm equal -1*xcm(carbon_atoms,y)
+variable carbon_zcm equal -1*xcm(carbon_atoms,z)
+displace_atoms carbon_atoms move ${carbon_xcm} ${carbon_ycm} ${carbon_zcm}
+
+## Center the simulation box about the origin (0, 0, 0) by altering dimensions to be from -40 to 40 in x, y & z directions
+change_box all x final -100 100 y final -100 100 z final -100 100
+
+# 4) Visualization
+## Define region inside carbon nanotube
+variable zmax equal bound(carbon_atoms,zmax)
+variable zmin equal bound(carbon_atoms,zmin)
+region inside_CNT cylinder z 0 0 2.5 ${zmin} ${zmax}
+create_atoms 2 random 40 323485 inside_CNT overlap 1.8 maxtry 50
+
+# 5) Run
+## Run energy minimzation and reset timestep
+minimize 1.0e-4 1.0e-6 1000 10000
+reset_timestep 0
+
+## Initialize velocities of all atoms at T (300 K) with no overall translational momentum (`mom yes``) or rotational momentum (`rot yes`)
+## As a result of `mom yes` and `rot yes`, the systems net movement and rotation is null
+velocity all create ${T} 48455 mom yes rot yes
+
+## Apply the NVE ensemble to the system
+fix nve_ensemble all nve
+
+## Calculate the temperature of the carbon_atoms
+compute carbon_temp carbon_atoms temp
+
+## Apply a Berendsen thermostat to the carbon_atoms group to regulate its temperature to ${T} with a relaxation time of 100 time units
+## Here we apply the Berendsen thermostat to the CNT C atoms and the Ar atoms separately to avoid having a large temperature difference between the two atom types
+fix carbon_berendsen_thermostat carbon_atoms temp/berendsen ${T} ${T} 100
+
+## Modify Berendsen thermostat fix to use the temperature calculated by carbon_middle_temp compute command
+fix_modify carbon_berendsen_thermostat temp carbon_temp
+
+## Calculate the temperature of the argon_atoms
+compute argon_temp argon_atoms temp
+
+## Apply a Berendsen thermostat to the cargon_atoms group to regulate its temperature to ${T} with a relaxation time of 100 time units
+fix argon_berendsen_thermostat argon_atoms temp/berendsen ${T} ${T} 100
+
+## Modify Berendsen thermostat fix to use the temperature calculated by carbon_middle_temp compute command
+fix_modify argon_berendsen_thermostat temp argon_temp
+
+## Calculate the distance between the center of mass of the top and bottom carbon groups in the z-direction
+variable carbon_top_bottom_cm_distance equal xcm(carbon_top,z)-xcm(carbon_bottom,z)
+
+fix spring carbon_atoms spring/self 5
+timestep 1.0
+dump dump_all_atoms_per_100_timestep all atom 100 ../data/raw/trajectory/dump_all_atoms_per_100_timestep.lammpstrj
+thermo 1000
+run 8000

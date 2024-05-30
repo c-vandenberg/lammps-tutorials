@@ -1,0 +1,260 @@
+# Molecular Dynamics - Replication of Carbon Nanotube with Unbreakable Bonds Along x & y-direction With Periodic Boundary Conditions
+
+# 1) Initialization
+variable T equal 300
+
+## Change boundary conditions to periodic in the x and y directions so that we can extend infinitely
+units real
+atom_style molecular
+boundary p p f
+pair_style lj/cut 14
+
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+improper_style harmonic
+special_bonds lj 0.0 0.0 0.5
+
+# 2) System definition
+read_data ../../../cnt-unbreakable-bonds/data/raw/topology/cnt_molecular.data
+Reading data file ...
+  orthogonal box = (-40 -40 -12.130411) to (40 40 67.869589)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  700 atoms
+  scanning bonds ...
+  3 = max bonds/atom
+  scanning angles ...
+  3 = max angles/atom
+  scanning dihedrals ...
+  12 = max dihedrals/atom
+  scanning impropers ...
+  3 = max impropers/atom
+  reading bonds ...
+  1035 bonds
+  reading angles ...
+  2040 angles
+  reading dihedrals ...
+  4030 dihedrals
+  reading impropers ...
+  670 impropers
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0       
+     3 = max # of 1-2 neighbors
+     6 = max # of 1-3 neighbors
+    18 = max # of 1-4 neighbors
+    18 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_data CPU = 0.011 seconds
+
+# 3) Simulation settings
+include ../../../cnt-unbreakable-bonds/data/force-field/opls-aa.lammps
+## Bonded & Non-Bonded Potentials. Parameters Taken from OPLS-AA (Optimised Potentials for Liquid Simulations-All-Atom) force field
+pair_coeff 1 1 0.066 3.4
+bond_coeff 1 469 1.4
+angle_coeff 1 63 120
+dihedral_coeff 1 0 7.25 0 0
+improper_coeff 1 5 180
+
+## Re-size the simulation box to extend from -7 Å to 7 Å in both x and y directions
+## Replicate CNTs by 3 in x-direction and 3 in y-direction to give 9 in unit cell
+## Change box from orthogonal to triclinic to allow expansions & compressions (deformations) that are not parallel to the primary x, y or z coordinate axes
+change_box all x final -7 7 y final -7 7
+Changing box ...
+  orthogonal box = (-7 -40 -12.130411) to (7 40 67.869589)
+  orthogonal box = (-7 -7 -12.130411) to (7 7 67.869589)
+replicate 3 3 1
+Replication is creating a 3x3x1 = 9 times larger system...
+  orthogonal box = (-7 -7 -12.130411) to (35 35 67.869589)
+  1 by 1 by 1 MPI processor grid
+  6300 atoms
+  9315 bonds
+  18360 angles
+  36270 dihedrals
+  6030 impropers
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0       
+     3 = max # of 1-2 neighbors
+     6 = max # of 1-3 neighbors
+    18 = max # of 1-4 neighbors
+    18 = max # of special neighbors
+  special bonds CPU = 0.003 seconds
+  replicate CPU = 0.006 seconds
+change_box all triclinic
+Changing box ...
+  triclinic box = (-7 -7 -12.130411) to (35 35 67.869589) with tilt (0 0 0)
+
+## Create region center_block that extends infinitely in the x and z directions and from y=7 to y=21 in the y direction
+region center_block block INF INF 7 21 INF INF
+group CNT_center region center_block
+2100 atoms in group CNT_center
+displace_atoms CNT_center move 7 0 0
+Displacing atoms ...
+
+# 5) Run
+velocity all create ${T} 48455 mom yes rot yes
+velocity all create 300 48455 mom yes rot yes
+
+## Apply the NPT (constant Number, Pressure, Temperature) ensemble to the system, controlling temperature & scaling the x and y directions
+fix npt_ensemble all npt temp ${T} ${T} 100 x 1 1 1000 y 1 1 1000
+fix npt_ensemble all npt temp 300 ${T} 100 x 1 1 1000 y 1 1 1000
+fix npt_ensemble all npt temp 300 300 100 x 1 1 1000 y 1 1 1000
+
+thermo 100
+timestep 1.0
+run 4000
+Generated 0 of 0 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 16
+  ghost atom cutoff = 16
+  binsize = 8, bins = 6 6 10
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton/tri
+      stencil: half/bin/3d/tri
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 38.22 | 38.22 | 38.22 Mbytes
+   Step          Temp          E_pair         E_mol          TotEng         Press          Volume    
+         0   300            2671.2751      19661.477      27965.589     -19418.936      141120       
+       100   180.69538      3057.9116      21904.681      28355.351     -9595.8996      139615.51    
+       200   180.18715      3477.3742      21891.36       28751.95       5902.3793      136363.43    
+       300   195.89854      3525.217       22070.136      29273.568      10747.891      133512.83    
+       400   231.98382      3104.7742      22537.09       29997.621      933.18296      131850.3     
+       500   246.69711      2770.9095      23406.33       30809.254     -9701.4798      130561.23    
+       600   270.0887       2716.8819      23813.57       31601.67      -10713.11       129248.55    
+       700   298.0113       2916.0825      23775.038      32286.617     -1161.7214      127984.82    
+       800   308.27021      3102.8156      23749.347      32640.282      8610.1417      126764.52    
+       900   299.14826      3014.93        23952.372      32584.147      10674.424      125365.56    
+      1000   316.57087      2518.8677      23659.624      32122.465     -546.61743      123751.5     
+      1100   281.86625      2268.1685      24072.301      31632.825     -8313.7071      122499.93    
+      1200   294.89144      2266.2608      23818.116      31621.295     -5914.489       121938.46    
+      1300   298.81372      2531.3145      23719.095      31860.972      4627.013       121950.96    
+      1400   303.73283      2738.4122      23602.497      32043.834      10653.014      122528.49    
+      1500   310.39006      2603.7026      23904.918      32336.542      5263.794       123797.21    
+      1600   311.8026       2312.6509      24055.981      32223.076     -5697.9085      124547.84    
+      1700   292.73774      2205.8027      24147.164      31849.446     -10330.387      124573.03    
+      1800   295.66411      2295.9328      23954.182      31801.54      -5594.6665      124131.64    
+      1900   296.27328      2589.8932      23713.346      31866.103      5508.53        123386.93    
+      2000   299.41563      2661.2062      23704.099      31987.17       8235.5804      122767.77    
+      2100   309.7967       2339.2462      23951.726      32107.753     -1323.6669      122385.76    
+      2200   294.96566      2126.53        24179.257      31844.098     -9191.0385      121480.1     
+      2300   286.07779      2115.8387      24166.478      31653.748     -8573.2351      120520.99    
+      2400   302.07869      2387.9594      23609.939      31669.764      2156.1187      119686.31    
+      2500   294.24586      2510.091       23754.496      31789.383      8651.6574      119149.77    
+      2600   307.95002      2470.1856      23833.416      32085.709      7982.93        118789.92    
+      2700   314.45552      2243.1558      23949.483      32096.894     -1161.9478      118632.9     
+      2800   293.54489      2042.9449      24154.315      31708.895     -8362.081       118851.5     
+      2900   297.09156      2109.1987      23799.677      31487.103     -5009.1648      119206.87    
+      3000   284.29451      2409.0499      23670.363      31417.361      6307.4362      119789.86    
+      3100   288.12098      2523.1593      23723.162      31656.116      8895.6447      120395.45    
+      3200   306.58154      2461.05        23877.787      32095.25       3944.9437      120735.13    
+      3300   309.92417      2104.4332      24278.912      32202.519     -8029.2963      120835.56    
+      3400   304.2004       2075.8354      24178.776      31966.315     -8908.24        120427.83    
+      3500   304.11383      2139.4117      23809.032      31658.522     -3267.4453      119484.89    
+      3600   277.86924      2427.3442      23727.702      31372.353      6805.7502      118555.7     
+      3700   289.06326      2406.1612      23694.641      31528.289      6398.775       118374.66    
+      3800   306.93011      2167.4787      23941.234      31871.67      -1534.1634      118840.1     
+      3900   305.39709      1984.2662      24291.05       32009.489     -10588.289      118888.44    
+      4000   311.158        2058.0281      24145.829      32046.198     -5812.4715      118898.55    
+Loop time of 118.088 on 1 procs for 4000 steps with 6300 atoms
+
+Performance: 2.927 ns/day, 8.201 hours/ns, 33.873 timesteps/s, 213.400 katom-step/s
+100.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 92.135     | 92.135     | 92.135     |   0.0 | 78.02
+Bond    | 21.712     | 21.712     | 21.712     |   0.0 | 18.39
+Neigh   | 3.5424     | 3.5424     | 3.5424     |   0.0 |  3.00
+Comm    | 0.14673    | 0.14673    | 0.14673    |   0.0 |  0.12
+Output  | 0.0013678  | 0.0013678  | 0.0013678  |   0.0 |  0.00
+Modify  | 0.49597    | 0.49597    | 0.49597    |   0.0 |  0.42
+Other   |            | 0.05401    |            |       |  0.05
+
+Nlocal:           6300 ave        6300 max        6300 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:          15137 ave       15137 max       15137 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    3.64249e+06 ave 3.64249e+06 max 3.64249e+06 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 3642491
+Ave neighs/atom = 578.17317
+Ave special neighs/atom = 17.428571
+Neighbor list builds = 38
+Dangerous builds = 0
+
+## Stop the NPT ensemble & reset timestep
+unfix npt_ensemble
+reset_timestep 0
+
+dump dump_all_atoms_per_100_timestep all atom 500 ../data/raw/trajectory/dump_all_atoms_per_500_timestep.lammpstrj
+
+## Switch to an NVT (constant Number, Volume, Temperature) ensemble to control temperature
+fix nvt_ensemble all nvt temp ${T} ${T} 100
+fix nvt_ensemble all nvt temp 300 ${T} 100
+fix nvt_ensemble all nvt temp 300 300 100
+
+# Create a deformation fix that applies to all atoms, applying it every timestep (1) in the x & y directions, with an erate (engineering strain rate) of 5 * 10^-5 per timestep
+fix deformation all deform 1 xy erate 5e-5
+
+run 2000
+Generated 0 of 0 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 40.95 | 40.95 | 40.95 Mbytes
+   Step          Temp          E_pair         E_mol          TotEng         Press          Volume    
+         0   311.158        2058.0281      24145.829      32046.198     -5812.4715      118898.55    
+       100   304.13143      2352.7965      23817.337      31880.542      4414.2506      118898.55    
+       200   296.46295      2479.7117      23756.949      31803.086      9493.9287      118898.55    
+       300   303.47151      2358.0746      23807.351      31863.444      4804.0157      118898.55    
+       400   302.51414      2108.8476      24056.922      31845.812     -4106.5043      118898.55    
+       500   295.88274      1986.4781      24215.095      31757.104     -9031.4503      118898.55    
+       600   301.20391      2204.1339      23894.389      31753.964     -1240.18        118898.55    
+       700   295.49929      2403.1493      23666.688      31618.169      6926.6347      118898.55    
+       800   293.34771      2436.3513      23685.793      31630.077      8013.2384      118898.55    
+       900   300.76614      2201.895       23887.014      31736.131     -733.70925      118898.55    
+      1000   292.00816      2048.4292      24226.721      31757.931     -7709.0941      118898.55    
+      1100   300.12114      2030.5182      24222.787      31888.416     -7786.1732      118898.55    
+      1200   309.86167      2277.5924      23814.319      31909.912      1893.9872      118898.55    
+      1300   298.11627      2439.7611      23760.605      31797.834      8024.927       118898.55    
+      1400   302.53205      2323.5834      23810.493      31814.455      4534.2698      118898.55    
+      1500   308.20482      2105.7778      23855.673      31748.343     -4391.3603      118898.55    
+      1600   296.5316       1934.3456      24164.324      31666.383     -10368.32       118898.55    
+      1700   301.12534      2137.9497      23957.007      31748.923     -3667.7705      118898.55    
+      1800   292.24051      2340.9293      23929.744      31757.817      4554.1643      118898.55    
+      1900   294.24232      2432.0567      23771.57       31728.357      7234.5823      118898.55    
+      2000   301.88617      2283.1911      23914.128      31865.571      1772.3902      118898.55    
+Loop time of 61.742 on 1 procs for 2000 steps with 6300 atoms
+
+Performance: 2.799 ns/day, 8.575 hours/ns, 32.393 timesteps/s, 204.075 katom-step/s
+100.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 48.764     | 48.764     | 48.764     |   0.0 | 78.98
+Bond    | 10.091     | 10.091     | 10.091     |   0.0 | 16.34
+Neigh   | 2.594      | 2.594      | 2.594      |   0.0 |  4.20
+Comm    | 0.076139   | 0.076139   | 0.076139   |   0.0 |  0.12
+Output  | 0.0089784  | 0.0089784  | 0.0089784  |   0.0 |  0.01
+Modify  | 0.17843    | 0.17843    | 0.17843    |   0.0 |  0.29
+Other   |            | 0.02856    |            |       |  0.05
+
+Nlocal:           6300 ave        6300 max        6300 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:          15176 ave       15176 max       15176 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    3.68012e+06 ave 3.68012e+06 max 3.68012e+06 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 3680120
+Ave neighs/atom = 584.14603
+Ave special neighs/atom = 17.428571
+Neighbor list builds = 26
+Dangerous builds = 0
+Total wall time: 0:03:00
