@@ -47,17 +47,17 @@ def main():
     ke_vs_time: List[ndarray] = []
 
     # Extract timestep, potential energy & kinetic energy for energy minimization run from lammps_logfile.File object
-    energy_min_time: ndarray = log_file.get("Step", run_num=0) * timestep
-    energy_min_potential_energy: ndarray = log_file.get("PotEng", run_num=0)
-    energy_min_kinetic_energy: ndarray = log_file.get("KinEng", run_num=0)
+    energy_min_time: ndarray = log_file.get('Step', run_num=0) * timestep
+    energy_min_potential_energy: ndarray = log_file.get('PotEng', run_num=0)
+    energy_min_kinetic_energy: ndarray = log_file.get('KinEng', run_num=0)
 
     pe_vs_time.append(numpy.vstack((energy_min_time, energy_min_potential_energy)))
     ke_vs_time.append(numpy.vstack((energy_min_time, energy_min_kinetic_energy)))
 
     # Extract timestep, potential energy & kinetic energy for molecular dynamics run from lammps_logfile.File object
-    molecular_dynamics_time: ndarray = log_file.get("Step", run_num=1) * timestep
-    molecular_dynamics_potential_energy: ndarray = log_file.get("PotEng", run_num=1)
-    molecular_dynamics_kinetic_energy: ndarray = log_file.get("KinEng", run_num=1)
+    molecular_dynamics_time: ndarray = log_file.get('Step', run_num=1) * timestep
+    molecular_dynamics_potential_energy: ndarray = log_file.get('PotEng', run_num=1)
+    molecular_dynamics_kinetic_energy: ndarray = log_file.get('KinEng', run_num=1)
 
     pe_vs_time.append(numpy.vstack((molecular_dynamics_time, molecular_dynamics_potential_energy)))
     ke_vs_time.append(numpy.vstack((molecular_dynamics_time, molecular_dynamics_kinetic_energy)))
