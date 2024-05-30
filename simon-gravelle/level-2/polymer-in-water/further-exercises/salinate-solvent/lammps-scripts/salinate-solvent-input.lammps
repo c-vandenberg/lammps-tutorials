@@ -1,0 +1,44 @@
+log ../logs/salinate-solvent-log.lammps
+# Molecular Dynamics - Input Script for H2O-NaCl Solvated PEG
+
+# 1) Initialization
+units real
+atom_style full
+bond_style harmonic
+angle_style harmonic
+dihedral_style harmonic
+pair_style lj/cut/coul/long 12
+kspace_style pppm 1e-5
+special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
+
+# 2) System Definition
+read_data ../data/raw/topology/H2O_PEG_salt_molecular.data
+
+# 3) Simulation Settings
+include H2O-PEG-salt-parameters.lammps
+
+create_atoms 10 random 20 456415 NULL overlap 0.5 maxtry 50
+create_atoms 11 random 20 456415 NULL overlap 0.5 maxtry 50
+
+group H2O type 8 9
+group PEG type 1 2 3 4 5 6 7
+group NaCl type 10 11
+
+set type 10 charge 1
+set type 11 charge -1
+
+minimize 1.0e-4 1.0e-6 100 1000
+reset_timestep 0
+
+fix npt_ensemble all npt temp 300 300 100 iso 1 1 1000
+
+variable peg_com_x equal xcm(PEG,x)
+variable peg_com_y equal xcm(PEG,y)
+variable peg_com_z equal xcm(PEG,z)
+fix recenter_PEG PEG recenter ${peg_com_x} ${peg_com_y} ${peg_com_z}
+
+timestep 1.0
+thermo 5000
+dump dump_all_atoms_per_1000_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep.lammpstrj
+
+run 50000
