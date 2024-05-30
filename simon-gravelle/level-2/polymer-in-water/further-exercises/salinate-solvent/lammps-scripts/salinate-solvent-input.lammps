@@ -15,7 +15,7 @@ special_bonds lj 0.0 0.0 0.5 coul 0.0 0.0 1.0 angle yes dihedral yes
 read_data ../data/raw/topology/H2O_PEG_salt_molecular.data
 
 # 3) Simulation Settings
-include H2O-PEG-salt-parameters.lammps
+include ../data/parameters/H2O-PEG-salt-parameters.lammps
 
 create_atoms 10 random 20 456415 NULL overlap 0.5 maxtry 50
 create_atoms 11 random 20 456415 NULL overlap 0.5 maxtry 50
@@ -39,6 +39,6 @@ fix recenter_PEG PEG recenter ${peg_com_x} ${peg_com_y} ${peg_com_z}
 
 timestep 1.0
 thermo 5000
-dump dump_all_atoms_per_1000_timestep all atom 1000 trajectory-output-data/dump_all_atoms_per_1000_timestep.lammpstrj
+dump dump_all_atoms_per_1000_timestep all atom 1000 ../data/raw/trajectory/dump_all_atoms_per_1000_timestep.lammpstrj
 
 run 50000
