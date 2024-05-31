@@ -89,18 +89,17 @@ variable strain equal 100*(v_cnt_length-${cnt_length})/${cnt_length}
 fix ave_time_1 all ave/time 10 100 1000 v_strain file ../data/raw/stress-strain/output_cnt_strain.dat
 
 ## Calculate stress & define variables
-variable eV_to_joule equal 4184 # eV to J conversion factor
-variable Na equal 6.022e23 # Avogadros number
+variable eV_to_joule equal 1.60218e-19 # eV to J conversion factor
 variable Atom equal 1e-10 # 1 Å
 variable pi equal 3.14159
-variable f_total_eV equal f_carbon_bottom_force[3]-f_carbon_top_force[3] # kcal/mol/Å
-variable f_total_newton equal v_f_total_eV*${eV_to_joule}/${Na}/${Atom}
+variable f_total_eV equal f_carbon_bottom_force[3]-f_carbon_top_force[3] # eV/A
+variable f_total_newton equal v_f_total_eV*${eV_to_joule}/${Atom}
 variable rad equal 5.2e-10 # Radius of carbon nanotube
 variable dC equal 3.4e-10 # Effective diameter of the carbon atom
 variable A equal ${pi}*${rad}*${dC} # Surface area in m2
 variable stress equal v_f_total_newton/${A}  # Stress in Pascal
 
-fix ave_time_1 all ave/time 10 100 1000 v_stress file ../data/raw/stress-strain/output_cnt_stress.dat
+fix ave_time_2 all ave/time 10 100 1000 v_stress file ../data/raw/stress-strain/output_cnt_stress.dat
 
 ## Ensure all forces affecting the top and bottom carbon groups are constant. Because initial velocity is zero, this ensures they remain immobile during the simulation
 fix carbon_top_force carbon_top setforce 0 0 0

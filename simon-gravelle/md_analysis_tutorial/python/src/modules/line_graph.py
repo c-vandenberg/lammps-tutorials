@@ -124,13 +124,13 @@ class LineGraph:
 
         # Extract data and plot
         for key, data in enumerate(data_arrays):
-            y_axis_data = data[0]
-            x_axis_data = data[1]
+            x_axis_data = data[0]
+            y_axis_data = data[1]
             if line_labels and len(line_labels) > 0:
-                line_graph_axes.plot(y_axis_data, x_axis_data, color=line_colours[key], linewidth=line_width,
+                line_graph_axes.plot(x_axis_data, y_axis_data, color=line_colours[key], linewidth=line_width,
                                      label=line_labels[key])
             else:
-                line_graph_axes.plot(y_axis_data, x_axis_data, color=line_colours[key], linewidth=line_width)
+                line_graph_axes.plot(x_axis_data, y_axis_data, color=line_colours[key], linewidth=line_width)
 
         # Set axes labels, limits and graph title
         line_graph_axes.set_xlabel(x_label, fontsize=font_size, color='white')

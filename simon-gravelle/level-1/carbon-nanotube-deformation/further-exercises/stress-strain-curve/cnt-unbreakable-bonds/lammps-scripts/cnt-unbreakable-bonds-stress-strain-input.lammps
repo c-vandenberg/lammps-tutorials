@@ -105,7 +105,7 @@ variable dC equal 3.4e-10 # Effective diameter of the carbon atom
 variable A equal ${pi}*${rad}*${dC} # Surface area in m2
 variable stress equal v_f_total_newton/${A}  # Stress in Pascal
 
-fix ave_time_1 all ave/time 10 100 1000 v_stress file ../data/raw/stress-strain/output_cnt_stress.dat
+fix ave_time_2 all ave/time 10 100 1000 v_stress file ../data/raw/stress-strain/output_cnt_stress.dat
 
 ## Ensure all forces affecting the top and bottom carbon groups are constant. Because initial velocity is zero, this ensures they remain immobile during the simulation
 fix carbon_top_force carbon_top setforce 0 0 0

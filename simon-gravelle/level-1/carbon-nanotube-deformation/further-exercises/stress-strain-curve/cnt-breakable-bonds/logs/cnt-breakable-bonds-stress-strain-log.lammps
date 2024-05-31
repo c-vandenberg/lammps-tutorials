@@ -172,20 +172,20 @@ Per MPI rank memory allocation (min/avg/max) = 4.322 | 4.322 | 4.322 Mbytes
       4800   183.39797     -5074.4177      0             -5058.3213      188.61596    
       4900   200.16714     -5075.9386      0             -5058.3704      43.297597    
       5000   218.48538     -5077.6386      0             -5058.4626      40.058377    
-Loop time of 15.0252 on 1 procs for 5000 steps with 700 atoms
+Loop time of 15.2381 on 1 procs for 5000 steps with 700 atoms
 
-Performance: 14.376 ns/day, 1.669 hours/ns, 332.774 timesteps/s, 232.942 katom-step/s
-100.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 14.175 ns/day, 1.693 hours/ns, 328.124 timesteps/s, 229.687 katom-step/s
+99.9% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 14.987     | 14.987     | 14.987     |   0.0 | 99.74
-Neigh   | 0.00085845 | 0.00085845 | 0.00085845 |   0.0 |  0.01
-Comm    | 0.00044583 | 0.00044583 | 0.00044583 |   0.0 |  0.00
-Output  | 0.0017651  | 0.0017651  | 0.0017651  |   0.0 |  0.01
-Modify  | 0.030421   | 0.030421   | 0.030421   |   0.0 |  0.20
-Other   |            | 0.004935   |            |       |  0.03
+Pair    | 15.2       | 15.2       | 15.2       |   0.0 | 99.75
+Neigh   | 0.00083859 | 0.00083859 | 0.00083859 |   0.0 |  0.01
+Comm    | 0.00045258 | 0.00045258 | 0.00045258 |   0.0 |  0.00
+Output  | 0.0018413  | 0.0018413  | 0.0018413  |   0.0 |  0.01
+Modify  | 0.030586   | 0.030586   | 0.030586   |   0.0 |  0.20
+Other   |            | 0.004883   |            |       |  0.03
 
 Nlocal:            700 ave         700 max         700 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -211,15 +211,13 @@ variable strain equal 100*(v_cnt_length-54.4010690175184)/54.4010690175184
 fix ave_time_1 all ave/time 10 100 1000 v_strain file ../data/raw/stress-strain/output_cnt_strain.dat
 
 ## Calculate stress & define variables
-variable eV_to_joule equal 4184 # eV to J conversion factor
-variable Na equal 6.022e23 # Avogadros number
+variable eV_to_joule equal 1.60218e-19 # eV to J conversion factor
 variable Atom equal 1e-10 # 1 Å
 variable pi equal 3.14159
-variable f_total_eV equal f_carbon_bottom_force[3]-f_carbon_top_force[3] # kcal/mol/Å
-variable f_total_newton equal v_f_total_eV*${eV_to_joule}/${Na}/${Atom}
-variable f_total_newton equal v_f_total_eV*4184/${Na}/${Atom}
-variable f_total_newton equal v_f_total_eV*4184/6.022e+23/${Atom}
-variable f_total_newton equal v_f_total_eV*4184/6.022e+23/1e-10
+variable f_total_eV equal f_carbon_bottom_force[3]-f_carbon_top_force[3] # eV/A
+variable f_total_newton equal v_f_total_eV*${eV_to_joule}/${Atom}
+variable f_total_newton equal v_f_total_eV*1.60218e-19/${Atom}
+variable f_total_newton equal v_f_total_eV*1.60218e-19/1e-10
 variable rad equal 5.2e-10 # Radius of carbon nanotube
 variable dC equal 3.4e-10 # Effective diameter of the carbon atom
 variable A equal ${pi}*${rad}*${dC} # Surface area in m2
@@ -229,7 +227,7 @@ variable A equal 3.14159*5.2e-10*3.4e-10
 variable stress equal v_f_total_newton/${A}  # Stress in Pascal
 variable stress equal v_f_total_newton/5.55433112e-19  
 
-fix ave_time_1 all ave/time 10 100 1000 v_stress file ../data/raw/stress-strain/output_cnt_stress.dat
+fix ave_time_2 all ave/time 10 100 1000 v_stress file ../data/raw/stress-strain/output_cnt_stress.dat
 
 ## Ensure all forces affecting the top and bottom carbon groups are constant. Because initial velocity is zero, this ensures they remain immobile during the simulation
 fix carbon_top_force carbon_top setforce 0 0 0
