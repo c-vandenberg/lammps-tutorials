@@ -46,4 +46,7 @@ fix recenter_PEG PEG recenter ${peg_com_x} ${peg_com_y} ${peg_com_z}
 fix oxygen_6_force pull_oxygen_6 addforce ${force_0} 0 0
 fix oxygen_7_force pull_oxygen_7 addforce -${force_0} 0 0
 
+fix ave_dihedral_histograms all ave/histo 10 2000 30000 0 180 500 c_dihedral_angles &
+    file ../data/raw/dihedral-vs-time/final_dihedral.histo mode vector
+
 run 30000

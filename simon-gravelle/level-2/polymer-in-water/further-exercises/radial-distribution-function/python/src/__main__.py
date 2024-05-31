@@ -19,7 +19,7 @@ def main():
     # File contains columns of data, the .T transpose operation switches them to rows, making it easier to
     # unpack into separate variables
     # Extract H2O-PEG(O) unstretched PEG RDF histogram data
-    (unstretched_time, unstretched_distance, unstretched_bin_rdf,
+    (unstretched_bin, unstretched_distance, unstretched_bin_rdf,
      unstretched_bin_coordination_number, unstretched_bin_cumulative_coordination_number,
      unstretched_bin_atom_pairs_histo) = numpy.genfromtxt(
         rdf_path + 'ave_PEG_H2O_RDF_initial.dat',
@@ -33,7 +33,7 @@ def main():
     )
 
     # Extract H2O-PEG(O) stretched PEG RDF histogram data
-    (stretched_time, stretched_distance, stretched_bin_rdf,
+    (stretched_bin, stretched_distance, stretched_bin_rdf,
      stretched_bin_coordination_number, stretched_bin_cumulative_coordination_number,
      stretched_bin_atom_pairs_histo) = numpy.genfromtxt(
         rdf_path + 'ave_PEG_H2O_RDF_final.dat',
@@ -51,16 +51,16 @@ def main():
     rdf_vs_distance_line_graph.single_line_graph(
         data_arrays=deformed_solvated_peg_rdf_vs_distance_data_array,
         figure_size=(18, 10),
-        line_labels=['H2O-PEG(O) - Unstretched', 'H2O-PEG(O) - Stretched'],
+        line_labels=[r'H$_{2}$O-PEG(O) - Unstretched', r'H$_{2}$O-PEG(O) - Stretched'],
         line_colours=['cyan', 'orange'],
         x_label=r'$r$ (Å)',
         y_label=r'$RDF$',
         y_lim=(0.0, 1.2),
         x_lim=(0, 10),
-        graph_title=r'$\bf{Radial\ Distribution\ Function\ (RDF)\ Between\ H_2O\ Oxygen\ Atoms\ and\ PEG\ Oxygen\ '
+        graph_title=r'$\bf{Radial\ Distribution\ Function\ (RDF)\ Between\ H_{2}O\ Oxygen\ Atoms\ and\ PEG\ Oxygen\ '
                     r'Atoms\ vs\ Distance}$',
-        figure_text=r'$\bf{Fig\ 1}$ Evolution of radial distribution function between H_2O oxygen atoms and PEG oxygen '
-                    r'atoms as a function of distance',
+        figure_text=r'$\bf{Fig\ 1}$ Evolution of radial distribution function between H$_{2}$O oxygen atoms and '
+                    r'PEG oxygen atoms as a function of distance',
         figure_text_font_size=15,
         font_size=15,
         label_size=20,

@@ -59,7 +59,7 @@ variable H2O_molecule_number equal count(H2O)/3
 ## Therefore, to probe the evolution of a variable over time, the underscore approach must be used
 variable H2O_density equal ${H2O_molecule_number}/v_H2O_vol
 
-fix H2O_ave_density all ave/time 10 10 100 v_H2O_density file ../data/raw/density-vs-time/ave_H20_density.dat
+fix H2O_ave_density all ave/time 10 10 100 v_H2O_density file ../data/raw/density-vs-time/ave_H2O_density.dat
 
 thermo 100
 timestep 1.0
