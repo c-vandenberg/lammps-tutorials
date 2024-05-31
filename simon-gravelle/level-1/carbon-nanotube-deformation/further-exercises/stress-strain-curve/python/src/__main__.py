@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import sys
 import os
-import lammps_logfile
 import numpy
 from numpy import ndarray
 from typing import List
@@ -52,7 +51,7 @@ def main():
     # Convert strain from Pa to GPa
     cnt_breakable_bonds_stress /= 1e9
 
-    # Combine time, and CNT length into ndarray
+    # Combine CNT breakable bonds strain and stress into ndarray
     cnt_stress_strain_data_array.append(
         numpy.vstack((cnt_breakable_bonds_strain, cnt_breakable_bonds_stress))
     )

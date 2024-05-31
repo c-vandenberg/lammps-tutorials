@@ -20,6 +20,7 @@ def main():
 
     # Extract first run time from lammps_logfile.File object and convert to ps
     time_first_run: ndarray = log_file.get('Step', run_num=0) / 2000
+
     # Extract first run total energy from lammps_logfile.File object
     total_energy_first_run: ndarray = log_file.get('TotEng', run_num=0)
 
@@ -27,6 +28,7 @@ def main():
 
     # Extract first run time from lammps_logfile.File object and convert to ps
     time_second_run: ndarray = log_file.get('Step', run_num=1) / 2000
+
     # Extract first run total energy from lammps_logfile.File object
     total_energy_second_run: ndarray = log_file.get('TotEng', run_num=1)
 
