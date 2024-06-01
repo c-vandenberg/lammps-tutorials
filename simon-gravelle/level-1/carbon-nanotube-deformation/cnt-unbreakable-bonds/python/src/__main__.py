@@ -52,14 +52,16 @@ def main():
 
     # Extract first run time from lammps_logfile.File object and convert from fs to ps
     time_first_run: ndarray = log_file.get('Step', run_num=0) / 1000
+    
     # Extract first run total energy from lammps_logfile.File object
     total_energy_first_run: ndarray = log_file.get('TotEng', run_num=0)
 
     total_energy_vs_time_array.append(numpy.vstack((time_first_run, total_energy_first_run)))
 
-    # Extract first run time from lammps_logfile.File object and convert from fs to ps
+    # Extract second run time from lammps_logfile.File object and convert from fs to ps
     time_second_run: ndarray = log_file.get('Step', run_num=1) / 1000
-    # Extract first run total energy from lammps_logfile.File object
+    
+    # Extract second run total energy from lammps_logfile.File object
     total_energy_second_run: ndarray = log_file.get('TotEng', run_num=1)
 
     total_energy_vs_time_array.append(numpy.vstack((time_second_run, total_energy_second_run)))
