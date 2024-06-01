@@ -1,7 +1,7 @@
 # Level 1 - Carbon Nanotube Deformation Further Exercises: Carbon Nanotube Membrane
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/eee34ff4-ef87-4d77-b355-021d6960f500" alt="cnt-membrane md" width="" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/ea6277cb-2d37-4ccf-8c48-1b6ba812d904" alt="cnt-membrane" width="" />
 </p>
 
 ## Problem
