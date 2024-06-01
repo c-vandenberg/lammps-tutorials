@@ -1,4 +1,4 @@
-# Level 1 - Carbon Nanotube Deformation Further Exercises: Inert Gas (Ar) in The Carbon Nanotube
+# Inert Gas (Ar) in The Carbon Nanotube
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/1bf54cc6-da5a-44ad-a37d-c1f901e215e9" alt="inert-gas-in-cnt-start" width="325" />
