@@ -1,7 +1,7 @@
 # Level 1 - Lennard-Jones Fluid Further Exercises: Lost Atoms Error
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/1ab1847c-268f-49cf-bf5f-5d9149123469" alt="lost-atoms-error" width="500" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/bcdf929d-c941-45fd-9ded-7d1945a0e104" alt="lost-atoms-error" width="500" />
 </p>
 
 ## Problem
