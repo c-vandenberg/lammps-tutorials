@@ -76,7 +76,7 @@ def main():
         y_label=r'$E_{tot}$ (Kcal/mol)',
         y_lim=(0, 20000),
         x_lim=(0, 16),
-        graph_title=r'$\bf{Carbon\ Nanotube\ (CNT)\ System\ Total\ Energy\ vs\ Time}$',
+        graph_title=r'$\bf{Unbreakable\ Bonds\ Carbon\ Nanotube\ (CNT)\ System\ Total\ Energy\ vs\ Time}$',
         figure_text=r'$\bf{Fig\ 2}$ Evolution of total energy of CNT system as a function of time. '
                     r'Deformation starts at $t$ = 5 ps',
         figure_text_font_size=17.5,
