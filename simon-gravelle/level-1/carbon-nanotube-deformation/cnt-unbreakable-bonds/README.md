@@ -37,7 +37,7 @@ As you would expect, once the deformation (velocity = 100 m/s) starts at *t* = 5
 
 ### Carbon Nanotube System Total Energy During Deformation
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/493fe0af-d7fe-4ad3-92a1-39cb7f75d38b" alt="cnt_total_energy_vs_time" width="" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/526c93b7-8390-4594-8680-e694762a68f1" alt="cnt_total_energy_vs_time" width="" />
 </p>
 
 The total energy of the system can be extracted from the simulation log file. Once the deformation starts at *t* = 5 ps, we can see a non-linear increase in total system energy. This is expected given the dependency bond potential energy with bond distance, and the fact that the bond do not break in our simulation:
