@@ -70,6 +70,7 @@ def main():
     unbreakable_cnt_bonds_line_graph.single_line_graph(
         data_arrays=total_energy_vs_time_array,
         figure_size=(18, 10),
+        line_labels=['First Run (Equilibration)', 'Second Run (Deformation)'],
         line_colours=['orange', 'cyan'],
         x_label=r'$t$ (ps)',
         y_label=r'$E_{tot}$ (Kcal/mol)',
