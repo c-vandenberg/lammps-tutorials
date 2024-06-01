@@ -1,4 +1,4 @@
-# Level 1 - Carbon Nanotube Deformation Further Exercises: Flying Ice Cube Artifact
+# Flying Ice Cube Artifact
 
 https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/d057b4cc-cef3-45fd-85db-e037a52cc942
 
