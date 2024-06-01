@@ -26,6 +26,7 @@ Additionally, angular and dihedral constraints are usually applied to maintain t
 ## Data Analysis
 
 ### Carbon Nanotube Length During Deformation
+
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/7417684a-8732-4c3b-bcf0-9fea8b07a526" alt="cnt_unbreakable_length_vs_time" width="" />
 </p>
