@@ -19,6 +19,22 @@ The conditions of the MD simulation (e.g. the NVE ensemble and Langevin thermost
 
 ### Atom Population Inside Cylinder as a Function of Time
 
+<div align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/8b1b2b3c-b4f6-45df-aeaf-2e1bcd65a1e8" alt="atom_type_1_2_cylinder_population_vs_time" width="">
+</div>
+
+The population of each atom inside our defined region `region_inside_cylinder` over time is extracted from the dat file defined in our LAMMPS input script.
+
+We have set initalised our system with the type 2 atoms within a cylindrical region (`region_inside_cylinder`), and the type 1 atoms outside the cylindrical region (`region_outside_cylinder`). This is reflected in *Fig 1* where very few type 1 atoms are inside the cylinder. Once the molecular dynamics simulation starts however, mixing of the two atom types takes place and the populations inside the cylinder invert.
+
+### Atom Type 1 Coordination Number (With Respect to Atom Type 2) as a Function of Time
+
+<div align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/52e63bd9-0342-4170-b934-650c4f6a913e" alt="atom_type_1_coordination_number_vs_time" width="">
+</div>
+
+Similarly, once the molecular dynamics simulation starts, the atom type 1 coordination number (with respect to atom type 2) increases rapidly before reaching an equilibrium, further illustrating the mixing of the two atom types.
+
 ## Input Script Command Syntax
 
 ## 3) Visualization
