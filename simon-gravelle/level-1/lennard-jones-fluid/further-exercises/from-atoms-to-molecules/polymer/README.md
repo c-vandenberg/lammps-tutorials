@@ -1,9 +1,9 @@
 # Polymer Molecule
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b616a218-bef6-4604-acd9-7babcbad2eb5" alt="polymer-start md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b795916e-5353-45cd-b830-8be2697f2522" alt="polymer-mid md" width="300" /> 
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/82054788-16f9-4188-ad53-1c019fb87a1b" alt="polymer-end md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f5e9d1f1-5f44-4eab-bffd-2f3dba1278d2" alt="polymer-start md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/efe0ae66-5742-432c-b00d-ca2cc52260c7" alt="polymer-mid md" width="300" /> 
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/29a578fb-97e3-4676-b100-3c9180fd0cfa" alt="polymer-end md" width="300" />
 </p>
 
 ## Molecule Template - `polymer.mol`
