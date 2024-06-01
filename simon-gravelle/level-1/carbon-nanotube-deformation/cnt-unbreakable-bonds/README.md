@@ -1,9 +1,9 @@
 # Deformation of Carbon Nanotube with Unbreakable Bonds
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/59e4c7c4-4cec-4d6c-b1f2-b3a34969adbf" alt="cnt-unbreakable-bonds start md" width="325" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/7a42090c-2416-4302-a382-900b01d7f2c0" alt="cnt-unbreakable-bonds-mid md" width="325" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/cc29b2ae-2a51-40b9-97b4-17c741f3241e" alt="cnt-unbreakable-bonds-end md" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/29ecb08f-f20b-479f-ac97-528d9e5074f0" alt="cnt-unbreakable-bonds start md" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/7e0b3f17-5370-4813-bf4e-ba2bb9cbaab0" alt="cnt-unbreakable-bonds-mid md" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/df6ac85c-2bcb-40e8-bd7e-d0b2ee5c0604" alt="cnt-unbreakable-bonds-end md" width="325" />
 </p>
 
 ## Introduction
