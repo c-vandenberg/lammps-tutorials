@@ -1,9 +1,9 @@
-# Level 1 - Carbon Nanotube Deformation Further Exercises: Inert Gas (Argon) in The Carbon Nanotube
+# Level 1 - Carbon Nanotube Deformation Further Exercises: Inert Gas (Ar) in The Carbon Nanotube
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/47e5a5fb-dfa4-4951-a655-13f7fd775a96" alt="cnt-breakable-bonds-start md" width="325" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/bf52d51f-4afe-415e-b240-b40b7783ae46" alt="cnt-breakable-bonds-mid md" width="325" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/39e0d3db-ef43-461f-aa89-b0b7fc673978" alt="cnt-breakable-bonds-end md" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/1bf54cc6-da5a-44ad-a37d-c1f901e215e9" alt="inert-gas-in-cnt-start" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/10886ba1-34d9-452e-95a3-865c37129f35" alt="inert-gas-in-cnt-mid" width="325" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/c0d76aa9-d232-49cb-a8a3-13f6e3f72020" alt="inert-gas-in-cnt-end" width="325" />
 </p>
 
 ## Problem
