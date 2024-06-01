@@ -9,7 +9,7 @@
 ## Exercise
 The objective of this exercise is to deform a carbon nanotube (CNT) using LAMMPS. Using external preprocessed topology data, a small CNT molecule will be simulated within an empty simulation box, an external force will be exerted on the CNT, and its deformation will be measured over time. 
 
-To simulate a CNT molecule with unbreakable bonds, a classical OPLS-AA force field will be used.
+To simulate a CNT molecule with unbreakable bonds, the classical OPLS-AA force field will be used.
 
 ## Introduction
 
