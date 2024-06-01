@@ -1,11 +1,12 @@
 # Level 1 - Lennard-Jones Fluid `improved_input.md.lammps` Script
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/db4cc9a4-0c3a-4368-ae02-580f5bf4c890" alt="improved-input-start md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f98f2826-41f1-4b97-b23e-ae92d54b9e05" alt="improved-input-mid md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/64c8f927-f7c7-4336-919a-2098f40b0d8d" alt="improved-input-end md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/3861bbcf-e3af-40d8-a078-55b5b89d27f1" alt="improved-input-start md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/84e2ca5b-d80d-476f-a99c-170372d4ae3c" alt="improved-input-mid md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/10ca7534-edd6-4a93-82cf-d2009784eaba" alt="improved-input-end md" width="300" />
 </p>
 
+## Exercise
 This `improved-input.md.lammps` input script starts an MD simulation directly from the previously saved energy minimized system configuration in `improved-input.min.lammps`.
 
 Once the energy minimized system state has been loaded, the script then removes any atoms that have migrated from one region to the other (i.e. from inside the cylinder to outside the cylinder, or vice versa) during minimization. 
@@ -13,6 +14,10 @@ Once the energy minimized system state has been loaded, the script then removes 
 During the MD simulation, as well as dumping all atoms per 1000 timesteps (similar to  it outputs the average number of atoms of each type in the cylinder as a function of time. It also outputs the coordination number per atom between atoms of type 1 and 2, i.e. the average number of atoms of type 2 in the vicinity of the atoms of type 1. Coordination number can be used as an indicator of the degree of mixing of the binary mixture. 
 
 The conditions of the MD simulation (e.g. the NVE ensemble and Langevin thermostat) are the same as in the `first-input.lammps` input script.
+
+## Data Analysis
+
+### Atom Population Inside Cylinder as a Function of Time
 
 ## Input Script Command Syntax
 
