@@ -1,7 +1,6 @@
 ## Level 1 - Lennard-Jones Fluid: The Very Basics of LAMMPS
 
-https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b153e807-369c-486d-8340-fedc5b0d1042
-
+https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/29bc8717-82b7-4de2-83be-f5acd5d3a72a
 
 The objective of this tutorial is to perform the simulation of a binary fluid using LAMMPS.
 
