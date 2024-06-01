@@ -12,7 +12,21 @@ In classical molecular dynamics force fields (also known as non-reactive force f
 
 The bonds between neighbouring atoms are typically modelled as springs with a given equilibrium distance r<sub>0</sub> and a spring constant k<sub>b</sub>: U<sub>b</sub> = k<sub>b</sub>(r - r<sub>0</sub>)<sup>2</sup>.
 
-Additionally, angular and dihedral constraints are usually applied to maintain the relative orientations of neighbour atoms
+Additionally, angular and dihedral constraints are usually applied to maintain the relative orientations of neighbour atoms.
+
+## Exercise
+The objective of this exercise is to deform a carbon nanotube (CNT) using LAMMPS. Using external preprocessed topology data, a small CNT molecule will be simulated within an empty simulation box, an external force will be exerted on the CNT, and its deformation will be measured over time. To simulate a CNT molecule with unbreakable bonds, a classical OPLS-AA force field will be used.
+
+## Data Analysis
+
+### Carbon Nanotube Length During Deformation
+<p align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/7417684a-8732-4c3b-bcf0-9fea8b07a526" alt="cnt_unbreakable_length_vs_time" width="" />
+</p>
+
+In our LAMMPS input script, we defined three CNT molecule regions; `region_top`, `region_bottom` and `region_middle`. The end-to-end CNT length was defined as the difference between the center of masses of region `region_top` and region `region_bottom`.
+
+As you would expect, once the deformation (velocity = 100 m/s) starts at *t* = 5 ps, the end-to-end length of the CNT molecule increases linearly as a function of time.
 
 ## Input Script Command Syntax
 
