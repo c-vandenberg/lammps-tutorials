@@ -40,7 +40,7 @@ As you would expect, once the deformation (velocity = 100 m/s) starts at *t* = 5
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/8a526f7e-55a6-4001-898d-43c8653b3961" alt="cnt_total_energy_vs_time" width="" />
 </p>
 
-The total energy of the system can be extracted from the simulation log file. Once the deformation starts at *t* = 5 ps, we can see a non-linear increase in total system energy. This is expected given the dependency bond potential energy with bond distance:
+The total energy of the system can be extracted from the simulation log file. Once the deformation starts at *t* = 5 ps, we can see a non-linear increase in total system energy. This is expected given the dependency bond potential energy with bond distance, and the fact that the bond do not break in our simulation:
 
 <p align="center">
   U<sub>b</sub> = k<sub>b</sub>(r - r<sub>0</sub>)<sup>2</sup>
