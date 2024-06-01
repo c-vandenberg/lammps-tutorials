@@ -14,7 +14,72 @@ Finally, it performs an energy minimization of the system, outputting basic ther
 
 ## Data Analysis
 
-### Lennard-Jones Potential as a Function of Interm
+### Lennard-Jones Potential as a Function of Interatomic Distance
+
+In the `3) Simulation settings` section of the LAMMPS input script, the line `pair_coeff 1 1 1.0 1.0` defines the Lennard-Jones interaction parameters/coefficients for interactions between atoms of type 1. Here, the Lennard-Jones energy parameter **ϵ<sub>11</sub>** = 1.0 and the Lennard-Jones distance parameter **σ<sub>11</sub>** = 1.0.
+
+Similarly, the line `pair_coeff 2 2 0.5 3.0` defines the Lennard-Jones interaction parameters/coefficients for interactions between atoms of type 2. Here, the Lennard-Jones energy parameter **ϵ<sub>11</sub>** = 0.5 and the Lennard-Jones distance parameter **σ<sub>11</sub>** = 3.0.
+
+For interactions between atoms of type 1 and atoms of type 2, by default LAMMPS calculates the cross coefficients  **ϵ<sub>12</sub>** and **σ<sub>12</sub>** using the geometric average:
+
+<br>
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cepsilon_%7Bij%7D%20%3D%20%5Csqrt%7B%5Cepsilon_%7Bii%7D%5Cepsilon_%7Bjj%7D%7D", alt='epsilon-geometric-ave-equation'/>
+</div>
+<br>
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Csigma_%7Bij%7D%20%3D%20%5Csqrt%7B%5Csigma_%7Bii%7D%5Csigma_%7Bjj%7D%7D", alt='sigma-geometric-ave-equation'/>
+</div>
+<br>
+
+Therefore, LAMMPS will have calculated **ϵ<sub>12</sub>** and **σ<sub>12</sub>** for us as:
+
+<br>
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cepsilon_%7B0.5%7D%20%3D%20%5Csqrt%7B%5Cepsilon_%7B1%7D%5Cepsilon_%7B0.5%7D%7D%20%3D%200.707", 
+    alt='epsilon-atom-1-atom-2-geometric-ave-equation'/>
+</div>
+<br>
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Csigma_%7B1.0%7D%20%3D%20%5Csqrt%7B%5Csigma_%7B1.0%7D%5Csigma_%7B3.0%7D%7D%20%3D%201.732", 
+    alt='epsilon-atom-1-atom-2-geometric-ave-equation'/>
+</div>
+<br>
+
+These Lennard-Jones parameters/coefficients can then be used to calculate the Lennard-Jones potential **E<sub>ij</sub>** for all three interactions (**E<sub>11</sub>**, **E<sub>22</sub>** and **E<sub>12</sub>**) via the equation:
+
+<br>
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.latex?\color{white}V(r)%20=%204\epsilon%20\left[%20\left(\frac{\sigma}{r}\right)^{12}%20-%20\left(\frac{\sigma}{r}\right)^{6}%20\right]" 
+    alt="lennard-jones-potential-equation"/>
+</div>
+
+where:
+- *V(r)* is the potential energy as a function of interatomic distance *r*,
+- *ε* = the depth of the potential well (the deeper the well, the stronger the interatomic interaction)
+- *σ* = the finite distance at which the interatomic potential is zero,
+- *r* = the interatomic distance,
+- ![sigma_r_12](https://latex.codecogs.com/svg.latex?\color{white}\left(\frac{\sigma}{r}\right)^{12}) = the replusive force
+- ![sigma_r_6](https://latex.codecogs.com/svg.latex?\color{white}\left(\frac{\sigma}{r}\right)^{6}) =  the attractive force
+
+These calculated Lennard-Jones potentials as a function of interatomic distance are shown below:
+
+<div align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/134a20a6-d02a-4185-9a2a-20b8da8c6e06" alt="lennard_jones_potential" width="">
+</div>
+
+The graph shows that as the interatomic distance decreases, the Lennard-Jones/bonding potential energy decreases and so the probability of interaction increases. As the two atoms come closer they eventually reach a distance region where they become bound; their Lennard-Jones potential/bonding potential energy decreases from zero to a negative quantity. 
+
+While the atoms are bound, the interatomic distance continues to decrease until the particles reach an equilibrium, specified by the separation distance at which the minimum potential energy is reached (the minimum/depth of the potential well *ε*). 
+
+The more negative the minimum potential energy/the deeper the well depth, the greater the interaction between the two atoms. As you can see, the self-interaction between atom type 1 atoms is the strongest, followed by the self-interaction between atom type 2 atoms, with atom type 1-atom type 2 interactions being the weakest.
+
+However the two bound atoms are further pressed together, past their equilibrium distance, repulsion begins to occur. This is a situtation where the atoms are so close together that their electrons are forced to occupy each other’s orbitals. This electron-electron replusion causes the Lennard-Jones/bonding potential energy to increase rapidly as the distance of separation decreases (highly unfavourable). This illustrates the high exponent of the repulsive force in the Lennard-Jones potential equation:
+
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.latex?\color{white}\left(\frac{\sigma}{r}\right)^{12}" 
+    alt="lennard-jones-potential-equation-repulsive-component"/>
+</div>
 
 ## Input Script Command Syntax
 
