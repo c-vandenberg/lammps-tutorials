@@ -61,7 +61,7 @@ Using CMake has multiple advantages if you want to modify or extend LAMMPS (or h
 ### Configuring CLion Debugger with LAMMPS
 The ability to trigger breakpoints in a codebase is an invaluable tool for debugging any errors you encounter when running an input script. It also helps you get more familiar with the codebase of the software you are using. I will be describing how to do this in CLion, a cross-platform IDE for C and C++ with support for Python & assembly. Unfortunately, CLion does not have a free version. But this general approach can be applied to other IDEs with support for CMake.
 
-Note this requires building LAMMPS via the `cmake` build procedure (the `make` procedure may work, though I have no tested it)
+Note this requires building LAMMPS via the `cmake` build procedure (the `make` procedure may work, but I have not tested it)
 
 1. Open LAMMPS in CLion and build with CMake
 2. In CLion, navigate to 'File > Settings > Build, Execution, Deployment > CMake' and confirm that the 'Debug' CMake profile is there and is selected. If it is not present, generate the CMake configuration files again with the `-D CMAKE_BUILD_TYPE="Debug"` flag. E.g. `cmake -C ../cmake/presets/most.cmake -D FFT=KISS -D CMAKE_BUILD_TYPE="Debug" ../cmake`
