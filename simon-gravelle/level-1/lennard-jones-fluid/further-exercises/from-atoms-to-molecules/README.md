@@ -1,13 +1,13 @@
 # Level 1 - Lennard-Jones Fluid Further Exercises: From Atoms to Molecules
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/66a60bcc-6d64-4be1-9df2-9975ffd02821" width="300"/>
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/272a447c-9639-4343-a5ce-61f009c66142", alt="dumbbell-molecule-min" width="300"/>
 </p>
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b616a218-bef6-4604-acd9-7babcbad2eb5" alt="polymer-start md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b795916e-5353-45cd-b830-8be2697f2522" alt="polymer-mid md" width="300" /> 
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/82054788-16f9-4188-ad53-1c019fb87a1b" alt="polymer-end md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f5e9d1f1-5f44-4eab-bffd-2f3dba1278d2" alt="polymer-start md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/efe0ae66-5742-432c-b00d-ca2cc52260c7" alt="polymer-mid md" width="300" /> 
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/29a578fb-97e3-4676-b100-3c9180fd0cfa" alt="polymer-end md" width="300" />
 </p>
 
 ## Problem
