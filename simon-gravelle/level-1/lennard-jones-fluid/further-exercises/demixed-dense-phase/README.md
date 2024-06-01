@@ -1,4 +1,4 @@
-# Level 1 - Lennard-Jones Fluid Further Exercises: Create a De-mixed Dense Phase
+# Create a Demixed Dense Phase
 
 
 
