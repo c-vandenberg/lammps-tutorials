@@ -1,4 +1,4 @@
-# Level 1 - Lennard-Jones Fluid Further Exercises: From Atoms to Molecules
+# From Atoms to Molecules
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/272a447c-9639-4343-a5ce-61f009c66142", alt="dumbbell-molecule-min" width="300"/>
