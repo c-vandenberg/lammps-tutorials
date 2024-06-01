@@ -1,4 +1,4 @@
-# Level 1 - Carbon Nanotube Deformation Further Exercises: Plot the Stress-Strain Curves
+# Plot the Carbon Nanotube Stress-Strain Curves
 
 ## Problem
 
