@@ -1,14 +1,20 @@
 # Level 1 - Lennard-Jones Fluid `first-input.lammps` Script
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/c474ecee-4dc1-43a9-a87e-7b648a882479" alt="first-input" width="500">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/e65aa729-dc73-40f7-85d8-2d8445dbd537" alt="first-input" width="500">
 </p>
+
+## Exercise
 
 This `first-input.lammps` input script creates a simple cubic 3-dimensional simulation box, with periodic boundary conditions (i.e. the simulation box is conceptually replicated infinitely in 3-dimensions), that uses Lennard-Jones units.
 
 It also populates this simulation box with two types of atomic style atoms with the same mass but different energy and distance parameters. It also specifies a cut-off distance for any Lennard-Jones potential interactions.
 
 Finally, it performs an energy minimization of the system, outputting basic thermodynamic properties, before performing an MD simulation.
+
+## Data Analysis
+
+### Lennard-Jones Potential as a Function of Interm
 
 ## Input Script Command Syntax
 
