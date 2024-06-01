@@ -1,4 +1,4 @@
-# Dumbbell Molecule - Molecule Template & Input Script Command Syntax
+# Dumbbell Molecule
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/66a60bcc-6d64-4be1-9df2-9975ffd02821" width="500"/>
