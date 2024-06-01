@@ -1,9 +1,8 @@
 # Dumbbell Molecule
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/66a60bcc-6d64-4be1-9df2-9975ffd02821" width="500"/>
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/272a447c-9639-4343-a5ce-61f009c66142", alt="dumbbell-molecule-min" width="500"/>
 </p>
-
 ## Molecule Template - `dumbbell.mol`
 A `.mol` file in LAMMPS defines the structure of a molecule, including its atoms, their positions/coordinates, types and the bonds between them. 
 
