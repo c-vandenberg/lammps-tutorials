@@ -1,4 +1,4 @@
-# Polymer Molecule - Molecule Template & Input Script Command Syntax
+# Polymer Molecule
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/b616a218-bef6-4604-acd9-7babcbad2eb5" alt="polymer-start md" width="300" />
