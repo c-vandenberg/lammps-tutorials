@@ -59,7 +59,7 @@ Using CMake has multiple advantages if you want to modify or extend LAMMPS (or h
    * The `<absolute_configuration_to_lammps/build/lmp> -in <input_file>.lammps` command to run LAMMPS via the `lmp` binary
   
 ### Configuring CLion Debugger with LAMMPS
-The ability to trigger breakpoints in a codebase is an invaluable tool for debugging any errors you encounter when running an input script, and also getting more familiar with the codebase of the software you are using. I will be describing how to do this in CLion, a cross-platform IDE for C and C++ with support for Python & assembly. Unfortunately, CLion does not have a free version. But this general approach can be applied to other IDEs with support for CMake.
+The ability to trigger breakpoints in a codebase is an invaluable tool for debugging any errors you encounter when running an input script. It also helps you get more familiar with the codebase of the software you are using. I will be describing how to do this in CLion, a cross-platform IDE for C and C++ with support for Python & assembly. Unfortunately, CLion does not have a free version. But this general approach can be applied to other IDEs with support for CMake.
 
 Note this requires building LAMMPS via the `cmake` build procedure (the `make` procedure may work, though I have no tested it)
 
