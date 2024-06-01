@@ -1,9 +1,9 @@
 ## Level 1 - Lennard-Jones Fluid `improved-input.min.lammps` & `improved-input.min.lammps` Scripts
 
 <p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/db4cc9a4-0c3a-4368-ae02-580f5bf4c890" alt="improved-input-start md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f98f2826-41f1-4b97-b23e-ae92d54b9e05" alt="improved-input-mid md" width="300" />
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/64c8f927-f7c7-4336-919a-2098f40b0d8d" alt="improved-input-end md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/3861bbcf-e3af-40d8-a078-55b5b89d27f1" alt="improved-input-start md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/84e2ca5b-d80d-476f-a99c-170372d4ae3c" alt="improved-input-mid md" width="300" />
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/10ca7534-edd6-4a93-82cf-d2009784eaba" alt="improved-input-end md" width="300" />
 </p>
 
 This tutorial separates out the energy minimization and molecular dynamics stages, making the process more modular and allowing us to restart the simulation from a previously saved configuration (in this case, the system state after energy minimization). 
