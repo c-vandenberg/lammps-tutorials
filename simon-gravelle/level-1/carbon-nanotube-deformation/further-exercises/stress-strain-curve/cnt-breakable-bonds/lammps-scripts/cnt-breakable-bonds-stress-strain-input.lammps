@@ -1,0 +1,114 @@
+log ../logs/cnt-breakable-bonds-stress-strain-log.lammps
+# Molecular Dynamics - Stress-Strain Curve of Carbon Nanotube with Breakable Bonds
+
+# 1) Initialization
+## Define simulation temperature, T=300K
+variable T equal 300
+
+units metal
+atom_style atomic
+boundary f f f
+pair_style airebo 2.5 1 1
+
+# 2) System definition
+## Import VMD generated initial carbon nanotube topology. Topology from cnt_molecular.data has been altered to be compatible with the AIREBO potential
+read_data ../data/raw/topology/cnt_atomic.data
+
+# 3) Simulation settings
+## Import parameters/coefficients for the AIREBO potential. This is the file from the original 'Stuart' paper
+pair_coeff * * ../data/force-field/cnt-breakable-bonds/CH.airebo C
+
+## Center the simulation box about the origin (0, 0, 0) by altering dimensions to be from -40 to 40 in x, y & z directions
+## Increase box size along z-axis to 120 Å to allow for larger deformation in z-direction
+change_box all x final -60 60 y final -60 60 z final -60 60
+
+## Calculate the negative of the x, y & z centre of mass (cm) components of the carbon_atoms group
+## Recenter the carbon nanotube at the origin (0, 0, 0) by displacing them by the calculated center of mass variables
+group carbon_atoms type 1
+variable carbon_xcm equal -1*xcm(carbon_atoms,x)
+variable carbon_ycm equal -1*xcm(carbon_atoms,y)
+variable carbon_zcm equal -1*xcm(carbon_atoms,z)
+displace_atoms carbon_atoms move ${carbon_xcm} ${carbon_ycm} ${carbon_zcm}
+
+## Define top edge region, bottom edge region, & middle region of carbon nanotube
+variable zmax equal bound(carbon_atoms,zmax)-0.5 # (- 0.5 Å)
+variable zmin equal bound(carbon_atoms,zmin)+0.5 # (+ 0.5 Å)
+region region_top block INF INF INF INF ${zmax} INF
+region region_bottom block INF INF INF INF INF ${zmin}
+region region_middle block INF INF INF INF ${zmin} ${zmax}
+
+## Group atoms according to these regions
+group carbon_top region region_top
+group carbon_bottom region region_bottom
+group carbon_middle region region_middle
+
+# 4) Run
+## Initialize velocities of atoms in the carbon_middle group at T (300 K) with no overall translational momentum (`mom yes``) or rotational momentum (`rot yes`)
+## As a result of `mom yes` and `rot yes`, the systems net movement and rotation is null
+velocity carbon_middle create ${T} 48455 mom yes rot yes
+
+## Apply the NVE ensemble to the system
+fix nve_ensemble all nve
+
+## Calculate the temperature of the carbon_middle group
+compute carbon_middle_temp carbon_middle temp
+
+## Apply a Berendsen thermostat to the carbon_middle group to regulate its temperature to ${T} with a relaxation time of 100 time units
+fix berendsen_thermostat carbon_middle temp/berendsen ${T} ${T} 100
+
+## Modify Berendsen thermostat fix to use the temperature calculated by carbon_middle_temp compute command
+fix_modify berendsen_thermostat temp carbon_middle_temp
+
+## Apply an initial velocity of zero in the x and y directions to the top and bottom carbon groups
+## Apply NULL initial velocity to z directions to the top and bottom carbon groups. This ensures this velocity command does not affect the z-direction
+velocity carbon_top set 0 0 NULL
+velocity carbon_bottom set 0 0 NULL
+
+## Ensure all forces affecting the top and bottom carbon groups are constant in the x and y directions. Because initial velocity is zero, this ensures they remain immobile in the x and y directions during the simulation
+## NULL value is set for z-direction parameter, ensuring this `setforce` command will not modify existing forces in the z-direction
+fix carbon_top_force carbon_top setforce 0 0 NULL
+fix carbon_bottom_force carbon_bottom setforce 0 0 NULL
+
+## Output state of all atoms every 1000 timesteps
+dump dump_all_atoms_per_1000_timestep all atom 1000 ../data/raw/trajectory/dump_all_atoms_per_1000_timestep.lammpstrj
+
+## Output thermodynamic data every 100 timesteps. Particularly the temperature of the carbon_middle group
+thermo 100
+thermo_modify temp carbon_middle_temp
+
+## Set simulation timestep to 0.0005 picoseconds (0.5 femtoseconds) and run initial simulation of 5000 timesteps to equilibrate the system before applying any deformation
+## Need to use a smaller timestep of 0.0005 ps (0.5 fm) as reactive force fields usually require smaller timesteps than classical/non-reactive force fields
+timestep 0.0005
+run 5000
+
+## Calculate the distance between the center of mass of the top and bottom carbon groups in the z-direction
+variable cnt_length equal xcm(carbon_top,z)-xcm(carbon_bottom,z)
+
+## Calculate strain via equation (change in cnt length - initial cnt length)/initial cnt length) * 100 and output data
+variable strain equal 100*(v_cnt_length-${cnt_length})/${cnt_length}
+fix ave_time_1 all ave/time 10 100 1000 v_strain file ../data/raw/stress-strain/output_cnt_strain.dat
+
+## Calculate stress & define variables
+variable eV_to_joule equal 1.60218e-19 # eV to J conversion factor
+variable Atom equal 1e-10 # 1 Å
+variable pi equal 3.14159
+variable f_total_eV equal f_carbon_bottom_force[3]-f_carbon_top_force[3] # eV/A
+variable f_total_newton equal v_f_total_eV*${eV_to_joule}/${Atom}
+variable rad equal 5.2e-10 # Radius of carbon nanotube
+variable dC equal 3.4e-10 # Effective diameter of the carbon atom
+variable A equal ${pi}*${rad}*${dC} # Surface area in m2
+variable stress equal v_f_total_newton/${A}  # Stress in Pascal
+
+fix ave_time_2 all ave/time 10 100 1000 v_stress file ../data/raw/stress-strain/output_cnt_stress.dat
+
+## Ensure all forces affecting the top and bottom carbon groups are constant. Because initial velocity is zero, this ensures they remain immobile during the simulation
+fix carbon_top_force carbon_top setforce 0 0 0
+fix carbon_bottom_force carbon_bottom setforce 0 0 0
+
+## Apply a constant velocity of 0.05 Å/ps in the z-direction to the top carbon group, simulating a compressive force
+## Apply a constant velocity of -0.05 Å/ps in the z-direction to the bottom carbon group, simulating a stretching force
+## Run deformation simulation of 400,000 timesteps
+## Because we have previously set all forces affecting the top and bottom carbon groups as constant, this imposes a constant velocity deformation of 0.05 A/ps = 5 m/s
+velocity carbon_top set 0 0 0.05
+velocity carbon_bottom set 0 0 -0.05
+run 400000

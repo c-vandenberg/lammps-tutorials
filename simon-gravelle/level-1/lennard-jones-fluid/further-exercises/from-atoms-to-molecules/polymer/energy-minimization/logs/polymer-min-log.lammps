@@ -1,0 +1,173 @@
+# PART A - ENERGY MINIMIZATION
+
+# 1) Initialization
+units lj
+dimension 3
+atom_style molecular
+bond_style harmonic
+angle_style harmonic
+pair_style lj/cut 2.5
+boundary p p p
+
+# 2) System definition
+# Cubic Box
+region simulation_box block -20 20 -20 20 -20 20
+
+# Small Elongated Box
+# region simulation_box block -20 20 -6 6 -6 6
+
+create_box 2 simulation_box bond/types 1 angle/types 1 extra/bond/per/atom 1 extra/angle/per/atom 2 extra/special/per/atom 5
+Created orthogonal box = (-20 -20 -20) to (20 20 20)
+  1 by 1 by 1 MPI processor grid
+
+# Import and use molecule template to populate box with molecules
+molecule polymer ../data/raw/topology/polymer.mol
+Read molecule template polymer:
+# Polymer molecule
+  1 molecules
+  0 fragments
+  9 atoms with max type 2
+  8 bonds with max type 1
+  7 angles with max type 1
+  0 dihedrals with max type 0
+  0 impropers with max type 0
+create_atoms 1 random 1500 341341 simulation_box
+Created 1500 atoms
+  using lattice units in orthogonal box = (-20 -20 -20) to (20 20 20)
+  create_atoms CPU = 0.001 seconds
+
+# Create a single polymer
+# create_atoms 0 single 0 0 0 mol polymer 14356
+
+# Create several polymers
+create_atoms 0 random 5 678865 simulation_box mol polymer 8751
+Created 45 atoms
+  using lattice units in orthogonal box = (-20 -20 -20) to (20 20 20)
+  create_atoms CPU = 0.000 seconds
+
+# 3) Simulation settings
+mass 1 1
+mass 2 1
+pair_coeff 1 1 1.0 1.0
+pair_coeff 2 2 0.5 3.0
+bond_coeff 1 5 2.5
+angle_coeff 1 2 180
+
+# 4) Visualization
+thermo 10
+thermo_style custom step temp pe ke etotal press
+dump dump_all_atoms_per_100_timestep all atom 10 ../data/raw/trajectory/dump_all_atoms_per_100_timestep.min.lammpstrj
+
+# 5) Run
+minimize 1.0e-4 1.0e-6 1000 10000
+Generated 1 of 1 mixed pair_coeff terms from geometric mixing rule
+WARNING: Communication cutoff 2.8 is shorter than a bond length based estimate of 4.05. This may lead to errors. (src/comm.cpp:723)
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 2.8
+  ghost atom cutoff = 2.8
+  binsize = 1.4, bins = 29 29 29
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+WARNING: Communication cutoff 2.8 is shorter than a bond length based estimate of 4.05. This may lead to errors. (src/comm.cpp:723)
+Per MPI rank memory allocation (min/avg/max) = 8.115 | 8.115 | 8.115 Mbytes
+   Step          Temp          PotEng         KinEng         TotEng         Press     
+         0   0              81658388       0              81658388       7885161.9    
+        10   0              274.4634       0              274.4634       26.700732    
+        20   0             -0.1939473      0             -0.1939473     -0.0036851371 
+        30   0             -0.29431884     0             -0.29431884    -0.0025844938 
+        40   0             -0.35840164     0             -0.35840164    -0.0021048284 
+        50   0             -0.40339884     0             -0.40339884    -0.0013949358 
+        60   0             -0.43868901     0             -0.43868901    -0.001244898  
+        70   0             -0.46319566     0             -0.46319566    -0.0011430984 
+        80   0             -0.49880145     0             -0.49880145    -0.00086133386
+        90   0             -0.5278543      0             -0.5278543     -0.0011146251 
+       100   0             -0.55517439     0             -0.55517439    -0.0011909968 
+       110   0             -0.57992429     0             -0.57992429    -0.001190861  
+       120   0             -0.60377476     0             -0.60377476    -0.00080368123
+       130   0             -0.6214082      0             -0.6214082     -0.00081373707
+       140   0             -0.64427519     0             -0.64427519    -0.0006910509 
+       150   0             -0.6615128      0             -0.6615128     -0.00047198105
+       160   0             -0.67513486     0             -0.67513486    -0.00055009429
+       170   0             -0.68831266     0             -0.68831266    -0.00044043363
+       180   0             -0.70279955     0             -0.70279955    -0.00058342238
+       190   0             -0.71779176     0             -0.71779176    -0.00056585164
+       200   0             -0.73728944     0             -0.73728944    -0.00057821853
+       210   0             -0.74803793     0             -0.74803793    -0.00049098154
+       220   0             -0.75852932     0             -0.75852932    -0.00039657077
+       230   0             -0.77007773     0             -0.77007773    -0.00039349455
+       240   0             -0.78432848     0             -0.78432848    -0.0004708831 
+       250   0             -0.79554242     0             -0.79554242    -0.00047251566
+       260   0             -0.8033077      0             -0.8033077     -0.00039394103
+       270   0             -0.81581975     0             -0.81581975    -0.00031656702
+       280   0             -0.82696422     0             -0.82696422    -0.00030053774
+       290   0             -0.83467535     0             -0.83467535    -0.00031453031
+       300   0             -0.84307119     0             -0.84307119    -0.00030579226
+       310   0             -0.85690703     0             -0.85690703    -0.00057004732
+       320   0             -0.87033892     0             -0.87033892    -0.00033307595
+       330   0             -0.87870977     0             -0.87870977    -0.00031886097
+       340   0             -0.88867192     0             -0.88867192    -0.00028604403
+       350   0             -0.89698531     0             -0.89698531    -0.00026074474
+       360   0             -0.90438512     0             -0.90438512    -0.00018077407
+       370   0             -0.91210697     0             -0.91210697    -0.00026270472
+       380   0             -0.92246351     0             -0.92246351    -0.00027193555
+       390   0             -0.92914513     0             -0.92914513    -0.00019480263
+       400   0             -0.93639021     0             -0.93639021    -0.00018176976
+       410   0             -0.94339824     0             -0.94339824    -0.00012297188
+       420   0             -0.94824437     0             -0.94824437    -0.00018419998
+       430   0             -0.95214562     0             -0.95214562    -0.00010868278
+       440   0             -0.95559931     0             -0.95559931    -9.7837984e-05
+       450   0             -0.959492       0             -0.959492      -0.00015302762
+       460   0             -0.9649735      0             -0.9649735     -0.00013211239
+       470   0             -0.96936299     0             -0.96936299    -0.00021896893
+       480   0             -0.97503836     0             -0.97503836    -0.00014057874
+       490   0             -0.97919854     0             -0.97919854    -0.000169798  
+       500   0             -0.98302231     0             -0.98302231    -0.00026292322
+       510   0             -0.98868527     0             -0.98868527    -0.0001966867 
+       514   0             -0.98979053     0             -0.98979053    -0.00018687049
+Loop time of 0.105097 on 1 procs for 514 steps with 1545 atoms
+
+99.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+Minimization stats:
+  Stopping criterion = energy tolerance
+  Energy initial, next-to-last, final = 
+      81658388.2387253 -0.989709198534753 -0.989790528702177
+  Force two-norm initial, final = 1.6033542e+13 5.418731
+  Force max component initial, final = 1.0518609e+13 1.3798382
+  Final line search alpha, max atom move = 0.072477347 0.10000701
+  Iterations, force evaluations = 514 1017
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.020267   | 0.020267   | 0.020267   |   0.0 | 19.28
+Bond    | 0.0018005  | 0.0018005  | 0.0018005  |   0.0 |  1.71
+Neigh   | 0.036244   | 0.036244   | 0.036244   |   0.0 | 34.49
+Comm    | 0.0045741  | 0.0045741  | 0.0045741  |   0.0 |  4.35
+Output  | 0.027857   | 0.027857   | 0.027857   |   0.0 | 26.51
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.01435    |            |       | 13.66
+
+Nlocal:           1545 ave        1545 max        1545 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:            730 ave         730 max         730 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:           2102 ave        2102 max        2102 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 2102
+Ave neighs/atom = 1.3605178
+Ave special neighs/atom = 0.13592233
+Neighbor list builds = 167
+Dangerous builds = 0
+write_data ../data/raw/topology/minimized_coordinate.data pair ij
+System init for write_data ...
+Generated 1 of 1 mixed pair_coeff terms from geometric mixing rule
+WARNING: Communication cutoff 2.8 is shorter than a bond length based estimate of 4.05. This may lead to errors. (src/comm.cpp:723)
+Total wall time: 0:00:00

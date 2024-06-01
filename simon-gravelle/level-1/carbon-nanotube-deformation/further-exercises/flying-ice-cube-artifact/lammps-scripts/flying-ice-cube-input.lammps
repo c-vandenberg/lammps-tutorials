@@ -1,0 +1,37 @@
+log ../logs/flying-ice-cube-log.lammps
+# Molecular Dynamics - Flying Ice Cube Artifact
+
+# 1) Initialization
+variable T equal 300
+
+units real
+atom_style molecular
+boundary f f f
+pair_style lj/cut 14
+
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+improper_style harmonic
+
+special_bonds lj 0.0 0.0 0.5
+
+# 2) System definition
+read_data ../data/raw/topology/flying_ice_cube_cnt_molecular.data
+
+# 3) Simulation settings
+include ../../../cnt-unbreakable-bonds/data/force-field/opls-aa.lammps
+
+group carbon_atoms type 1
+
+# 4) Run
+fix nve_ensemble all nve
+fix zero_momentum all momentum 100 linear 1 1 1
+fix berendsen_thermostat all temp/berendsen ${T} ${T} 100
+fix recenter_all all recenter 0 0 0
+
+thermo 100
+dump dump_all_atoms_per_100_timestep all atom 1000 ../data/raw/trajectory/dump_all_atoms_per_100_timestep.lammpstrj
+
+timestep 1.0
+run 10000
