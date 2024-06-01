@@ -81,6 +81,22 @@ However the two bound atoms are further pressed together, past their equilibrium
     alt="lennard-jones-potential-equation-repulsive-component"/>
 </div>
 
+### Lennard-Jones Fluid Kinetic Energy as a Function of Time
+
+<div align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/74844b3c-9df5-41be-8833-594e07a5ad60" alt="lennard_jones_fluid_ke_vs_time" width="">
+</div>
+
+As you would expect, during the energy minimization the kinetic energy is zero due no atomic/molecular motion calculations by LAMMPS. However, once the molecular dynamics simultation starts it rapidly increases before stabilising at around *k<sub>e</sub>* = 1.50.
+
+### Lennard-Jones Fluid Potential Energy as a Function of Time
+
+<div align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/a70c94f6-6cdf-4440-a0bf-e73a9d8429a8" alt="lennard_jones_fluid_pe_vs_time" width="">
+</div>
+
+The system starts at a very high potential energy due to overlapping atoms when the simulation system is established, before rapidly decreasing during energy minimization. Again, once the molecular dynamics simulation starts, potential energy rapidly increases before stabilising at around *p<sub>e</sub>* = -0.25
+
 ## Input Script Command Syntax
 
 ### PART A - ENERGY MINIMIZATION
