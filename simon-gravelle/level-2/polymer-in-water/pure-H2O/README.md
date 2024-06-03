@@ -98,5 +98,5 @@ extra/special/per/atom 14
 * `extra/special/per/atom 14` - Allocates additional memory for `14` special pairwise interactions for each atom
 
 ## References
-[1] Wu, Y., Tepper, H.L. and Voth, G.A. (2006) ‘Flexible simple point-charge water model with improved liquid-state properties’, *The Journal of Chemical Physics*, 124(2).
-[2] Luty, B.A. and van Gunsteren, W.F. (1996) ‘Calculating electrostatic interactions using the particle−particle particle−mesh method with nonperiodic long-range interactions’, **The Journal of Physical Chemistry**, 100(7), pp. 2581–2587.
+[1] Wu, Y., Tepper, H.L. and Voth, G.A. (2006) ‘Flexible simple point-charge water model with improved liquid-state properties’, *The Journal of Chemical Physics*, 124(2). <br>
+[2] Luty, B.A. and van Gunsteren, W.F. (1996) ‘Calculating electrostatic interactions using the particle−particle particle−mesh method with nonperiodic long-range interactions’, *The Journal of Physical Chemistry*, 100(7), pp. 2581–2587.
