@@ -1,8 +1,8 @@
 # Preparing The Water Reservoir
 
-<p align="center">
-  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/dcbb5fe3-9e4e-4de5-a64a-931e866c2523" alt="cnt-unbreakable-bonds start md" width="" />
-</p>
+<div align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/dcbb5fe3-9e4e-4de5-a64a-931e866c2523" alt="pure H2O" width="" />
+</div>
 
 ## Introduction
 
@@ -23,6 +23,32 @@ In the simple SPC model, the intramolecular degrees of freedom are usually froze
 The Extended SPC (SPC/E) model introduced a self-polarization energy correction term to account for the polarizability of the water molecules, and thus better define the dielectric constant. This was achieved by slightly increasing the atomic partial charges on the hydrogen & oxygen sites, but still does not account for intramolecular degrees of freedom/flexibility. However, because polarization effects are highly environment dependent, the accuracy of this simple approach is significantly limited in heterogeneous systems where the dielectric properties of water are influenced by that of another dielectric medium (e.g. membranes, proteins, ion channels etc.).
 
 *Wu et al.* improved on this by investigating the effect of equilibrium bond length on the self-diffusion constant, and the effect of equilibrium bond angles on the dielectric constant. They found the sensitivity of both parameters to these molecular geometries was very high. Therefore, they derived a new flexible simple point-charge water model (the SPC/Fw model) by slightly perturbing the equilibrium bond length & angle to optimize the bulk water self-diffusion & dielectric constants towards their experimental values.
+
+## Data Analysis
+
+### Pure H<sub>2</sub>O Temperature as a Function of Time
+
+<div align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/60efcd37-386e-4d96-94cb-9d815ef2a92f" alt="pure H2O temp vs time" width="" />
+</div>
+
+During equilibration of pure H<sub>2</sub> system, system temperature rapidly rises and plateaus at 300K as defined in the LAMMPS input script. Equilibrium temperature is reached in ~ 0.8 ps.
+
+### Pure H<sub>2</sub>O Volume as a Function of Time
+
+<div align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/c9917ab1-e1e5-43bc-8dc1-68109147a59b" alt="pure H2O vol vs time" width="" />
+</div>
+
+The NPT ensemble applies isotropic pressure control meaning that the simulation box expands or contracts equally in all directions to control pressure. Once its applied during equilibration of pure H<sub>2</sub> system, system volume decreases gradually, reaching an equilibrium volume of ~ 34 nm<sup>3</sup> in ~ 11 ps.
+
+### Pure H<sub>2</sub>O Density as a Function of Time
+
+<div align="center">
+  <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/be837b5f-c771-4cff-8848-ba12baf20d17" alt="pure H2O density vs time" width="" />
+</div>
+
+Due to the inverse relationship with volume, the system density increases gradually as system volume decreases gradually decreases. The equilibrium density of ~ 31 nm<sup>-3</sup> is reached in ~ 13 ps.
 
 ## Input Script Command Syntax
 
