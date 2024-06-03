@@ -67,7 +67,7 @@ def main():
         figure_size=(18, 10),
         line_labels=['Unstretched PEG', 'Stretched PEG'],
         line_colours=['cyan', 'orange'],
-        x_label=r'$\phi$',
+        x_label=r'$\phi$ (°)',
         y_label=r'$p (\phi)$',
         y_lim=(0.00, 0.02),
         x_lim=(0, 180),

@@ -36,7 +36,7 @@ def main():
         figure_size=(18, 10),
         line_colours='cyan',
         x_label=r'$t$ (ps)',
-        y_label=r'$PEG\ Length\ (End to End)$ (nm)',
+        y_label=r'$PEG\ Length\ (End\ to\ End)$ (nm)',
         y_lim=(0, 6),
         x_lim=(0, 60),
         graph_title=r'$\bf{PEG\ Length\ (End to End)\ vs\ Time}$',
