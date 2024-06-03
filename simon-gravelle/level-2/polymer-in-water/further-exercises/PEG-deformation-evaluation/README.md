@@ -21,4 +21,4 @@ From <b>Fig 2</b>, we can see that the gauche/anti-periplanar conformations repr
 
 We can see that both the unstretched & stretched PEG molecules have the highest dihedral angle probability density at the gauche conformations (*ϕ* = 60° & *ϕ* = 180°) and the lowest dihedral angle probability density at the eclipsed conformations (*ϕ* = 0° & *ϕ* = 120°). This is because they are the lowest and highest energy conformations respectively.
 
-The stretched PEG molecule has higher probability densities at *ϕ* = 60° & *ϕ* = 180° and lower probability densities at ϕ* = 0° & *ϕ* = 120°. This is consistent with assumption that the stretched PEG molecule has a more ordered/less conformationally free structure, reducing the range of observed dihedral angles.
+The stretched PEG molecule has higher probability densities at *ϕ* = 60° & *ϕ* = 180° and lower probability densities at *ϕ* = 0° & *ϕ* = 120°. This is consistent with assumption that the stretched PEG molecule has a more ordered/less conformationally free structure, reducing the range of observed dihedral angles.
