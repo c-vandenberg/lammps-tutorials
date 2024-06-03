@@ -25,3 +25,5 @@ This data is then plotted on two scatter graph subplots via Matplotlib Pyplot. T
 Using similar logic as above, this exercise extracts bond length distribution at the beginning of the simulation (frames 1 - 20), and during maximum deformation (frames 200 - 220).
 
 This is achieved by carrying out a histogram calculation of all bond lengths in 50 bins ranging from 1.3 to 1.65 Å. These histogram counts are then normalized to obtain the probability density of each bond length.
+
+As you would expect, prior to deformation the CNT bond length distributions show a sharp & high probability density between 1.41 to 1.43 Å, indicating that the majority of CNT bond lengths lie in this range during the simulation prior to deformation. Once maximum deformation is reached however, the bond length probabiltiy density is shows a much broader range with a higher probability density for bond lengths up to 1.65 Å. This reflects the stretching of the CNT bonds as a result of the deformation.
