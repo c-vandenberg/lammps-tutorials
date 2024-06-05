@@ -13,7 +13,7 @@ The force magnitude was chosen via trial & error to be large enough to overcome 
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/11110a72-6d6a-448a-ac33-b6df8c9b7294" alt ="peg length vs time" width="" />
 </div>
 
-The PEG end-to-end length is defined as the Euclidean distance between the center of mass coordinates for the two oxygen atoms at each end of the PEG molecule. Euclidean distance between any two points in a 3D Euclidean space is given by the equation:
+The PEG end-to-end length is defined as the Euclidean distance between the center of mass coordinates for the two oxygen atoms at each end of the PEG molecule. Euclidean distance between any two points in 3D Euclidean space is given by the equation:
 
 <br>
 <div align="center">
