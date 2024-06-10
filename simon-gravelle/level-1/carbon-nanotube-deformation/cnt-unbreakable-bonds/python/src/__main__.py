@@ -14,10 +14,12 @@ from modules.line_graph import LineGraph
 
 
 def main():
+    base_dir: str = os.path.dirname(__file__)
+
     # File contains columns of data, the .T transpose operation switches them to rows, making it easier to
     # unpack into separate variables
     time, cnt_length = numpy.loadtxt(
-        '../../data/raw/length-vs-time/output_cnt_length.dat'
+        os.path.join(base_dir, '../../data/raw/length-vs-time/output_cnt_length.dat')
     ).T
 
     # Convert time from femtoseconds to picoseconds
@@ -28,26 +30,30 @@ def main():
         numpy.vstack((time, cnt_length)),
     ]
 
-    # Instantiate line graph object and create 'CNT length vs time' line graph
-    unbreakable_cnt_bonds_line_graph: LineGraph = LineGraph()
-    unbreakable_cnt_bonds_line_graph.single_line_graph(
+    # Create 'CNT length vs time' line graph
+    LineGraph.single_line_graph(
         data_arrays=atom_population_vs_time_data_array,
         figure_size=(18, 10),
         line_colours=['cyan'],
         x_label=r'$t$ (ps)',
         y_label=r'$Length$ (Å)',
-        y_lim=(55, 67),
         x_lim=(0, 16),
+        y_lim=(55, 67),
         graph_title=r'$\bf{Unbreakable\ Bonds\ Carbon\ Nanotube\ (CNT)\ Length\ vs\ Time}$',
         figure_text=r'$\bf{Fig\ 1}$ Evolution of CNT length as a function of time. Deformation starts at $t$ = 5 ps',
         figure_text_font_size=17.5,
+        figure_text_x_coord=0.5,
+        figure_text_y_coord=0.005,
         font_size=20,
-        label_size=20,
+        tick_label_size=20,
         line_width=3.5
     )
 
     # Extract first-input-log.lammps log file data & instantiate lammps_logfile.File object
-    log_file: lammps_logfile.File = lammps_logfile.File('../../logs/cnt-unbreakable-bonds-log.lammps')
+    log_file: lammps_logfile.File = lammps_logfile.File(
+        os.path.join(base_dir, '../../logs/cnt-unbreakable-bonds-log.lammps')
+    )
+
     total_energy_vs_time_array: List[ndarray] = []
 
     # Extract first run time from lammps_logfile.File object and convert from fs to ps
@@ -67,7 +73,7 @@ def main():
     total_energy_vs_time_array.append(numpy.vstack((time_second_run, total_energy_second_run)))
 
     # Create 'CNT system total energy vs time' line graph
-    unbreakable_cnt_bonds_line_graph.single_line_graph(
+    LineGraph.single_line_graph(
         data_arrays=total_energy_vs_time_array,
         figure_size=(18, 10),
         line_labels=['First Run (Equilibration)', 'Second Run (Deformation)'],
@@ -80,8 +86,10 @@ def main():
         figure_text=r'$\bf{Fig\ 2}$ Evolution of total energy of CNT system as a function of time. '
                     r'Deformation starts at $t$ = 5 ps',
         figure_text_font_size=17.5,
+        figure_text_x_coord=0.5,
+        figure_text_y_coord=0.005,
         font_size=20,
-        label_size=20,
+        tick_label_size=20,
         line_width=3.5
     )
 
