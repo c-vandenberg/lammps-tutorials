@@ -8,7 +8,7 @@ class LineGraph:
     @staticmethod
     def line_graph_subplots(data_arrays: List[ndarray], subplot_titles: List, x_labels: List, y_labels: List,
                             x_lim: Union[Tuple, List[Tuple]], y_lims: Union[Tuple, List[Tuple]], graph_title: str,
-                            figure_text: str):
+                            figure_text: str, save_path: Union[str, None] = None,):
         """
         Create multiple line graph subplots.
 
@@ -30,6 +30,8 @@ class LineGraph:
             Title for the graph.
         figure_text : str
             Additional text to display at the bottom of the figure.
+        save_path : Union[str, None]
+            Directory path where the plot will be saved (optional).
 
         Returns
         -------
@@ -67,6 +69,10 @@ class LineGraph:
         line_graphs.text(0.5, 0.0005, figure_text, ha='center', va='center', color='white', fontsize=12)
 
         pyplot.tight_layout()
+
+        if save_path:
+            pyplot.savefig(save_path, bbox_inches='tight')
+
         pyplot.show()
 
     @staticmethod
@@ -77,8 +83,8 @@ class LineGraph:
                           font_size: Union[int, float], tick_label_size: Union[int, float],
                           line_width: Union[int, float], save_path: Union[str, None] = None,
                           line_labels: Union[List, None] = None,
-                          line_labels_position: str = None,
-                          dashed_lines: List[Tuple[str, Union[int, float]]] = None):
+                          line_labels_position: Union[str, None] = None,
+                          dashed_lines: Union[List[Tuple[str, Union[int, float]]], None] = None):
         """
         Create a single line graph with single or multiple lines.
 
