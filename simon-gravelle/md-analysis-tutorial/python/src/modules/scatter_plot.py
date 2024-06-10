@@ -1,13 +1,13 @@
 import matplotlib.pyplot as pyplot
 import mpl_toolkits.mplot3d as mplot3d
 import mpl_toolkits.mplot3d.art3d as art3d
-from typing import List
+from typing import List, Union
 
 
 class ScatterPlot:
     @staticmethod
     def two_dimensional_scatter_plot(x_axis_values: List, y_axis_values: List, x_axis_label: str, y_axis_label: str,
-                                     graph_title: str):
+                                     graph_title: str, save_path: Union[str, None] = None):
         """
         Create a two-dimensional scatter plot.
 
@@ -23,6 +23,8 @@ class ScatterPlot:
             Label for the y-axis.
         graph_title : str
             Title of the scatter plot.
+        save_path : Union[str, None]
+            Directory path where the plot will be saved (optional).
 
         Returns
         -------
@@ -45,12 +47,16 @@ class ScatterPlot:
         for spine in two_dimension_axes.spines.values():
             spine.set_edgecolor('white')
 
+        # Save plot if save path given
+        if save_path:
+            pyplot.savefig(save_path)
+
         pyplot.show()
 
     @staticmethod
     def three_dimensional_scatter_plot(x_axis_values: List, y_axis_values: List, z_axis_values: List,
                                        marker_colours: List, x_axis_label: str, y_axis_label: str, z_axis_label: str,
-                                       marker_colours_label: str, graph_title: str):
+                                       marker_colours_label: str, graph_title: str, save_path: Union[str, None] = None):
         """
         Create a three-dimensional scatter plot.
 
@@ -74,6 +80,8 @@ class ScatterPlot:
             Label for the color bar representing marker colors.
         graph_title : str
             Title of the scatter plot.
+        save_path : Union[str, None]
+            Directory path where the plot will be saved (optional).
 
         Returns
         -------
@@ -100,6 +108,10 @@ class ScatterPlot:
         three_dimension_axes.set_xlabel(x_axis_label)
         three_dimension_axes.set_ylabel(y_axis_label)
         three_dimension_axes.set_zlabel(z_axis_label)
+
+        # Save plot if save path given
+        if save_path:
+            pyplot.savefig(save_path)
 
         # Show the plot
         pyplot.show()

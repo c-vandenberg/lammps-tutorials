@@ -113,23 +113,22 @@ class BreakableCNTBondsPlot(LineGraph):
                 if bond_length < bond_length_cutoff:
                     current_timestep_bond_lengths.append(bond_length)
 
-            if frame > 0:  # Ignore first frame
-                # Histogram calculation of all bond lengths and 50 bins ranging from 1.3 to 1.65
-                # Variable `bond_length_histo` contains counts of bond lengths in each bin
-                bond_length_histo, bin_edges = numpy.histogram(current_timestep_bond_lengths, bins=number_of_bins,
-                                                               range=bond_length_range)
+            # Histogram calculation of all bond lengths and 50 bins ranging from 1.3 to 1.65
+            # Variable `bond_length_histo` contains counts of bond lengths in each bin
+            bond_length_histo, bin_edges = numpy.histogram(current_timestep_bond_lengths, bins=number_of_bins,
+                                                           range=bond_length_range)
 
-                # Convert bin edges to bin centers by averaging each pair of adjacent bin edges
-                bin_centers = (bin_edges[1:] + bin_edges[:-1]) / 2
+            # Convert bin edges to bin centers by averaging each pair of adjacent bin edges
+            bin_centers = (bin_edges[1:] + bin_edges[:-1]) / 2
 
-                # Normalize histogram counts by calculating bin widths & dividing histogram counts by total number of
-                # bond lengths * the bin width
-                bin_width = bin_edges[1] = bin_edges[0]
-                bond_length_histo = bond_length_histo / (numpy.sum(bond_length_histo) * bin_width)
+            # Normalize histogram counts by calculating bin widths & dividing histogram counts by total number of
+            # bond lengths * the bin width
+            bin_width = bin_edges[1] = bin_edges[0]
+            bond_length_histo = bond_length_histo / (numpy.sum(bond_length_histo) * bin_width)
 
-                # Store bin center and normalized histogram counts by stacking vertically using `numpy.vstack`, and
-                # appending to `bond_length_distributions` list
-                bond_length_distributions.append(numpy.vstack([bin_centers, bond_length_histo]))
+            # Store bin center and normalized histogram counts by stacking vertically using `numpy.vstack`, and
+            # appending to `bond_length_distributions` list
+            bond_length_distributions.append(numpy.vstack([bin_centers, bond_length_histo]))
 
         # Slice `bond_length_distributions` list to extract bond length distributions for first frame range
         # Calculate mean of these distributions along the vertical axis
