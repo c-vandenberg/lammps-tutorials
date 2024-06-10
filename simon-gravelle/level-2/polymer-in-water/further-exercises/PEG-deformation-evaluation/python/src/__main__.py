@@ -13,14 +13,15 @@ from modules.line_graph import LineGraph
 
 
 def main():
-    rdf_path: str = '../../data/raw/dihedral-vs-time/'
+    base_dir: str = os.getcwd()
+    rdf_path: str = os.path.join(base_dir, '../../data/raw/dihedral-vs-time/')
 
     # File contains columns of data, the .T transpose operation switches them to rows, making it easier to
     # unpack into separate variables
     # Extract unstretched PEG dihedral histogram data
     (unstretched_bin, unstretched_dihedrals, unstretched_dihedrals_bin_counts,
      unstretched_bin_dihedral_count_total_fraction) = numpy.genfromtxt(
-        rdf_path + 'initial_dihedral.histo',
+        os.path.join(rdf_path, 'initial_dihedral.histo'),
         skip_header=4,
         usecols=range(4)
     ).T
@@ -43,7 +44,7 @@ def main():
     # Extract stretched PEG dihedral histogram data and calculate probability densities
     (stretched_bin, stretched_dihedrals, stretched_dihedrals_bin_counts,
      stretched_bin_dihedral_count_total_fraction) = numpy.genfromtxt(
-        rdf_path + 'final_dihedral.histo',
+        os.path.join(rdf_path, 'final_dihedral.histo'),
         skip_header=4,
         usecols=range(4)
     ).T
@@ -60,11 +61,10 @@ def main():
         numpy.vstack((stretched_dihedrals, stretched_dihedrals_probability_density))
     ]
 
-    # Instantiate line graph object and create 'H2O-PEG(O) RDF vs distance' line graph
-    rdf_vs_distance_line_graph: LineGraph = LineGraph()
-    rdf_vs_distance_line_graph.single_line_graph(
+    # Create 'H2O-PEG(O) RDF vs distance' line graph
+    LineGraph.single_line_graph(
         data_arrays=dihedrals_probability_density_vs_angle_data_array,
-        figure_size=(18, 10),
+        figure_size=(18, 6),
         line_labels=['Unstretched PEG', 'Stretched PEG'],
         line_colours=['cyan', 'orange'],
         x_label=r'$\phi$ (°)',
@@ -75,9 +75,12 @@ def main():
         figure_text=r'$\bf{Fig\ 1}$ Dihedral angle ($\phi$) probability distribution ($p (\phi)$) before and after '
                     r'deformation of PEG molecule',
         figure_text_font_size=15,
+        figure_text_x_coord=0.5,
+        figure_text_y_coord=0.0005,
         font_size=15,
-        label_size=20,
-        line_width=2.5
+        tick_label_size=20,
+        line_width=2.5,
+        line_labels_position='upper left'
     )
 
 

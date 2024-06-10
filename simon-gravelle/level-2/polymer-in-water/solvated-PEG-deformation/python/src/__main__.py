@@ -31,7 +31,7 @@ def main():
         numpy.vstack((time, peg_length))
     ]
 
-    # Instantiate LineGraph object and create 'PEG length vs time' line graph
+    # Create 'PEG length vs time' line graph
     LineGraph.single_line_graph(
         data_arrays=peg_length_vs_time_data_array,
         figure_size=(18, 10),

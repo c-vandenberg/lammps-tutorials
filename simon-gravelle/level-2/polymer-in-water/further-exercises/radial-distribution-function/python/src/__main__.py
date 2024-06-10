@@ -13,7 +13,8 @@ from modules.line_graph import LineGraph
 
 
 def main():
-    rdf_path: str = '../../data/raw/rdf-vs-time/'
+    base_dir: str = os.getcwd()
+    rdf_path: str = os.path.join(base_dir, '../../data/raw/rdf-vs-time/')
     deformed_solvated_peg_rdf_vs_distance_data_array: List[ndarray] = []
 
     # File contains columns of data, the .T transpose operation switches them to rows, making it easier to
@@ -22,7 +23,7 @@ def main():
     (unstretched_bin, unstretched_distance, unstretched_bin_rdf,
      unstretched_bin_coordination_number, unstretched_bin_cumulative_coordination_number,
      unstretched_bin_atom_pairs_histo) = numpy.genfromtxt(
-        rdf_path + 'ave_PEG_H2O_RDF_initial.dat',
+        os.path.join(rdf_path, 'ave_PEG_H2O_RDF_initial.dat'),
         skip_header=4,
         usecols=range(6)
     ).T
@@ -36,7 +37,7 @@ def main():
     (stretched_bin, stretched_distance, stretched_bin_rdf,
      stretched_bin_coordination_number, stretched_bin_cumulative_coordination_number,
      stretched_bin_atom_pairs_histo) = numpy.genfromtxt(
-        rdf_path + 'ave_PEG_H2O_RDF_final.dat',
+        os.path.join(rdf_path, 'ave_PEG_H2O_RDF_final.dat'),
         skip_header=4,
         usecols=range(6)
     ).T
@@ -46,9 +47,8 @@ def main():
         numpy.vstack((stretched_distance, stretched_bin_rdf)),
     )
 
-    # Instantiate line graph object and create 'H2O-PEG(O) RDF vs distance' line graph
-    rdf_vs_distance_line_graph: LineGraph = LineGraph()
-    rdf_vs_distance_line_graph.single_line_graph(
+    # Create 'H2O-PEG(O) RDF vs distance' line graph
+    LineGraph.single_line_graph(
         data_arrays=deformed_solvated_peg_rdf_vs_distance_data_array,
         figure_size=(18, 10),
         line_labels=[r'H$_{2}$O-PEG(O) - Unstretched', r'H$_{2}$O-PEG(O) - Stretched'],
@@ -62,9 +62,12 @@ def main():
         figure_text=r'$\bf{Fig\ 1}$ Evolution of radial distribution function between H$_{2}$O oxygen atoms and '
                     r'PEG oxygen atoms as a function of distance',
         figure_text_font_size=15,
+        figure_text_x_coord=0.5,
+        figure_text_y_coord=0.005,
         font_size=15,
-        label_size=20,
-        line_width=3.5
+        tick_label_size=20,
+        line_width=3.5,
+        line_labels_position='upper left'
     )
 
 
