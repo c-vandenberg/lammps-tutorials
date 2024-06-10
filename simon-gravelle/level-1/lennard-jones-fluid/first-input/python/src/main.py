@@ -8,7 +8,7 @@ from visualisation.lennard_jones_fluid_interactions_plot import LennardJonesFlui
 
 
 def main():
-    base_dir: str = os.path.dirname(__file__)
+    base_dir: str = os.getcwd()
     first_input_log_file_path: str = os.path.join(base_dir, '../../logs/first-input-log.lammps')
 
     # Define intermolecular range values and Lennard-Jones parameters

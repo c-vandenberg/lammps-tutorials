@@ -13,9 +13,11 @@ from modules.line_graph import LineGraph
 
 
 def main():
+    base_dir: str = os.getcwd()
+
     # Unpack time and PEG length data
     time, peg_length = numpy.loadtxt(
-        '../../data/raw/length-vs-time/ave_PEG_end_to_end_distance.dat'
+        os.path.join(base_dir, '../../data/raw/length-vs-time/ave_PEG_end_to_end_distance.dat')
     ).T
 
     # Convert time from femtoseconds to picoseconds
@@ -30,22 +32,24 @@ def main():
     ]
 
     # Instantiate LineGraph object and create 'PEG length vs time' line graph
-    solvated_peg_line_graph: LineGraph = LineGraph()
-    solvated_peg_line_graph.single_line_graph(
+    LineGraph.single_line_graph(
         data_arrays=peg_length_vs_time_data_array,
         figure_size=(18, 10),
-        line_colours='cyan',
+        line_colours=['cyan'],
         x_label=r'$t$ (ps)',
-        y_label=r'$PEG\ Length\ (End\ to\ End)$ (nm)',
-        y_lim=(0, 6),
+        y_label=r'$PEG\ Length$ (nm)',
         x_lim=(0, 60),
-        graph_title=r'$\bf{PEG\ Length\ (End to End)\ vs\ Time}$',
+        y_lim=(0, 6),
+        graph_title=r'$\bf{PEG\ Length\ (End-to-End)\ vs\ Time}$',
         figure_text=r'$\bf{Fig\ 1}$ Evolution of end-to-end PEG length as a function of time. The force is applied at '
                     r'~ $t$ = 31.5',
-        figure_text_font_size=15,
+        figure_text_font_size=20,
+        figure_text_x_coord=0.5,
+        figure_text_y_coord=0.0005,
         font_size=20,
-        label_size=20,
-        line_width=3.5
+        tick_label_size=20,
+        line_width=3.5,
+        dashed_lines=[('x', 31.5)]
     )
 
 

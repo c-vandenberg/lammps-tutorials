@@ -14,7 +14,7 @@ from modules.line_graph import LineGraph
 
 
 def main():
-    base_dir: str = os.path.dirname(__file__)
+    base_dir: str = os.getcwd()
 
     # Extract first-input-log.lammps log file data & instantiate lammps_logfile.File object
     log_file: lammps_logfile.File = lammps_logfile.File(

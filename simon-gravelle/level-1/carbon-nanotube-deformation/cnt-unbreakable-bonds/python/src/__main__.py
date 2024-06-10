@@ -14,7 +14,7 @@ from modules.line_graph import LineGraph
 
 
 def main():
-    base_dir: str = os.path.dirname(__file__)
+    base_dir: str = os.getcwd()
 
     # File contains columns of data, the .T transpose operation switches them to rows, making it easier to
     # unpack into separate variables
