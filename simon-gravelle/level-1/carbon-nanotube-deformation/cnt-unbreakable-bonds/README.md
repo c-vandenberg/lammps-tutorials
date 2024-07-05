@@ -16,10 +16,12 @@ To simulate a CNT molecule with unbreakable bonds, the classical OPLS-AA force f
 In classical molecular dynamics force fields (also known as non-reactive force fields) such as OPLS-AA Force Field, the chemical bonds between the atoms are set at the start of the simulation. As the simulation is running, regardless of the forces applied to the atoms, the bonds will remain intact. Therefore, they are designed to model the interaction within molecules and materials where the bonding structure does not change throughout the simulation. 
 
 The bonds between neighbouring atoms are typically modelled as springs with a given equilibrium distance (*r<sub>0</sub>*) and a spring constant (*k<sub>b</sub>*). This is the standard harmonic model for chemical bonds. The bond potential (or **harmonic potential**) can be calculated via the equation:
+<br>
+<br>
 
-<p align="center">
-  U<sub>b</sub> = k<sub>b</sub>(r - r<sub>0</sub>)<sup>2</sup>
-</p>
+$$U_b = k_b(r - r_0)^2$$
+
+<br>
 
 Additionally, angular and dihedral constraints are usually applied to maintain the relative orientations of neighbour atoms.
 
@@ -41,10 +43,12 @@ As you would expect, once the deformation (velocity = 100 m/s) starts at *t* = 5
 </p>
 
 The total energy of the system can be extracted from the simulation log file. Once the deformation starts at *t* = 5 ps, we can see a non-linear increase in total system energy. This is expected given the dependency bond potential energy with bond distance, and the fact that the bond do not break in our simulation:
+<br>
+<br>
 
-<p align="center">
-  U<sub>b</sub> = k<sub>b</sub>(r - r<sub>0</sub>)<sup>2</sup>
-</p>
+$$U_b = k_b(r - r_0)^2$$
+
+<br>
 
 ## Input Script Command Syntax
 
