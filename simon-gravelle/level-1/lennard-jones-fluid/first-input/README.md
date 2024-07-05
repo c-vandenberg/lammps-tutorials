@@ -21,32 +21,30 @@ In the `3) Simulation settings` section of the LAMMPS input script, the line `pa
 Similarly, the line `pair_coeff 2 2 0.5 3.0` defines the Lennard-Jones interaction parameters/coefficients for interactions between atoms of type 2. Here, the Lennard-Jones energy parameter **ϵ<sub>11</sub>** = 0.5 and the Lennard-Jones distance parameter **σ<sub>11</sub>** = 3.0.
 
 For interactions between atoms of type 1 and atoms of type 2, by default LAMMPS calculates the cross coefficients  **ϵ<sub>12</sub>** and **σ<sub>12</sub>** using the geometric average:
+<br>
+<br>
 
-<br>
-<div align="center">
-  <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cepsilon_%7Bij%7D%20%3D%20%5Csqrt%7B%5Cepsilon_%7Bii%7D%5Cepsilon_%7Bjj%7D%7D", alt='epsilon-geometric-ave-equation'/>
-</div>
-<br>
-<div align="center">
-  <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Csigma_%7Bij%7D%20%3D%20%5Csqrt%7B%5Csigma_%7Bii%7D%5Csigma_%7Bjj%7D%7D", alt='sigma-geometric-ave-equation'/>
-</div>
+$$\epsilon_{ij} = \sqrt{\epsilon_{ii}\epsilon_{jj}}$$
+
+$$\sigma_{ij} = \sqrt{\sigma_{ii}\sigma_{jj}}$$
+
 <br>
 
 Therefore, LAMMPS will have calculated **ϵ<sub>12</sub>** and **σ<sub>12</sub>** for us as:
+<br>
+<br>
 
-<br>
-<div align="center">
-  <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Cepsilon_%7B0.5%7D%20%3D%20%5Csqrt%7B%5Cepsilon_%7B1%7D%5Cepsilon_%7B0.5%7D%7D%20%3D%200.707", 
-    alt='epsilon-atom-1-atom-2-geometric-ave-equation'/>
-</div>
-<br>
-<div align="center">
-  <img src="https://latex.codecogs.com/svg.latex?%5Ccolor%7Bwhite%7D%5Csigma_%7B1.0%7D%20%3D%20%5Csqrt%7B%5Csigma_%7B1.0%7D%5Csigma_%7B3.0%7D%7D%20%3D%201.732", 
-    alt='epsilon-atom-1-atom-2-geometric-ave-equation'/>
-</div>
+$$\epsilon_{0.5} = \sqrt{\epsilon_{1}\epsilon_{0.5}} = 0.707$$
+
+$$\sigma_{1.0} = \sqrt{\sigma_{1.0}\sigma_{3.0}} = 1.732$$
+
 <br>
 
 These Lennard-Jones parameters/coefficients can then be used to calculate the Lennard-Jones potential **E<sub>ij</sub>** for all three interactions (**E<sub>11</sub>**, **E<sub>22</sub>** and **E<sub>12</sub>**) via the equation:
+<br>
+<br>
+
+$$V(r) = 4\epsilon \left[ \left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6} \right]$$
 
 <br>
 <div align="center">
@@ -55,12 +53,12 @@ These Lennard-Jones parameters/coefficients can then be used to calculate the Le
 </div>
 
 where:
-- *V(r)* is the potential energy as a function of interatomic distance *r*,
-- *ε* = the depth of the potential well (the deeper the well, the stronger the interatomic interaction)
-- *σ* = the finite distance at which the interatomic potential is zero,
-- *r* = the interatomic distance,
-- ![sigma_r_12](https://latex.codecogs.com/svg.latex?\color{white}\left(\frac{\sigma}{r}\right)^{12}) = the replusive force
-- ![sigma_r_6](https://latex.codecogs.com/svg.latex?\color{white}\left(\frac{\sigma}{r}\right)^{6}) =  the attractive force
+- $`V(r)`$ = the potential energy as a function of interatomic distance *r*,
+- $`\epsilon`$ = the depth of the potential well (the deeper the well, the stronger the interatomic interaction)
+- $`\sigma`$ = the finite distance at which the interatomic potential is zero,
+- $`r`$ = the interatomic distance,
+- $`\left(\frac{\sigma}{r}\right)^{12}`$ = the replusive force
+- $`\left(\frac{\sigma}{r}\right)^{6}`$ =  the attractive force
 
 These calculated Lennard-Jones potentials as a function of interatomic distance are shown below:
 
