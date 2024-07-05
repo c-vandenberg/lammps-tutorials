@@ -62,9 +62,11 @@ where:
 
 These calculated Lennard-Jones potentials as a function of interatomic distance are shown below:
 
+<br>
 <div align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/134a20a6-d02a-4185-9a2a-20b8da8c6e06" alt="lennard_jones_potential" width="">
 </div>
+<br>
 
 The graph shows that as the interatomic distance decreases, the Lennard-Jones/bonding potential energy decreases and so the probability of interaction increases. As the two atoms come closer they eventually reach a distance region where they become bound; their Lennard-Jones potential/bonding potential energy decreases from zero to a negative quantity. 
 
@@ -73,17 +75,19 @@ While the atoms are bound, the interatomic distance continues to decrease until 
 The more negative the minimum potential energy/the deeper the well depth, the greater the interaction between the two atoms. As you can see, the self-interaction between atom type 1 atoms is the strongest, followed by the self-interaction between atom type 2 atoms, with atom type 1-atom type 2 interactions being the weakest.
 
 However the two bound atoms are further pressed together, past their equilibrium distance, repulsion begins to occur. This is a situtation where the atoms are so close together that their electrons are forced to occupy each other’s orbitals. This electron-electron replusion causes the Lennard-Jones/bonding potential energy to increase rapidly as the distance of separation decreases (highly unfavourable). This illustrates the high exponent of the repulsive force in the Lennard-Jones potential equation:
+<br>
+<br>
 
-<div align="center">
-  <img src="https://latex.codecogs.com/svg.latex?\color{white}\left(\frac{\sigma}{r}\right)^{12}" 
-    alt="lennard-jones-potential-equation-repulsive-component"/>
-</div>
+$$\left(\frac{\sigma}{r}\right)^{12}$$
+
+<br>
 
 ### Lennard-Jones Fluid Kinetic Energy as a Function of Time
 
 <div align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/74844b3c-9df5-41be-8833-594e07a5ad60" alt="lennard_jones_fluid_ke_vs_time" width="">
 </div>
+<br>
 
 The kinetic energy of the system can be extracted from the simulation log file. 
 
@@ -94,6 +98,7 @@ As you would expect, during the energy minimization the kinetic energy is zero d
 <div align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/a70c94f6-6cdf-4440-a0bf-e73a9d8429a8" alt="lennard_jones_fluid_pe_vs_time" width="">
 </div>
+<br>
 
 The potential energy of the system can be extracted from the simulation log file.
 
