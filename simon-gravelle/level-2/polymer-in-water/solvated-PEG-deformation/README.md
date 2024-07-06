@@ -14,11 +14,11 @@ The force magnitude was chosen via trial & error to be large enough to overcome 
 </div>
 
 The PEG end-to-end length is defined as the Euclidean distance between the center of mass coordinates for the two oxygen atoms at each end of the PEG molecule. Euclidean distance between any two points in 3D Euclidean space is given by the equation:
-
 <br>
-<div align="center">
-  <img src="https://latex.codecogs.com/svg.latex?\color{white}d%20=%20\sqrt{(x_2%20-%20x_1)^2%20+%20(y_2%20-%20y_1)^2%20+%20(z_2%20-%20z_1)^2}" alt ="euclidean distance formula" width="" />
-</div>
+<br>
+
+$$ d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2} $$
+
 <br>
 
 As you can see, the force is applied to the oxygen atoms at each end of the PEG molecule at ~ *t* = 31.5 ps. Maximum PEG length is reached at ~ *t* = 54 ps, indicating that the molecule is fully stretched.
