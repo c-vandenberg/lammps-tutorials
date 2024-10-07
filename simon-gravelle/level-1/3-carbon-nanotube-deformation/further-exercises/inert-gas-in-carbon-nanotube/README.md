@@ -1,4 +1,4 @@
-# Inert Gas (Ar) in The Carbon Nanotube
+# 3.5 Further Exercises: Inert Gas (Ar) in The Carbon Nanotube
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/1bf54cc6-da5a-44ad-a37d-c1f901e215e9" alt="inert-gas-in-cnt-start" width="325" />
@@ -6,14 +6,14 @@
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/c0d76aa9-d232-49cb-a8a3-13f6e3f72020" alt="inert-gas-in-cnt-end" width="325" />
 </p>
 
-## Problem
+## 3.5.1 Problem
 
 In this exercise we need to modify the input from the unbreakable CNT to add atoms of argon within the CNT. The argon atoms are to be given the following `pair_coeff`:
 ```
 pair_coeff 2 2 0.232 3.3952
 ```
 
-## Solution
+## 3.5.2 Solution
 
 We must modify the `cnt_molecular.data` molecular topography file to specify `2 atom types` and `2 39.948 # Ar`. We also need to add the `pair_coeff` specified in earlier to the `opls-aa.lammps` file:
 
