@@ -4,7 +4,7 @@
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/e65aa729-dc73-40f7-85d8-2d8445dbd537" alt="first-input" width="500">
 </p>
 
-## 2.1.2 Exercise
+## 2.1.1 Exercise
 
 This `first-input.lammps` input script creates a simple cubic 3-dimensional simulation box, with periodic boundary conditions (i.e. the simulation box is conceptually replicated infinitely in 3-dimensions), that uses Lennard-Jones units.
 
@@ -12,7 +12,7 @@ It also populates this simulation box with two types of atomic style atoms with 
 
 Finally, it performs an energy minimization of the system, outputting basic thermodynamic properties, before performing an MD simulation.
 
-## 2.1.3 Data Analysis
+## 2.1.2 Data Analysis
 
 ### Lennard-Jones Potential as a Function of Interatomic Distance
 
