@@ -1,4 +1,4 @@
-# 2.2.1 Level 1 - Lennard-Jones Fluid `improved_input.min.lammps` Script
+# 2.2.1 Lennard-Jones Fluid `improved_input.min.lammps` Script
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/3be49a8e-ac39-4757-96f9-6e841e181149" alt="improved-input min" width="500">
