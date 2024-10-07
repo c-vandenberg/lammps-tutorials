@@ -1,4 +1,4 @@
-# 2.1 Level 1 - Lennard-Jones Fluid `first-input.lammps` Script
+# 2.1 Lennard-Jones Fluid `first-input.lammps` Script
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/e65aa729-dc73-40f7-85d8-2d8445dbd537" alt="first-input" width="500">
