@@ -1,4 +1,4 @@
-# From Atoms to Molecules
+# 2.5 Further Exercises: From Atoms to Molecules
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/272a447c-9639-4343-a5ce-61f009c66142", alt="dumbbell-molecule-min" width="300"/>
@@ -10,7 +10,7 @@
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/29a578fb-97e3-4676-b100-3c9180fd0cfa" alt="polymer-end md" width="300" />
 </p>
 
-## Problem
+## 2.5.1 Problem
 Add a bond between type 2 atoms in order to create dumbbell molecules instead of single atoms. Additionally, create a small polymer/long chain of atoms linked by bonds and defined by angles
 
 **Hint**
@@ -30,7 +30,7 @@ Coords
 ```
 A bond section also needs to be added.
 
-## Solution
+## 2.5.2 Solution
 
 ### Dumbbell Molecule
 
