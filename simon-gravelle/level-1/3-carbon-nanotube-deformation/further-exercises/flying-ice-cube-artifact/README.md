@@ -1,11 +1,11 @@
-# Flying Ice Cube Artifact
+# 3.4 Further Exercises: Flying Ice Cube Artifact
 
 https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/d057b4cc-cef3-45fd-85db-e037a52cc942
 
-## Introduction
+## 3.4.1 Introduction
 The "flying ice cube" effect is one of the most famous artifacts (unintended behaviours)/phenomena of molecular simulations. It is where the simulated system, typically a box containing molecules or atoms, begins to exhibit a collective motion in one direction. The effect is named metaphorically; just as an ice cube might slide across a surface, the entire group of atoms/molecules in the simulation "fly" together, moving as a whole through the simulation box.
 
-### What causes the Flying Ice Cube Effect?
+### 3.4.2 What causes the Flying Ice Cube Effect?
 1. **Issues with Conservation of Momentum**
     * According to classical physics, in a perfectly isolated system, total momentum should be conserved (i.e. remains constant)
     * In MD simulations however, if the initial conditions or subsequent manipulations (e.g. removing or modifying atoms/molecules) don't correctly account for overall momentum, it can lead to the whole system gaining net momentum in a particular direction
@@ -16,14 +16,14 @@ The "flying ice cube" effect is one of the most famous artifacts (unintended beh
 3. **Numerical Instabilities & Errors**
    * Accumulation of small numerical errors over long simulation times can also contribute to this effect, especially in large, complex systems or simulations run over very long timescales
 
-### Why is the Flying Ice Cube Effect a Problem?
+### 3.4.3 Why is the Flying Ice Cube Effect a Problem?
 1. **Non-Physical Behaviour**
    * The flying ice cube effect is generally considered undesirable because it introduces a non-physical artifact into the simulation
    * In reality, there should be no external force imparting a net momentum to the entire system, so this effect can distort the dynamics and properties studied
 2. **Interference with Boundary Conditions**
    * In simulations using periodic boundary conditions (where atoms/molecules exiting one side of the simulation box re-enter from the opposite side), the flying ice cube effect can lead to incorrect interactions and artifacts as the whole system cyclically exits and enters the boundaries
 
-### How can the Flying Ice Cube Effect Be Fixed?
+### 3.4.4 How can the Flying Ice Cube Effect Be Fixed?
 1. **Zeroing Total Momentum**
    * A common approach to prevent or correct for this effect is to periodically adjust the velocities of all atoms/molecules to zero out the total momentum of the system
    * This adjustment ensures that no net translational movement affects the system's dynamics
@@ -42,7 +42,7 @@ The "flying ice cube" effect is one of the most famous artifacts (unintended beh
 3. **Monitoring Simulation Parameters**
    * Regular checks on the kinetic energy, temperature & center of mass movement of the system can alert you to the development of any non-physical behaviours early in the simulation process
 
-## Problem
+## 3.4.5 Problem
 In this exercise, we are given a new carbon nanotube molecular data file (`flying_ice_cube_cnt_molecular.data`) and a seemingly simple input script: 
 
 ```
@@ -80,7 +80,7 @@ When the simulation is run, we see that the temperature is very close to 300 K, 
 
 The task is to identify the origin of the issue and fix the input.
 
-## Solution
+## 3.4.6 Solution
 If we look in the `flying_ice_cube_cnt_molecular.data` file we can see that we have large velocities in the x-direction, which accumulates and causes a net momentum in the x-direction:
 ```
 Velocities
