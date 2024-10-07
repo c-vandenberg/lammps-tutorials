@@ -1,10 +1,10 @@
-# Preparing The Water Reservoir
+# 4.1 Preparing The Water Reservoir
 
 <div align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/dcbb5fe3-9e4e-4de5-a64a-931e866c2523" alt="pure H2O" width="" />
 </div>
 
-## Introduction
+## 4.1.2 Introduction
 
 First, a rectangular water reservoir will be created & equilibrated in the absence of the PEG chain. The water model we will use is the Single Point Charge/Flexible Water (SPC/Fw) model<sup>1</sup>.
 
@@ -24,7 +24,7 @@ The Extended SPC (SPC/E) model introduced a self-polarization energy correction 
 
 *Wu et al.* improved on this by investigating the effect of equilibrium bond length on the self-diffusion constant, and the effect of equilibrium bond angles on the dielectric constant. They found the sensitivity of both parameters to these molecular geometries was very high. Therefore, they derived a new flexible simple point-charge water model (the SPC/Fw model) by slightly perturbing the equilibrium bond length & angle to optimize the bulk water self-diffusion & dielectric constants towards their experimental values.
 
-## Data Analysis
+## 4.1.3 Data Analysis
 
 ### Pure H<sub>2</sub>O Temperature as a Function of Time
 
@@ -50,7 +50,7 @@ The NPT ensemble applies isotropic pressure control meaning that the simulation 
 
 Due to the inverse relationship with volume, the system density increases gradually as system volume decreases gradually decreases. The equilibrium density of ~ 31 nm<sup>-3</sup> is reached in ~ 13 ps.
 
-## Input Script Command Syntax
+## 4.1.4 Input Script Command Syntax
 
 Breaking down the new commands we encounter in this input script:
 
@@ -97,6 +97,6 @@ extra/special/per/atom 14
 * `extra/dihedral/per/atom 20` - Allocates additional memory for `10` dihedrals for each atom
 * `extra/special/per/atom 14` - Allocates additional memory for `14` special pairwise interactions for each atom
 
-## References
+## 4.1.5 References
 [1] Wu, Y., Tepper, H.L. and Voth, G.A. (2006) ‘Flexible simple point-charge water model with improved liquid-state properties’, *The Journal of Chemical Physics*, 124(2). <br>
 [2] Luty, B.A. and van Gunsteren, W.F. (1996) ‘Calculating electrostatic interactions using the particle−particle particle−mesh method with nonperiodic long-range interactions’, *The Journal of Physical Chemistry*, 100(7), pp. 2581–2587.
