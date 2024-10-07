@@ -1,15 +1,15 @@
-# Plot the Carbon Nanotube Stress-Strain Curves
+# 3.3 Further Exercises: Plot the Carbon Nanotube Stress-Strain Curves
 
-## Problem
+## 3.3.1 Problem
 
 In this exercise we will calculate stress-strain curve for both breakable bonds CNT and unbreakable bonds CNT.
 
-## Solution
+## 3.3.2 Solution
 
 * The stress is calculated as the total force applied to the CNT from the deformation, divided by the surface area of the CNT
 * We also need to include constants and conversion factors in our scripts, taking note of the difference in units between the OPLS-AA & AIREBO Force Fields
 
-## Data Analysis
+## 3.3.3 Data Analysis
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/9a6cd7c6-8432-4dbf-9265-c1d2ae5b10b3" alt="stress_vs_strain" width="" />
