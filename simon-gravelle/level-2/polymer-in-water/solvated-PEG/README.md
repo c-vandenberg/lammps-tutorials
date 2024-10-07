@@ -1,12 +1,12 @@
-# Solvating the PEG in Water
+# 4.3 Solvating the PEG in Water
 
 https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/58a02fc5-91b0-4af8-b660-782eb3208f98
 
-## Introduction
+## 4.3.1 Introduction
 
 Now that we have created & equilibrated both our water reservoir and single PEG polymer, we can now combine the two systems to solvate the PEG in the water reservoir.
 
-## Input Script Command Syntax
+## 4.3.2 Input Script Command Syntax
 
 Breaking down the new commands we encounter in this input script:
 
