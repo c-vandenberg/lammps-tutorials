@@ -104,7 +104,7 @@ The potential energy of the system can be extracted from the simulation log file
 
 The system starts at a very high potential energy due to overlapping atoms when the simulation system is established, before rapidly decreasing during energy minimization. Again, once the molecular dynamics simulation starts, potential energy rapidly increases before stabilising at around *p<sub>e</sub>* = -0.25
 
-## Input Script Command Syntax
+## 2.1.3 Input Script Command Syntax
 
 ### PART A - ENERGY MINIMIZATION
 This section of the script is concerned with minimizing the energy of the system to find a stable or lower energy configuration before beginning dynamics simulations
