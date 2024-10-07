@@ -1,6 +1,4 @@
-# Create a Demixed Dense Phase
-
-
+# 2.4 Further Exercises: Create a Demixed Dense Phase
 
 https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/a9b29b17-0d59-4e60-b0fd-0e1bee3049d8
 
@@ -14,7 +12,7 @@ https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/a9b29b17-0d59-4
 </p>
 
 
-## Problem
+## 2.4.1 Problem
 Using one of the input scripts from either `first-input` or `improved-input`, fine-tune parameters such as atom numbers and atomic interaction to create a simulation with the following properties:
 * System with high atomic density
 * Both type 1 and type 2 atoms must be the same size
@@ -23,7 +21,7 @@ Using one of the input scripts from either `first-input` or `improved-input`, fi
 **Hint**
 * An easy way to create a dense phase is to adjust the simulation box dimensions. This can be achieved by using `fix nve` instead of `fix nph`, which adjusts simulation box dimensions to control pressure
 
-## Solution
+## 2.4.2 Solution
 
 ### De-mixing
 The key to creating de-mixing phase is to **adjust the Lennard-Jones parameters**:
