@@ -1,4 +1,4 @@
-# MDAnalysis Tutorials - Carbon Nanotube (CNT) Breakable Bonds
+# 5.2 MDAnalysis Tutorials - Carbon Nanotube (CNT) Breakable Bonds
 
 In this tutorial, we will use the topology file and subsequent trajectory file generated in the deformation of a CNT with breakable bonds exercise.
 
@@ -6,7 +6,7 @@ For analysing and processing data via Python, this exercise utilises both a proc
 
 Before the main exercises there is some basic MDAnalysis manipulations in the Jupyter Lab notebook (counting atoms & timestep frames, accessing bonded atom indices, and extracting atomic positions)
 
-## Evolution of CNT Average Bond Length & Bond Number as a Function of Time
+## 5.2.1 Evolution of CNT Average Bond Length & Bond Number as a Function of Time
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/bd03ad37-523d-41d9-8dc5-cd9d3c060891" alt="cnt_average_bond_length_bond_number_vs_timestep" width="" />
 </p>
@@ -17,7 +17,7 @@ Within this simulation trajectory loop, there is a nested loop to iterate over t
 
 This data is then plotted on two scatter graph subplots via Matplotlib Pyplot. The subplots display 'bond length vs timestep frame' and 'bond number vs timestep frame'.
 
-## Bond Length Distributions
+## 5.2.2 Bond Length Distributions
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/f061e4e7-9d28-4fb7-b29b-ca5f485940a6" alt="cnt_bond_length_distributions" width="" />
 </p>
