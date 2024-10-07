@@ -1,4 +1,4 @@
-## Level 1 - Lennard-Jones Fluid: The Very Basics of LAMMPS
+## 2. Level 1 - Lennard-Jones Fluid: The Very Basics of LAMMPS
 
 https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/29bc8717-82b7-4de2-83be-f5acd5d3a72a
 
