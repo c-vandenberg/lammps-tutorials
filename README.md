@@ -35,6 +35,20 @@
 	&nbsp; &nbsp; 3.2.3 [Differences in Topology File](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/cnt-breakable-bonds/README.md#323-differences-in-topology-file)<br>
 	&nbsp; &nbsp; 3.2.4 [Data Analysis](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/cnt-breakable-bonds/README.md#324-data-analysis)<br>
 	&nbsp; &nbsp; 3.2.5 [Input Script Command Syntax](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/cnt-breakable-bonds/README.md#325-input-script-command-syntax)<br>
+	3.3 [Further Exercises: Plot the Carbon Nanotube Stress-Strain Curves](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/stress-strain-curve/README.md#33-further-exercises-plot-the-carbon-nanotube-stress-strain-curves)<br>
+	&nbsp; &nbsp; 3.3.1 [Problem](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/stress-strain-curve/README.md#331-problem)<br>
+	&nbsp; &nbsp; 3.3.2 [Solution](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/stress-strain-curve/README.md#332-solution)<br>
+	&nbsp; &nbsp; 3.3.3 [Data Analysis](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/stress-strain-curve/README.md#333-data-analysis)<br>
+	3.4 [Further Exercises: Flying Ice Cube Artifact](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/flying-ice-cube-artifact/README.md#34-further-exercises-flying-ice-cube-artifact)<br>
+	&nbsp; &nbsp; 3.4.1 [Introduction](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/flying-ice-cube-artifact/README.md#341-introduction)<br>
+	&nbsp; &nbsp; 3.4.2 [Problem](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/flying-ice-cube-artifact/README.md#342-problem)<br>
+ 	&nbsp; &nbsp; 3.4.3 [Solution](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/flying-ice-cube-artifact/README.md#343-solution)<br>
+	3.5 [Further Exercises: Inert Gas (Ar) in The Carbon Nanotube](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/inert-gas-in-carbon-nanotube/README.md#35-further-exercises-inert-gas-ar-in-the-carbon-nanotube)<br>
+	&nbsp; &nbsp; 3.5.1 [Problem](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/inert-gas-in-carbon-nanotube/README.md#351-problem)<br>
+	&nbsp; &nbsp; 3.5.2 [Solution](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/inert-gas-in-carbon-nanotube/README.md#352-solution)<br>
+	3.6 [Further Exercises: Carbon Nanotube Membrane](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/carbon-nanotube-membrane/README.md#36-further-exercises-carbon-nanotube-membrane)<br>
+	&nbsp; &nbsp; 3.6.1 [Problem](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/carbon-nanotube-membrane/README.md#361-problem)<br>
+	&nbsp; &nbsp; 3.6.2 [Solution](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/carbon-nanotube-membrane/README.md#362-solution)<br>
 4. []()<br>
 	4.1 []()<br>
 	4.2 []()<br>
