@@ -1,6 +1,6 @@
-# lammps-tutorials
+# LAMMPS Tutorials
 
-## Introduction & Set Up
+## 1. Introduction & Set Up
 
 LAMMPS (**L**arge-scale **A**tomic/**M**olecular **M**assively **P**arallel **S**imulator) is a classical molecular dynamics simulation (MD) program that models ensembles of particles in a liquid, solid, or gaseous state. It can model atomic, polymeric, biological, solid-state, granular, coarse-grained, or macroscopic systems using a variety of interatomic potentials (force fields) and boundary conditions. These can be 2-D or 3-D systems, with sizes ranging from only a few particles up to billions.
 
@@ -8,7 +8,7 @@ In the most general sense, LAMMPS integrates Newton’s equations of motion for 
 
 Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps) to be installed and built on your local machine. Detailed [documentation](https://docs.lammps.org/) is available, however a simplified step by step guide is given below. This guide is for a build on Linux, specifically Ubuntu 23.10.
 
-### LAMMPS Installation & Required Package Installation
+### 1.1 LAMMPS Installation & Required Package Installation
 1. Clone LAMMPS GitHub repo either using [SSH protocol](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) (`git clone git@github.com:lammps/lammps.git`), or using HTTPS (`git clone https://github.com/lammps/lammps.git`)
 2. Set up virtual environment e.g. using Conda (`conda activate <virtual_environment>`)
 3. Install required packages (further packages will be added as more exercises are added to the tutorial):
@@ -23,7 +23,7 @@ Tutorials require [LAMMPS MD software package](https://github.com/lammps/lammps)
 	  ifort -c micelle2d.f90 -o micelle2d
    ```
 
-### LAMMPS Build with Make
+### 1.2 LAMMPS Build with Make
 1. All build commands must be run in LAMMPS `src` directory (`cd lammps/src`)
    * If you need to install any packages, this needs to be done prior to building any LAMMPS binaries. This can be by running command `make yes-<package_name>`. E.g. `make yes-MOLECULE`
 2. Build serial LAMMPS executable using GNU g++ (`make serial`)
@@ -54,11 +54,11 @@ Using CMake has multiple advantages if you want to modify or extend LAMMPS (or h
    * N.B. I personally had incompatiability issues with my locally installed FFTW3 (Fastest Fourier Transform in the West) library when LAMMPS tried to install the KSPACE package. As described [in the documentation](https://docs.lammps.org/Build_settings.html#fft-library), the KISS fft library is included with LAMMPS, so I got around this issue by adding the `-D FFT=KISS` flag to my configuration command - `cmake -C ../cmake/presets/most.cmake -D FFT=KISS ../cmake`
 4. Compile/build LAMMPS executable via command `cmake --build .`. This generates the `lmp` binary in your `lammps/build` directory
 
-### Running CMake Build LAMMPS
+### 1.3 Running CMake Build LAMMPS
 1. Once you have created your `<input_file>.lammps` input script, you can run LAMMPS using:
    * The `<absolute_configuration_to_lammps/build/lmp> -in <input_file>.lammps` command to run LAMMPS via the `lmp` binary
   
-### Configuring CLion Debugger with LAMMPS
+### 1.4 Configuring CLion Debugger with LAMMPS
 The ability to trigger breakpoints in a codebase is an invaluable tool for debugging any errors you encounter when running an input script. It also helps you get more familiar with the codebase of the software you are using. I will be describing how to do this in CLion, a cross-platform IDE for C and C++ with support for Python & assembly. Unfortunately, CLion does not have a free version. But this general approach can be applied to other IDEs with support for CMake.
 
 Note this requires building LAMMPS via the `cmake` build procedure (the `make` procedure may work, but I have not tested it)
