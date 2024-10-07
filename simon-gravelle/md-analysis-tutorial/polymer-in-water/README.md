@@ -4,7 +4,7 @@ In this tutorial, we will use the topology file and subsequent trajectory file g
 
 For analysing and processing data via Python, this exercise utilises both a procedural approach (code within the Jupyter Lab notebook), and an object-oriented approach (code in `src` directory Python classes).
 
-## 5.1.2 Extract Temporal Evolution of Hydrogen Type 4 Atom (First Atom in PEG Group)
+## 5.1.1 Extract Temporal Evolution of Hydrogen Type 4 Atom (First Atom in PEG Group)
 
 In this exercise, the position of the first atom of the peg group (i.e. the hydrogen type 4 atom) is extracted over all 300 frames, and its coordinates in each timestep frame stored in a list.
 
