@@ -4,7 +4,7 @@
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/bcdf929d-c941-45fd-9ded-7d1945a0e104" alt="lost-atoms-error" width="500" />
 </p>
 
-## Problem
+## 2.3.1 Problem
 For this exercise, the following input script is provided:
 
 ```
@@ -48,7 +48,7 @@ This is one of the most common errors encountered when using LAMMPS. The goal of
 **Hint**
 * This script is failing because atoms are created randomly in space, some of them are likely overlapping, and no energy minimization is performed prior to start the molecular dynamics simulation.
 
-## Solution
+## 2.3.2 Solution
 The `Lost atoms` error typically indicates that some of the atoms are moving outside the simulation box. This occurs because, in the absence of energy minimization, some of the randomly created atoms can be highly overlapping/too close to each other, and are immediately subjected to strong repulsive forces. As a result, these atoms have unreasonably high initial velocities that lead to them being displaced beyond the boundary the simulation domain.
 
 The solution is to **reduce the initial timestep value** as well as **reducing the temperature imposed by the Langevin thermostat**. Additionally, in order to make sure that the temperature of the system quickly reaches a reasonable value, the **dampening parameter of the Langevin thermostat needs to be reduced**:
