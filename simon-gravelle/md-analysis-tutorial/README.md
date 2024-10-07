@@ -10,7 +10,7 @@ In this section, we will import the topology and trajectory files from the CNT b
 
 For analysing and processing data via Python, this exercise utilises both a procedural approach (code within the Jupyter Lab Notebook), and an object-oriented approach (code in `src` directory Python classes).
 
-### 5.1 MDAnalysis
+### MDAnalysis
 
 [MDAnalysis](https://www.mdanalysis.org/) is an object-oriented Python library used to analyze trajectories from MD simulations (mainly through NumPy arrays). It has read-write capabilities for [most popular coordinate file formats](https://docs.mdanalysis.org/stable/documentation_pages/coordinates/init.html) and supports individual atom and atom group selection.
 
