@@ -1,14 +1,14 @@
-# Carbon Nanotube Membrane
+# 3.6 Further Exercises: Carbon Nanotube Membrane
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/ea6277cb-2d37-4ccf-8c48-1b6ba812d904" alt="cnt-membrane" width="" />
 </p>
 
-## Problem
+## 3.6.1 Problem
 
 In this exercise we are to replicate the carbon nanotube (CNT) in the x and y directions and equilibrate the system to create an infinite membrane of multiple CNTs. We are also to apply a shear stress/sheer deformation to the CNT membrane.
 
-## Solution
+## 3.6.2 Solution
 
 Firstly, to simulate the effect of an infinite system in the x and y directions, we must change the boundary conditions to periodic in the x and y directions using `boundary p p p`. These conditions make the simulation box behave as if it is a single unit cell in an infinite system.
 
