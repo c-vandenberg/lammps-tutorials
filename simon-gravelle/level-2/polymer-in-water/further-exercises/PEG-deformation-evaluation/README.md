@@ -1,11 +1,11 @@
-# Evaluate The Deformation of The PEG Polymer Molecule
+# 4.7 Further Exercises: Evaluate The Deformation of The PEG Polymer Molecule
 
-## Introduction
+## 4.7.1 Introduction
 Once the PEG molecule is fully stretched, its structure differs from when it is not stretched. We can probe this deformation by extracting typical intra-molecular parameters such as dihedral angles.
 
 In this exercise we will extract the histograms of the angular distribution of the PEG dihedral angles in before and after stretching.
 
-## Data Analysis
+## 4.7.2 Data Analysis
 <div align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/d9a6a492-4261-421b-bf31-bdfa2cdbf9e9" alt ="PEG deformation probability vs dihedrals" width="" />
 </div>
