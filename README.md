@@ -1,6 +1,6 @@
 # LAMMPS Tutorials
 
-## 1. Introduction & Set Up
+## 1. LAMMPS Introduction & Set Up
 
 LAMMPS (**L**arge-scale **A**tomic/**M**olecular **M**assively **P**arallel **S**imulator) is a classical molecular dynamics simulation (MD) program that models ensembles of particles in a liquid, solid, or gaseous state. It can model atomic, polymeric, biological, solid-state, granular, coarse-grained, or macroscopic systems using a variety of interatomic potentials (force fields) and boundary conditions. These can be 2-D or 3-D systems, with sizes ranging from only a few particles up to billions.
 
