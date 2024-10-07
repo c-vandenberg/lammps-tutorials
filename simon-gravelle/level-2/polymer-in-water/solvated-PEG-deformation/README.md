@@ -1,14 +1,14 @@
-# Deforming/Stretching the Water Solvated PEG Polymer Molecule
+# 4.4 Deforming/Stretching the Water Solvated PEG Polymer Molecule
 
 https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/aa14bf6b-29a2-475f-8f1a-cdfd3ae44f42
 
-## Introduction
+## 4.4.1 Introduction
 
 We will now apply a constant force to the oxygen atoms on both ends of the PEG polymer molecule until it stretches. This will allow us to probe the deformation via the changing intra-molecular parameters (see `PEG-deformation-evaluation` further exercise). 
 
 The force magnitude was chosen via trial & error to be large enough to overcome the thermal agitation & the entropic contribution from both water and PEG molecules.
 
-## Data Analysis
+## 4.4.2 Data Analysis
 <div align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/11110a72-6d6a-448a-ac33-b6df8c9b7294" alt ="peg length vs time" width="" />
 </div>
@@ -24,7 +24,7 @@ $$ d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2} $$
 As you can see, the force is applied to the oxygen atoms at each end of the PEG molecule at ~ *t* = 31.5 ps. Maximum PEG length is reached at ~ *t* = 54 ps, indicating that the molecule is fully stretched.
 
 
-## Input Script Command Syntax
+## 4.4.3 Input Script Command Syntax
 
 Breaking down the new commands we encounter in this input script:
 
