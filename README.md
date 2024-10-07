@@ -49,10 +49,22 @@
 	3.6 [Further Exercises: Carbon Nanotube Membrane](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/carbon-nanotube-membrane/README.md#36-further-exercises-carbon-nanotube-membrane)<br>
 	&nbsp; &nbsp; 3.6.1 [Problem](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/carbon-nanotube-membrane/README.md#361-problem)<br>
 	&nbsp; &nbsp; 3.6.2 [Solution](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-1/3-carbon-nanotube-deformation/further-exercises/carbon-nanotube-membrane/README.md#362-solution)<br>
-4. []()<br>
-	4.1 []()<br>
-	4.2 []()<br>
-	&nbsp; &nbsp; 4.2.1 []()<br>
+4. [Simon Gravelle Tutorial Level 2: Polymer in Water](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/README.md#4-simon-gravelle-tutorial-level-2-polymer-in-water)<br>
+	4.1 [Preparing The Water Reservoir](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/pure-H2O/README.md#41-preparing-the-water-reservoir)<br>
+	&nbsp; &nbsp; 4.1.1 [Introduction](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/pure-H2O/README.md#411-introduction)<br>
+	&nbsp; &nbsp; 4.1.2 [Data Analysis](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/pure-H2O/README.md#412-data-analysis)<br>
+	&nbsp; &nbsp; 4.1.3 [Input Script Command Syntax](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/pure-H2O/README.md#413-input-script-command-syntax)<br>
+	&nbsp; &nbsp; 4.1.4 [References](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/pure-H2O/README.md#414-references)<br>
+	4.2 [Preparing The Single PEG Polymer](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/single-PEG/README.md#42-preparing-the-single-peg-polymer)<br>
+	&nbsp; &nbsp; 4.2.1 [Introduction](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/single-PEG/README.md#421-introduction)<br>
+ 	&nbsp; &nbsp; 4.2.2 [References](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/single-PEG/README.md#422-references)<br>
+	4.3 [Solvating the PEG in Water](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/solvated-PEG/README.md#43-solvating-the-peg-in-water)<br>
+	&nbsp; &nbsp; 4.3.1 [Introduction](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/solvated-PEG/README.md#431-introduction)<br>
+	&nbsp; &nbsp; 4.3.2 [Input Script Command Syntax](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/solvated-PEG/README.md#432-input-script-command-syntax)<br>
+	4.4 [Deforming/Stretching the Water Solvated PEG Polymer Molecule](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/solvated-PEG-deformation/README.md#44-deformingstretching-the-water-solvated-peg-polymer-molecule)<br>
+ 	&nbsp; &nbsp; 4.4.1 [Introduction](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/level-2/polymer-in-water/solvated-PEG-deformation/README.md#441-introduction)<br>
+	&nbsp; &nbsp; 4.4.2 []()<br>
+	&nbsp; &nbsp; 4.4.3 []()<br>
  5. []()<br>
 	5.1 []()<br>
 	5.2 []()<br>
