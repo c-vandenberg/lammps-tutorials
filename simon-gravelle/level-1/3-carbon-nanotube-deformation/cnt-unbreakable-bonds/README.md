@@ -1,4 +1,4 @@
-# 2.1 Deformation of Carbon Nanotube with Unbreakable Bonds
+# 3.1 Deformation of Carbon Nanotube with Unbreakable Bonds
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/29ecb08f-f20b-479f-ac97-528d9e5074f0" alt="cnt-unbreakable-bonds start md" width="325" />
@@ -6,12 +6,12 @@
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/df6ac85c-2bcb-40e8-bd7e-d0b2ee5c0604" alt="cnt-unbreakable-bonds-end md" width="325" />
 </p>
 
-## 2.1.1 Exercise
+## 3.1.1 Exercise
 The objective of this exercise is to deform a carbon nanotube (CNT) using LAMMPS. Using external preprocessed topology data, a small CNT molecule will be simulated within an empty simulation box, an external force will be exerted on the CNT, and its deformation will be measured over time. 
 
 To simulate a CNT molecule with unbreakable bonds, the classical OPLS-AA force field will be used.
 
-## 2.1.2 Introduction
+## 3.1.2 Introduction
 
 In classical molecular dynamics force fields (also known as non-reactive force fields) such as OPLS-AA Force Field, the chemical bonds between the atoms are set at the start of the simulation. As the simulation is running, regardless of the forces applied to the atoms, the bonds will remain intact. Therefore, they are designed to model the interaction within molecules and materials where the bonding structure does not change throughout the simulation. 
 
@@ -25,9 +25,9 @@ $$U_b = k_b(r - r_0)^2$$
 
 Additionally, angular and dihedral constraints are usually applied to maintain the relative orientations of neighbour atoms.
 
-## 2.1.3 Data Analysis
+## 3.1.3 Data Analysis
 
-### 2.1.4 Carbon Nanotube Length During Deformation
+### Carbon Nanotube Length During Deformation
 
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/7417684a-8732-4c3b-bcf0-9fea8b07a526" alt="cnt_unbreakable_length_vs_time" width="" />
@@ -37,7 +37,7 @@ In our LAMMPS input script, we defined three CNT molecule regions; `region_top`,
 
 As you would expect, once the deformation (velocity = 100 m/s) starts at *t* = 5 ps, the end-to-end length of the CNT molecule increases linearly as a function of time.
 
-### 2.1.5 Carbon Nanotube System Total Energy During Deformation
+### Carbon Nanotube System Total Energy During Deformation
 <p align="center">
   <img src="https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/526c93b7-8390-4594-8680-e694762a68f1" alt="cnt_total_energy_vs_time" width="" />
 </p>
@@ -50,7 +50,7 @@ $$U_b = k_b(r - r_0)^2$$
 
 <br>
 
-## 2.1.6 Input Script Command Syntax
+## 3.1.4 Input Script Command Syntax
 
 Breaking down the new commands we encounter in this input script:
 
