@@ -80,7 +80,7 @@
 	&nbsp; &nbsp; 5.1.2 [Extract Temporal Evolution of Hydrogen Type 4 Atom (First Atom in PEG Group)](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/md-analysis-tutorial/polymer-in-water/README.md#511-extract-temporal-evolution-of-hydrogen-type-4-atom-first-atom-in-peg-group)<br>
 	5.2 [MDAnalysis Tutorials - Carbon Nanotube (CNT) Breakable Bonds](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/md-analysis-tutorial/carbon-nanotube-deformation/cnt-breakable-bonds/README.md#52-mdanalysis-tutorials---carbon-nanotube-cnt-breakable-bonds)<br>
 	&nbsp; &nbsp; 5.2.1 [Evolution of CNT Average Bond Length & Bond Number as a Function of Time](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/md-analysis-tutorial/carbon-nanotube-deformation/cnt-breakable-bonds/README.md#521-evolution-of-cnt-average-bond-length--bond-number-as-a-function-of-time)<br>
- 	&nbsp; &nbsp; 5.2.2 [https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/md-analysis-tutorial/carbon-nanotube-deformation/cnt-breakable-bonds/README.md#522-bond-length-distributions](Bond Length Distributions)<br>
+ 	&nbsp; &nbsp; 5.2.2 [Bond Length Distributions](https://github.com/c-vandenberg/lammps-tutorials/blob/master/simon-gravelle/md-analysis-tutorial/carbon-nanotube-deformation/cnt-breakable-bonds/README.md#522-bond-length-distributions)<br>
 
 ## 1. LAMMPS Introduction & Set Up
 
