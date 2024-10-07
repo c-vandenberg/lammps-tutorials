@@ -1,4 +1,4 @@
-## Level 2 - Polymer in Water
+## 4. Simon Gravelle Tutorial Level 2: Polymer in Water
 
 https://github.com/c-vandenberg/lammps-tutorials/assets/60201356/aa14bf6b-29a2-475f-8f1a-cdfd3ae44f42
 
