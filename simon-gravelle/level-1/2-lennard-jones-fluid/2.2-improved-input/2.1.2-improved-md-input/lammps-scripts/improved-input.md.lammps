@@ -9,7 +9,7 @@ pair_style lj/cut 2.5
 boundary p p p
 
 # 2) System definition
-read_data ../../improved-min-input/data/raw/topology/minimized_coordinate.data
+read_data ../../2.2.1-improved-min-input/data/raw/topology/minimized_coordinate.data
 
 region region_inside_cylinder cylinder z 0 0 10 INF INF side in
 region region_outside_cylinder cylinder z 0 0 10 INF INF side out
